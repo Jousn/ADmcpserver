@@ -1,0 +1,604 @@
+{
+ "placed": [
+  {
+   "designator": "HDR2",
+   "ok": true,
+   "response": {
+    "success": true,
+    "designator": "HDR2",
+    "lib_reference": "Header 10X2",
+    "x_mils": 3100,
+    "y_mils": 7700,
+    "rotation_quarter": 0
+   }
+  },
+  {
+   "designator": "HDR3",
+   "ok": true,
+   "response": {
+    "success": true,
+    "designator": "HDR3",
+    "lib_reference": "Header 10X2",
+    "x_mils": 5100,
+    "y_mils": 7700,
+    "rotation_quarter": 0
+   }
+  },
+  {
+   "designator": "Y1",
+   "ok": true,
+   "response": {
+    "success": true,
+    "designator": "Y1",
+    "lib_reference": "QSMO_4200",
+    "x_mils": 10300,
+    "y_mils": 2400,
+    "rotation_quarter": 0
+   }
+  },
+  {
+   "designator": "C45",
+   "ok": true,
+   "response": {
+    "success": true,
+    "designator": "C45",
+    "lib_reference": "Cap",
+    "x_mils": 10000,
+    "y_mils": 3000,
+    "rotation_quarter": 1
+   }
+  },
+  {
+   "designator": "HDR1",
+   "ok": true,
+   "response": {
+    "success": true,
+    "designator": "HDR1",
+    "lib_reference": "Header 5X2",
+    "x_mils": 12300,
+    "y_mils": 4600,
+    "rotation_quarter": 0
+   }
+  },
+  {
+   "designator": "C15",
+   "ok": true,
+   "response": {
+    "success": true,
+    "designator": "C15",
+    "lib_reference": "Cap",
+    "x_mils": 3800,
+    "y_mils": 3700,
+    "rotation_quarter": 1
+   }
+  },
+  {
+   "designator": "C16",
+   "ok": true,
+   "response": {
+    "success": true,
+    "designator": "C16",
+    "lib_reference": "Cap",
+    "x_mils": 2900,
+    "y_mils": 4700,
+    "rotation_quarter": 0
+   }
+  },
+  {
+   "designator": "C19",
+   "ok": true,
+   "response": {
+    "success": true,
+    "designator": "C19",
+    "lib_reference": "Cap",
+    "x_mils": 2700,
+    "y_mils": 4700,
+    "rotation_quarter": 0
+   }
+  },
+  {
+   "designator": "R10",
+   "ok": true,
+   "response": {
+    "success": true,
+    "designator": "R10",
+    "lib_reference": "Res1",
+    "x_mils": 2400,
+    "y_mils": 4500,
+    "rotation_quarter": 1
+   }
+  },
+  {
+   "designator": "JP5",
+   "ok": true,
+   "response": {
+    "success": true,
+    "designator": "JP5",
+    "lib_reference": "Jumper, 2-Pin",
+    "x_mils": 9300,
+    "y_mils": 6300,
+    "rotation_quarter": 1
+   }
+  },
+  {
+   "designator": "R7",
+   "ok": true,
+   "response": {
+    "success": true,
+    "designator": "R7",
+    "lib_reference": "RES",
+    "x_mils": 9300,
+    "y_mils": 5900,
+    "rotation_quarter": 2
+   }
+  },
+  {
+   "designator": "U2",
+   "ok": true,
+   "response": {
+    "success": true,
+    "designator": "U2",
+    "lib_reference": "ADXL202E",
+    "x_mils": 3600,
+    "y_mils": 5200,
+    "rotation_quarter": 0
+   }
+  },
+  {
+   "designator": "R11",
+   "ok": true,
+   "response": {
+    "success": true,
+    "designator": "R11",
+    "lib_reference": "RES",
+    "x_mils": 3200,
+    "y_mils": 5500,
+    "rotation_quarter": 0
+   }
+  },
+  {
+   "designator": "R22",
+   "ok": true,
+   "response": {
+    "success": true,
+    "designator": "R22",
+    "lib_reference": "Res1",
+    "x_mils": 5200,
+    "y_mils": 4900,
+    "rotation_quarter": 2
+   }
+  },
+  {
+   "designator": "R21",
+   "ok": true,
+   "response": {
+    "success": true,
+    "designator": "R21",
+    "lib_reference": "Res1",
+    "x_mils": 5200,
+    "y_mils": 4700,
+    "rotation_quarter": 2
+   }
+  },
+  {
+   "designator": "JP3",
+   "ok": true,
+   "response": {
+    "success": true,
+    "designator": "JP3",
+    "lib_reference": "Jumper, 2-Pin",
+    "x_mils": 5400,
+    "y_mils": 5000,
+    "rotation_quarter": 0
+   }
+  },
+  {
+   "designator": "JP4",
+   "ok": true,
+   "response": {
+    "success": true,
+    "designator": "JP4",
+    "lib_reference": "Jumper, 2-Pin",
+    "x_mils": 5400,
+    "y_mils": 4800,
+    "rotation_quarter": 0
+   }
+  },
+  {
+   "designator": "JS2",
+   "ok": true,
+   "response": {
+    "success": true,
+    "designator": "JS2",
+    "lib_reference": "Jumper Socket",
+    "x_mils": 5400,
+    "y_mils": 5050,
+    "rotation_quarter": 0
+   }
+  },
+  {
+   "designator": "JS3",
+   "ok": true,
+   "response": {
+    "success": true,
+    "designator": "JS3",
+    "lib_reference": "Jumper Socket",
+    "x_mils": 5400,
+    "y_mils": 4850,
+    "rotation_quarter": 0
+   }
+  },
+  {
+   "designator": "NT1",
+   "ok": true,
+   "response": {
+    "success": true,
+    "designator": "NT1",
+    "lib_reference": "Jumper, 2-Pin_1",
+    "x_mils": 9150,
+    "y_mils": 2500,
+    "rotation_quarter": 3
+   }
+  }
+ ],
+ "pinMismatches": [
+  {
+   "designator": "HDR2",
+   "issues": [
+    "missing pin @HDR2|2900,7600",
+    "missing pin @HDR2|3700,7600",
+    "missing pin @HDR2|2900,7500",
+    "missing pin @HDR2|3700,7500",
+    "missing pin @HDR2|2900,7400",
+    "missing pin @HDR2|3700,7400",
+    "missing pin @HDR2|2900,7300",
+    "missing pin @HDR2|3700,7300",
+    "missing pin @HDR2|2900,7200",
+    "missing pin @HDR2|3700,7200",
+    "missing pin @HDR2|2900,7100",
+    "missing pin @HDR2|3700,7100",
+    "missing pin @HDR2|2900,7000",
+    "missing pin @HDR2|3700,7000",
+    "missing pin @HDR2|2900,6900",
+    "missing pin @HDR2|3700,6900",
+    "missing pin @HDR2|2900,6800",
+    "missing pin @HDR2|3700,6800",
+    "missing pin @HDR2|2900,6700",
+    "missing pin @HDR2|3700,6700",
+    "extra pin @1|2900,7600",
+    "extra pin @2|3700,7600",
+    "extra pin @3|2900,7500",
+    "extra pin @4|3700,7500",
+    "extra pin @5|2900,7400",
+    "extra pin @6|3700,7400",
+    "extra pin @7|2900,7300",
+    "extra pin @8|3700,7300",
+    "extra pin @9|2900,7200",
+    "extra pin @10|3700,7200",
+    "extra pin @11|2900,7100",
+    "extra pin @12|3700,7100",
+    "extra pin @13|2900,7000",
+    "extra pin @14|3700,7000",
+    "extra pin @15|2900,6900",
+    "extra pin @16|3700,6900",
+    "extra pin @17|2900,6800",
+    "extra pin @18|3700,6800",
+    "extra pin @19|2900,6700",
+    "extra pin @20|3700,6700"
+   ]
+  },
+  {
+   "designator": "HDR3",
+   "issues": [
+    "missing pin @HDR3|4900,7600",
+    "missing pin @HDR3|5700,7600",
+    "missing pin @HDR3|4900,7500",
+    "missing pin @HDR3|5700,7500",
+    "missing pin @HDR3|4900,7400",
+    "missing pin @HDR3|5700,7400",
+    "missing pin @HDR3|4900,7300",
+    "missing pin @HDR3|5700,7300",
+    "missing pin @HDR3|4900,7200",
+    "missing pin @HDR3|5700,7200",
+    "missing pin @HDR3|4900,7100",
+    "missing pin @HDR3|5700,7100",
+    "missing pin @HDR3|4900,7000",
+    "missing pin @HDR3|5700,7000",
+    "missing pin @HDR3|4900,6900",
+    "missing pin @HDR3|5700,6900",
+    "missing pin @HDR3|4900,6800",
+    "missing pin @HDR3|5700,6800",
+    "missing pin @HDR3|4900,6700",
+    "missing pin @HDR3|5700,6700",
+    "extra pin @1|4900,7600",
+    "extra pin @2|5700,7600",
+    "extra pin @3|4900,7500",
+    "extra pin @4|5700,7500",
+    "extra pin @5|4900,7400",
+    "extra pin @6|5700,7400",
+    "extra pin @7|4900,7300",
+    "extra pin @8|5700,7300",
+    "extra pin @9|4900,7200",
+    "extra pin @10|5700,7200",
+    "extra pin @11|4900,7100",
+    "extra pin @12|5700,7100",
+    "extra pin @13|4900,7000",
+    "extra pin @14|5700,7000",
+    "extra pin @15|4900,6900",
+    "extra pin @16|5700,6900",
+    "extra pin @17|4900,6800",
+    "extra pin @18|5700,6800",
+    "extra pin @19|4900,6700",
+    "extra pin @20|5700,6700"
+   ]
+  },
+  {
+   "designator": "Y1",
+   "issues": [
+    "missing pin @Y1|10700,2300",
+    "missing pin @Y1|10700,2500",
+    "missing pin @Y1|9700,2300",
+    "missing pin @Y1|9700,2500",
+    "extra pin @2|9900,2300",
+    "extra pin @1|9900,2500",
+    "extra pin @3|10900,2300",
+    "extra pin @4|10900,2500"
+   ]
+  },
+  {
+   "designator": "C45",
+   "issues": [
+    "missing pin @C45|10000,3000",
+    "missing pin @C45|10300,3000",
+    "extra pin @1|10100,2900",
+    "extra pin @2|10100,3200"
+   ]
+  },
+  {
+   "designator": "HDR1",
+   "issues": [
+    "missing pin @HDR1|12100,4500",
+    "missing pin @HDR1|12900,4500",
+    "missing pin @HDR1|12100,4400",
+    "missing pin @HDR1|12900,4400",
+    "missing pin @HDR1|12100,4300",
+    "missing pin @HDR1|12900,4300",
+    "missing pin @HDR1|12100,4200",
+    "missing pin @HDR1|12900,4200",
+    "missing pin @HDR1|12100,4100",
+    "missing pin @HDR1|12900,4100",
+    "extra pin @1|12100,4500",
+    "extra pin @2|12900,4500",
+    "extra pin @3|12100,4400",
+    "extra pin @4|12900,4400",
+    "extra pin @5|12100,4300",
+    "extra pin @6|12900,4300",
+    "extra pin @7|12100,4200",
+    "extra pin @8|12900,4200",
+    "extra pin @9|12100,4100",
+    "extra pin @10|12900,4100"
+   ]
+  },
+  {
+   "designator": "C15",
+   "issues": [
+    "missing pin @C15|3800,3700",
+    "missing pin @C15|4100,3700",
+    "extra pin @1|3900,3600",
+    "extra pin @2|3900,3900"
+   ]
+  },
+  {
+   "designator": "C16",
+   "issues": [
+    "missing pin @C16|2900,4700",
+    "missing pin @C16|2900,4400",
+    "extra pin @1|2800,4600",
+    "extra pin @2|3100,4600"
+   ]
+  },
+  {
+   "designator": "C19",
+   "issues": [
+    "missing pin @C19|2700,4700",
+    "missing pin @C19|2700,4400",
+    "extra pin @1|2600,4600",
+    "extra pin @2|2900,4600"
+   ]
+  },
+  {
+   "designator": "R10",
+   "issues": [
+    "pin count 2 != 4",
+    "missing pin @R10|2500,4800",
+    "missing pin @R10|2500,4400",
+    "extra pin @2|2500,4800",
+    "extra pin @1|2500,4400"
+   ]
+  },
+  {
+   "designator": "JP5",
+   "issues": [
+    "missing pin @JP5|9300,6300",
+    "missing pin @JP5|9300,6400",
+    "extra pin @1|9300,6300",
+    "extra pin @2|9300,6400"
+   ]
+  },
+  {
+   "designator": "R7",
+   "issues": [
+    "missing pin @R7|9300,6300",
+    "missing pin @R7|9300,5900",
+    "extra pin @2|9300,6300",
+    "extra pin @1|9300,5900"
+   ]
+  },
+  {
+   "designator": "U2",
+   "issues": [
+    "missing pin @U2|3300,5000",
+    "missing pin @U2|3300,4900",
+    "missing pin @U2|3300,4800",
+    "missing pin @U2|3300,4700",
+    "missing pin @U2|3300,4400",
+    "missing pin @U2|4700,4400",
+    "missing pin @U2|4700,5000",
+    "missing pin @U2|4700,4800",
+    "extra pin @1|3300,5000",
+    "extra pin @2|3300,4900",
+    "extra pin @7|3300,4800",
+    "extra pin @6|3300,4700",
+    "extra pin @8|3300,4400",
+    "extra pin @3|4700,4400",
+    "extra pin @5|4700,5000",
+    "extra pin @4|4700,4800"
+   ]
+  },
+  {
+   "designator": "R11",
+   "issues": [
+    "missing pin @R11|3200,5100",
+    "missing pin @R11|3200,5500",
+    "extra pin @2|3200,5100",
+    "extra pin @1|3200,5500"
+   ]
+  },
+  {
+   "designator": "R22",
+   "issues": [
+    "pin count 2 != 4",
+    "missing pin @R22|4900,5000",
+    "missing pin @R22|5300,5000",
+    "extra pin @2|4900,5000",
+    "extra pin @1|5300,5000"
+   ]
+  },
+  {
+   "designator": "R21",
+   "issues": [
+    "pin count 2 != 4",
+    "missing pin @R21|4900,4800",
+    "missing pin @R21|5300,4800",
+    "extra pin @2|4900,4800",
+    "extra pin @1|5300,4800"
+   ]
+  },
+  {
+   "designator": "JP3",
+   "issues": [
+    "missing pin @JP3|5400,5000",
+    "missing pin @JP3|5500,5000",
+    "extra pin @1|5400,5000",
+    "extra pin @2|5500,5000"
+   ]
+  },
+  {
+   "designator": "JP4",
+   "issues": [
+    "missing pin @JP4|5400,4800",
+    "missing pin @JP4|5500,4800",
+    "extra pin @1|5400,4800",
+    "extra pin @2|5500,4800"
+   ]
+  },
+  {
+   "designator": "NT1",
+   "issues": [
+    "missing pin @NT1|9150,2500",
+    "missing pin @NT1|9150,2400",
+    "extra pin @1|9150,2500",
+    "extra pin @2|9150,2400"
+   ]
+  }
+ ],
+ "paramResults": [
+  {
+   "designator": "HDR2",
+   "ok": false
+  },
+  {
+   "designator": "HDR3",
+   "ok": false
+  },
+  {
+   "designator": "Y1",
+   "ok": false
+  },
+  {
+   "designator": "C45",
+   "ok": true,
+   "updated": 4
+  },
+  {
+   "designator": "HDR1",
+   "ok": false
+  },
+  {
+   "designator": "C15",
+   "ok": true,
+   "updated": 4
+  },
+  {
+   "designator": "C16",
+   "ok": true,
+   "updated": 4
+  },
+  {
+   "designator": "C19",
+   "ok": true,
+   "updated": 4
+  },
+  {
+   "designator": "R10",
+   "ok": false
+  },
+  {
+   "designator": "JP5",
+   "ok": false
+  },
+  {
+   "designator": "R7",
+   "ok": true,
+   "updated": 2
+  },
+  {
+   "designator": "U2",
+   "ok": false
+  },
+  {
+   "designator": "R11",
+   "ok": true,
+   "updated": 2
+  },
+  {
+   "designator": "R22",
+   "ok": false
+  },
+  {
+   "designator": "R21",
+   "ok": false
+  },
+  {
+   "designator": "JP3",
+   "ok": false
+  },
+  {
+   "designator": "JP4",
+   "ok": false
+  },
+  {
+   "designator": "JS2",
+   "ok": false
+  },
+  {
+   "designator": "JS3",
+   "ok": false
+  },
+  {
+   "designator": "NT1",
+   "ok": false
+  }
+ ],
+ "failures": []
+}

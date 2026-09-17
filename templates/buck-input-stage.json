@@ -1,0 +1,100 @@
+{
+  "name": "buck-input-stage",
+  "version": 4,
+  "category": "power/input",
+  "description": "Buck 输入级：输入连接器 + 防反二极管 + 大容量/高频输入电容 + UVLO 使能分压。对外接口：VIN / GND / EN（网络标签），供 Buck 功率级模块对接。",
+  "author": "altium-mcp P0",
+  "components": [
+    {
+      "slot": "J_IN",
+      "lib_reference": "Header 2",
+      "prefix": "J",
+      "rotation_deg": 180,
+      "anchor_pin": "1",
+      "value": null
+    },
+    {
+      "slot": "D_REV",
+      "lib_reference": "Diode 18TQ045",
+      "prefix": "D",
+      "rotation_deg": 0,
+      "anchor_pin": "3",
+      "value": null
+    },
+    {
+      "slot": "C_BULK",
+      "lib_reference": "Cap",
+      "prefix": "C",
+      "rotation_deg": 270,
+      "anchor_pin": "1",
+      "value": { "param": "c_bulk_uf", "unit": "uF" }
+    },
+    {
+      "slot": "C_HF",
+      "lib_reference": "Cap",
+      "prefix": "C",
+      "rotation_deg": 270,
+      "anchor_pin": "1",
+      "value": { "param": "c_hf_uf", "unit": "uF" }
+    },
+    {
+      "slot": "R_UV1",
+      "lib_reference": "Res1",
+      "prefix": "R",
+      "rotation_deg": 270,
+      "anchor_pin": "1",
+      "value": { "param": "r_uv1_k", "unit": "k" }
+    },
+    {
+      "slot": "R_UV2",
+      "lib_reference": "Res1",
+      "prefix": "R",
+      "rotation_deg": 270,
+      "anchor_pin": "1",
+      "value": { "param": "r_uv2_k", "unit": "k" }
+    }
+  ],
+  "layout": {
+    "J_IN": [0, 0],
+    "D_REV": [600, 0],
+    "C_BULK": [1500, 0],
+    "C_HF": [2000, 0],
+    "R_UV1": [2600, 0],
+    "R_UV2": [2600, -700]
+  },
+  "nets": [
+    {
+      "name": "VIN_RAW",
+      "pins": ["J_IN.1", "D_REV.3"],
+      "termination": "label"
+    },
+    {
+      "name": "VIN",
+      "pins": ["D_REV.1", "C_BULK.1", "C_HF.1", "R_UV1.1"],
+      "termination": "label"
+    },
+    {
+      "name": "GND",
+      "pins": ["J_IN.2", "C_BULK.2", "C_HF.2", "R_UV2.2"],
+      "termination": "gnd"
+    },
+    {
+      "name": "EN",
+      "pins": ["R_UV1.2", "R_UV2.1"],
+      "termination": "label"
+    }
+  ],
+  "params": [
+    { "name": "c_bulk_uf", "default": 100, "description": "输入大电容 (uF)" },
+    { "name": "c_hf_uf", "default": 1, "description": "高频去耦电容 (uF)" },
+    { "name": "r_uv1_k", "default": 100, "description": "UVLO 上分压电阻 (kΩ)" },
+    { "name": "r_uv2_k", "default": 24, "description": "UVLO 下分压电阻 (kΩ)" }
+  ],
+  "notes": [
+    "D_REV 引脚号已实机核实（pin_table）：Miscellaneous Devices.SchLib 中 Diode 18TQ045 引脚 3=A（阳极，朝左）、1=K（阴极，朝右），符号水平。",
+    "布局 v4 采用锚点引脚语义（anchor_pin）：layout 偏移 = 该引脚热点的目标位置，元件原点由工具从库引脚表反解（放置后回读验证，偏差>5mil 自动纠偏）。模块原点 = VIN_RAW 轨入口（J_IN.1）。中性化 AD 绕偏心原点旋转导致的位置漂移。",
+    "轨道设计：VIN 轨 y=+0 由锚点直接对齐（D_REV.1/C_BULK.1/C_HF.1/R_UV1.1 四热点同轨，锚点语义保证无台阶）；GND 在轨下方汇流至 R_UV2.2；分压链 R_UV1(上)/R_UV2(下) 同 rot270，EN 中缝 300mil。",
+    "间距计入标签文本宽度（~60mil/字符 + padding）：J_IN↔D_REV 净空 600mil（VIN_RAW 7 字符需 ~570）、分压中缝 ≥300mil（EN）。",
+    "旋转选择依据（实测）：Header2 rot180 引脚朝右（pin1 下/pin2 上）；Cap rot270 = pin1 顶/pin2 底；Res1 rot270 = pin1 顶/pin2 底——分压链上下两只同旋转即可头尾相接。"
+  ]
+}

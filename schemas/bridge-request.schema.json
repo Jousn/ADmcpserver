@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://altium-mcp.local/schemas/bridge-request.schema.json",
+  "title": "AltiumMcpBridgeRequest",
+  "type": "object",
+  "required": ["protocolVersion", "command"],
+  "additionalProperties": true,
+  "properties": {
+    "protocolVersion": {
+      "type": "integer",
+      "const": 1,
+      "description": "Bridge protocol version; must match Altium script expectations."
+    },
+    "command": {
+      "type": "string",
+      "description": "DelphiScript dispatcher command (e.g. ping, get_pcb_layers, schematic_edit, get_schematic_data)."
+    }
+  }
+}

@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Altium MCP 使用说明书</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 1.7;
+    color: #24292f;
+    background: #f6f8fa;
+    display: flex;
+  }
+  /* 左侧目录 */
+  .sidebar {
+    width: 300px;
+    height: 100vh;
+    overflow-y: auto;
+    position: sticky;
+    top: 0;
+    background: #ffffff;
+    border-right: 1px solid #d0d7de;
+    padding: 24px 16px;
+    flex-shrink: 0;
+  }
+  .sidebar h1 {
+    font-size: 18px;
+    color: #0969da;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #0969da;
+  }
+  .sidebar nav ul { list-style: none; }
+  .sidebar nav > ul > li { margin-bottom: 10px; }
+  .sidebar nav > ul > li > a {
+    font-weight: 600;
+    color: #24292f;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+  .sidebar nav > ul > li > a:hover { background: #ddf4ff; color: #0969da; }
+  .sidebar nav ul ul { margin-left: 12px; margin-top: 6px; }
+  .sidebar nav ul ul li { margin-bottom: 4px; }
+  .sidebar nav ul ul a {
+    color: #57606a;
+    text-decoration: none;
+    font-size: 13px;
+    display: block;
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  .sidebar nav ul ul a:hover { background: #ddf4ff; color: #0969da; }
+
+  /* 右侧内容 */
+  .content {
+    flex: 1;
+    padding: 40px 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .content section { margin-bottom: 56px; scroll-margin-top: 20px; }
+  .content h2 {
+    font-size: 28px;
+    color: #1f2328;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #0969da;
+    margin-bottom: 20px;
+  }
+  .content h3 {
+    font-size: 20px;
+    color: #1f2328;
+    margin: 24px 0 12px;
+    padding-left: 10px;
+    border-left: 4px solid #0969da;
+  }
+  .content h4 {
+    font-size: 16px;
+    color: #24292f;
+    margin: 16px 0 8px;
+  }
+  .content p { margin-bottom: 12px; color: #3b4148; }
+  .content ul, .content ol { margin: 8px 0 16px 24px; }
+  .content li { margin-bottom: 6px; color: #3b4148; }
+
+  /* 表格 */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  th, td {
+    padding: 10px 14px;
+    text-align: left;
+    border: 1px solid #d0d7de;
+    font-size: 13px;
+    vertical-align: top;
+  }
+  th { background: #f6f8fa; font-weight: 600; color: #1f2328; }
+  tr:hover td { background: #f6f8fa; }
+
+  /* 代码块 */
+  pre {
+    background: #161b22;
+    color: #e6edf3;
+    padding: 16px;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 12px 0;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  code {
+    background: #eff1f3;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 13px;
+    color: #cf222e;
+    font-family: "SFMono-Regular", Consolas, monospace;
+  }
+  pre code { background: none; padding: 0; color: inherit; }
+
+  /* 提示框 */
+  .note {
+    background: #ddf4ff;
+    border-left: 4px solid #0969da;
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 4px;
+  }
+  .warn {
+    background: #fff8c5;
+    border-left: 4px solid #d4a72c;
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 4px;
+  }
+  .danger {
+    background: #ffebe9;
+    border-left: 4px solid #cf222e;
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 4px;
+  }
+
+  /* 标签 */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .badge-read { background: #dafbe1; color: #1a7f37; }
+  .badge-write { background: #ffebe9; color: #cf222e; }
+  .badge-disabled { background: #f6f8fa; color: #6e7781; border: 1px solid #d0d7de; }
+  .badge-skill { background: #fbefff; color: #8250df; }
+  .badge-tool { background: #fff4dd; color: #9a6700; }
+
+  /* 卡片 */
+  .card {
+    background: #fff;
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 16px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #0969da;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eaeef2;
+  }
+
+  /* 流程图样式 */
+  .flow {
+    background: #fff;
+    border: 1px solid #d0d7de;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 16px 0;
+    text-align: center;
+  }
+  .flow-step {
+    display: inline-block;
+    background: #0969da;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 6px;
+    margin: 6px 4px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .flow-arrow {
+    color: #6e7781;
+    margin: 0 6px;
+    font-size: 18px;
+  }
+
+  /* 顶部标题区 */
+  .hero {
+    background: linear-gradient(135deg, #0969da, #218bff);
+    color: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+  }
+  .hero h1 { font-size: 32px; margin-bottom: 12px; }
+  .hero p { font-size: 16px; opacity: 0.95; }
+  .hero .meta { margin-top: 16px; font-size: 13px; opacity: 0.85; }
+</style>
+</head>
+<body>
+
+<!-- 左侧目录 -->
+<aside class="sidebar">
+  <h1>Altium MCP<br>使用说明书</h1>
+  <nav>
+    <ul>
+      <li><a href="#overview">一、项目概述</a></li>
+      <li><a href="#quickstart">二、快速开始</a></li>
+      <li><a href="#architecture">三、架构原理</a></li>
+      <li><a href="#tools">四、MCP 工具详解</a>
+        <ul>
+          <li><a href="#tools-env">环境配置</a></li>
+          <li><a href="#tools-workspace">工作区查询</a></li>
+          <li><a href="#tools-sch-read">原理图读取</a></li>
+          <li><a href="#tools-sch-edit">原理图编辑</a></li>
+          <li><a href="#tools-pcb-read">PCB 读取</a></li>
+          <li><a href="#tools-pcb-write">PCB 写入</a></li>
+          <li><a href="#tools-layout">布局复制</a></li>
+          <li><a href="#tools-library">库操作</a></li>
+          <li><a href="#tools-output">输出作业</a></li>
+          <li><a href="#tools-screenshot">截图工具</a></li>
+        </ul>
+      </li>
+      <li><a href="#skills">五、AI Skill 技能</a>
+        <ul>
+          <li><a href="#skill-topology">电路拓扑建议</a></li>
+          <li><a href="#skill-component">元件选型</a></li>
+          <li><a href="#skill-schematic-audit">原理图审查</a></li>
+          <li><a href="#skill-design-rule">设计规则推导</a></li>
+          <li><a href="#skill-layout-strategy">布局策略建议</a></li>
+          <li><a href="#skill-signal-integrity">信号完整性建议</a></li>
+          <li><a href="#skill-design-review">PCB 设计审查</a></li>
+          <li><a href="#skill-bom">BOM 分析</a></li>
+          <li><a href="#skill-design-doc">设计文档生成</a></li>
+        </ul>
+      </li>
+      <li><a href="#scenarios">六、典型使用场景</a></li>
+      <li><a href="#errors">七、错误处理</a></li>
+      <li><a href="#memory">八、记忆协议</a></li>
+      <li><a href="#flags">九、特性标志</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<!-- 右侧内容 -->
+<main class="content">
+
+<div class="hero">
+  <h1>Altium MCP 使用说明书</h1>
+  <p>通过 Model Context Protocol (MCP) 让 AI 助手连接 Altium Designer，实现原理图/PCB 数据查询、设计审查、自动化操作</p>
+  <div class="meta">
+    适用版本：Altium Designer 22+ &nbsp;|&nbsp; 运行环境：Windows 10/11 &nbsp;|&nbsp; Node.js 20+ &nbsp;|&nbsp; 协议：MCP stdio
+  </div>
+</div>
+
+<!-- 一、项目概述 -->
+<section id="overview">
+  <h2>一、项目概述</h2>
+  <p><strong>altium-mcp</strong> 是一个 MCP 服务器，将 Altium Designer 暴露给 AI 助手（如 Claude、OpenCode 等）。AI 助手可以通过 MCP 协议调用工具，查询 PCB/原理图数据、驱动 DelphiScript 自动化、执行设计审查。</p>
+
+  <h3>核心能力</h3>
+  <table>
+    <tr><th>能力域</th><th>说明</th><th>工具数</th></tr>
+    <tr><td>环境配置</td><td>检测 Altium 安装、配置路径、健康检查</td><td>3</td></tr>
+    <tr><td>工作区查询</td><td>列出打开的项目和文档</td><td>1</td></tr>
+    <tr><td>原理图读取</td><td>导出元件、连线、网络、电源端口等</td><td>1</td></tr>
+    <tr><td>原理图编辑</td><td>放置元件、连线、网络标签、电源端口（11 个动作）</td><td>1</td></tr>
+    <tr><td>PCB 读取</td><td>层信息、设计规则、网络、元件、引脚</td><td>7</td></tr>
+    <tr><td>PCB 写入</td><td>移动元件、创建网络类、控制层可见性</td><td>4</td></tr>
+    <tr><td>布局复制</td><td>识别同封装元件组并复制布局</td><td>2</td></tr>
+    <tr><td>库操作</td><td>搜索元件、导入库目录</td><td>3</td></tr>
+    <tr><td>输出作业</td><td>运行 OutputJob 生成制造文件</td><td>2</td></tr>
+    <tr><td>截图</td><td>截取 PCB/原理图编辑器视图</td><td>1</td></tr>
+    <tr><td>AI Skill</td><td>9 个专业设计审查与建议技能</td><td>9</td></tr>
+  </table>
+
+  <div class="note">
+    <strong>设计原则</strong>：默认采用"建议模式"——AI 可以读取设计数据并给出建议，但写操作（修改原理图/PCB）被特性标志门控，默认禁用，需要手动开启。
+  </div>
+</section>
+
+<!-- 二、快速开始 -->
+<section id="quickstart">
+  <h2>二、快速开始</h2>
+
+  <h3>2.1 环境要求</h3>
+  <table>
+    <tr><th>项目</th><th>要求</th></tr>
+    <tr><td>操作系统</td><td>Windows 10/11</td></tr>
+    <tr><td>Altium Designer</td><td>22+ 推荐（X2.EXE）</td></tr>
+    <tr><td>Node.js</td><td>20+</td></tr>
+    <tr><td>MCP 客户端</td><td>任何 MCP 兼容客户端（OpenCode、Claude Desktop 等）</td></tr>
+  </table>
+
+  <h3>2.2 安装步骤</h3>
+  <pre><code># 安装依赖
+npm install
+
+# 编译 TypeScript
+npm run build
+
+# 启动 MCP 服务器
+npm start</code></pre>
+
+  <h3>2.3 首次使用流程</h3>
+  <div class="flow">
+    <span class="flow-step">1. get_server_status</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">2. configure_altium_exe</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">3. altium_ping</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">4. get_workspace_projects</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">5. 业务工具</span>
+  </div>
+
+  <ol>
+    <li><strong>get_server_status</strong>：确认工作区路径和 X2.EXE 是否被发现（同时自动同步脚本到工作区）</li>
+    <li><strong>configure_altium_exe</strong>：如果 X2.EXE 未找到，用此工具配置路径</li>
+    <li><strong>altium_ping</strong>：验证 DelphiScript 桥接在 Altium 内响应</li>
+    <li><strong>get_workspace_projects</strong>：发现打开的项目和文档路径</li>
+    <li><strong>业务工具</strong>：开始使用 PCB/原理图/库等工具</li>
+  </ol>
+
+  <div class="note">
+    <strong>PCB 工具前置条件</strong>：使用 PCB 读取工具前，必须在 Altium 中<strong>聚焦</strong>目标 .PcbDoc 文档（点击使其成为活动文档）。
+  </div>
+</section>
+
+<!-- 三、架构原理 -->
+<section id="architecture">
+  <h2>三、架构原理</h2>
+
+  <h3>3.1 工作流程</h3>
+  <div class="flow">
+    <span class="flow-step">Node 写 request.json</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">启动 X2.EXE -RScriptingSystem</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">DelphiScript 执行 Run</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">写 response.json</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Node 读取结果</span>
+  </div>
+
+  <h3>3.2 关键机制</h3>
+  <table>
+    <tr><th>机制</th><th>说明</th></tr>
+    <tr><td>请求文件</td><td>Node 写 <code>request.json</code> 到工作区（默认 <code>%USERPROFILE%\.altium-mcp\workspace</code>）</td></tr>
+    <tr><td>脚本启动</td><td>通过 <code>-RScriptingSystem:RunScript</code> 启动 Altium 并运行 <code>Altium_API.PrjScr</code></td></tr>
+    <tr><td>响应文件</td><td>DelphiScript 执行后写 <code>response.json</code></td></tr>
+    <tr><td>文件锁</td><td><code>.bridge.lock</code> 序列化并发工具调用（等待 60s，超时 120s）</td></tr>
+    <tr><td>错误日志</td><td>失败时写 <code>bridge_last_error.txt</code></td></tr>
+  </table>
+
+  <h3>3.3 坐标单位</h3>
+  <table>
+    <tr><th>场景</th><th>单位</th><th>说明</th></tr>
+    <tr><td>原理图坐标</td><td>mils</td><td><code>x_mils</code>, <code>y_mils</code></td></tr>
+    <tr><td>PCB 读取</td><td>mils</td><td>get_component_pins, get_selected_components</td></tr>
+    <tr><td>PCB 写入</td><td>mils × 10000</td><td>PCB 内部单位，set_component_position 用</td></tr>
+  </table>
+</section>
+
+<!-- 四、MCP 工具详解 -->
+<section id="tools">
+  <h2>四、MCP 工具详解</h2>
+  <p>共 25 个工具，按功能域分组。标注 <span class="badge badge-read">只读</span> <span class="badge badge-write">写入</span> <span class="badge badge-disabled">默认禁用</span> 表示工具性质。</p>
+
+  <!-- 环境配置 -->
+  <h3 id="tools-env">4.1 环境配置</h3>
+  <div class="card">
+    <div class="card-title">get_server_status <span class="badge badge-read">只读</span></div>
+    <p><strong>用途</strong>：检查 MCP + Altium 桥接配置</p>
+    <p><strong>参数</strong>：无</p>
+    <p><strong>返回</strong>：JSON { platform, workspaceRoot, altiumExeFound, scriptProjectFound, bundledScriptsDir, bridgeLastError, diagnosticsHint, env }</p>
+    <div class="note">首次调用会自动同步脚本包到工作区 <code>AltiumScript/</code> 目录。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">configure_altium_exe <span class="badge badge-write">配置写入</span></div>
+    <p><strong>用途</strong>：保存 Altium X2.EXE 路径到配置文件</p>
+    <p><strong>参数</strong>：</p>
+    <ul>
+      <li><code>path</code> (string, 必需)：X2.EXE 的绝对路径</li>
+    </ul>
+    <p><strong>返回</strong>：{ ok, altiumExePath }</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">altium_ping <span class="badge badge-read">只读</span></div>
+    <p><strong>用途</strong>：验证 DelphiScript 桥接在 Altium 内响应</p>
+    <p><strong>参数</strong>：无</p>
+    <p><strong>返回</strong>：{ success, result: { protocolVersion, pong } }</p>
+  </div>
+
+  <!-- 工作区查询 -->
+  <h3 id="tools-workspace">4.2 工作区查询</h3>
+  <div class="card">
+    <div class="card-title">get_workspace_projects <span class="badge badge-read">只读</span></div>
+    <p><strong>用途</strong>：列出打开的工作区条目（项目 + 文档）</p>
+    <p><strong>参数</strong>：无</p>
+    <p><strong>返回</strong>：JSON { projectCount, focusedProjectFullPath, projects[].{ index, projectFullPath, projectFileName, documents[].{ kind, fullPath, fileName } } }</p>
+    <div class="note">包含非设计条目（Free Documents, AltiumScript）。</div>
+  </div>
+
+  <!-- 原理图读取 -->
+  <h3 id="tools-sch-read">4.3 原理图读取</h3>
+  <div class="card">
+    <div class="card-title">get_schematic_data <span class="badge badge-read">只读</span></div>
+    <p><strong>用途</strong>：导出原理图纸数据，支持按 bucket 过滤</p>
+    <p><strong>参数</strong>（全部可选）：</p>
+    <ul>
+      <li><code>schematic_full_path</code>：.SchDoc 绝对路径（优先）</li>
+      <li><code>project_full_path</code>：.PrjPcb/.PrjScr 绝对路径</li>
+      <li><code>schematic_sheet_file_name</code>：文件名（如 Sheet1.SchDoc）</li>
+      <li><code>include_queries</code>：string[] 过滤器，支持：sheet | components | wires | buses | net_labels | power_ports | text_labels | junctions | ports | off_sheet_connectors | sheet_symbols | directives | figures | harness | drawing_objects | all。省略 = 默认 { components, drawing_objects }</li>
+    </ul>
+    <p><strong>返回</strong>：按请求 bucket 分组的 JSON 数组，坐标单位 mils</p>
+    <div class="note">定位优先级：schematic_full_path &gt; project_full_path + sheet &gt; 聚焦项目</div>
+  </div>
+
+  <!-- 原理图编辑 -->
+  <h3 id="tools-sch-edit">4.4 原理图编辑</h3>
+  <div class="card">
+    <div class="card-title">edit_schematic <span class="badge badge-write">写入</span> <span class="badge badge-disabled">默认禁用</span></div>
+    <p><strong>用途</strong>：基于 action 的单工具原理图编辑</p>
+    <p><strong>启用</strong>：需设置 <code>ENABLE_SCHEMATIC_WRITES = true</code></p>
+    <p><strong>参数</strong>：</p>
+    <ul>
+      <li><code>action</code> (必需)：动作类型</li>
+      <li><code>schematic_full_path</code> 或 <code>project_full_path + schematic_sheet_file_name</code></li>
+    </ul>
+    <p><strong>支持的 11 个动作</strong>：</p>
+    <table>
+      <tr><th>Action</th><th>说明</th><th>关键参数</th></tr>
+      <tr><td>set_component_transform</td><td>移动/旋转元件</td><td>designator, x_mils?, y_mils?, rotation_deg? (0/90/180/270)</td></tr>
+      <tr><td>set_component_parameters</td><td>设置元件参数</td><td>designator, parameter_names[], parameter_values[]</td></tr>
+      <tr><td>place_component</td><td>放置元件</td><td>lib_reference, designator, x_mils, y_mils, rotation_deg?, sch_library_path</td></tr>
+      <tr><td>add_text</td><td>添加文本</td><td>text, x_mils, y_mils</td></tr>
+      <tr><td>add_net_label</td><td>添加网络标签</td><td>net_name, x_mils, y_mils, rotation_deg?</td></tr>
+      <tr><td>add_wire</td><td>添加导线</td><td>wire_points_csv (如 "0,0,1000,0,1000,500")</td></tr>
+      <tr><td>add_bus</td><td>添加总线</td><td>同 add_wire</td></tr>
+      <tr><td>add_bus_entry</td><td>添加总线入口</td><td>wire_points_csv (4 个数)</td></tr>
+      <tr><td>place_power_port</td><td>放置电源端口</td><td>power_port_style, x_mils, y_mils, net_name?, rotation_deg?</td></tr>
+      <tr><td>place_gnd</td><td>放置 GND</td><td>x_mils, y_mils (默认 style=gnd_power, net=GND)</td></tr>
+      <tr><td>place_vcc</td><td>放置 VCC</td><td>x_mils, y_mils (默认 style=arrow, net=VCC)</td></tr>
+    </table>
+    <div class="warn">不自动保存。操作后需用户手动在 Altium 保存。建议操作后用 get_schematic_data 验证。</div>
+  </div>
+
+  <!-- PCB 读取 -->
+  <h3 id="tools-pcb-read">4.5 PCB 读取</h3>
+  <div class="warn">所有 PCB 读取工具要求用户先在 Altium 中<strong>聚焦</strong> .PcbDoc 文档。</div>
+
+  <div class="card">
+    <div class="card-title">get_pcb_layers <span class="badge badge-read">只读</span></div>
+    <p><strong>用途</strong>：列出电气/机械层元数据</p>
+    <p><strong>返回</strong>：层列表，含名称、类型、可见性</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">get_pcb_rules <span class="badge badge-read">只读</span></div>
+    <p><strong>用途</strong>：列出 PCB 设计规则</p>
+    <p><strong>返回</strong>：规则描述（名称、类型、作用域）</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">get_all_nets <span class="badge badge-read">只读</span></div>
+    <p><strong>用途</strong>：列出 PCB 上所有网络名</p>
+    <p><strong>返回</strong>：String[] 网络名</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">get_pcb_layer_stackup <span class="badge badge-read">只读</span></div>
+    <p><strong>用途</strong>：物理层叠结构（介电层、厚度）</p>
+    <p><strong>返回</strong>：层叠结构 JSON</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">get_all_designators <span class="badge badge-read">只读</span></div>
+    <p><strong>用途</strong>：PCB 上所有元件参考位号</p>
+    <p><strong>返回</strong>：String[] designators</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">get_component_pins <span class="badge badge-read">只读</span></div>
+    <p><strong>用途</strong>：指定元件的引脚级数据</p>
+    <p><strong>参数</strong>：<code>designators</code> (string[], 必需, 至少 1 个)</p>
+    <p><strong>返回</strong>：每个 designator 的引脚信息（pinNumber, netName, padX, padY, layer）</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">get_selected_components <span class="badge badge-read">只读</span></div>
+    <p><strong>用途</strong>：获取当前选中 PCB 元件的坐标</p>
+    <p><strong>返回</strong>：JSON[] { designator, x, y, rotation }，无选择则空</p>
+    <div class="note">用户需先在 Altium PCB 编辑器中选择元件。</div>
+  </div>
+
+  <!-- PCB 写入 -->
+  <h3 id="tools-pcb-write">4.6 PCB 写入</h3>
+  <div class="danger">所有 PCB 写入工具<span class="badge badge-disabled">默认禁用</span>，需设置 <code>ENABLE_PCB_WRITES = true</code> 并重新编译。</div>
+
+  <div class="card">
+    <div class="card-title">set_component_position <span class="badge badge-write">写入</span></div>
+    <p><strong>用途</strong>：移动单个 PCB 元件到绝对位置</p>
+    <p><strong>参数</strong>：designator, x (mils×10000), y (mils×10000), rotation? (度)</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">move_components <span class="badge badge-write">写入</span></div>
+    <p><strong>用途</strong>：批量相对移动 PCB 元件</p>
+    <p><strong>参数</strong>：designators[], x_offset (mils), y_offset (mils), rotation? (度, 默认 0)</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">create_net_class <span class="badge badge-write">写入</span></div>
+    <p><strong>用途</strong>：创建网络类并添加网络（已存在则只加新成员）</p>
+    <p><strong>参数</strong>：class_name, net_names[]</p>
+    <div class="note">不存在的网络名会被静默跳过。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">set_pcb_layer_visibility <span class="badge badge-write">写入</span></div>
+    <p><strong>用途</strong>：切换 PCB 层可见性</p>
+    <p><strong>参数</strong>：layer_names[] (显示名), visible (bool)</p>
+  </div>
+
+  <!-- 布局复制 -->
+  <h3 id="tools-layout">4.7 布局复制</h3>
+  <div class="card">
+    <div class="card-title">layout_duplicator <span class="badge badge-read">只读</span></div>
+    <p><strong>用途</strong>：查找相同封装的元件组，用于布局复制</p>
+    <p><strong>返回</strong>：元件组列表，含源/目标候选</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">layout_duplicator_apply <span class="badge badge-write">写入</span> <span class="badge badge-disabled">默认禁用</span></div>
+    <p><strong>用途</strong>：从源元件复制布局几何（走线/圆弧/填充/过孔）到目标元件</p>
+    <p><strong>参数</strong>：source_designators[], destination_designators[]</p>
+    <div class="warn">要求源/目标封装匹配。</div>
+  </div>
+
+  <!-- 库操作 -->
+  <h3 id="tools-library">4.8 库操作</h3>
+  <div class="card">
+    <div class="card-title">get_library_symbol_reference <span class="badge badge-read">只读</span></div>
+    <p><strong>用途</strong>：获取项目元件的库符号引用</p>
+    <p><strong>返回</strong>：JSON[] { lib_reference, footprint, description, library_path }</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">search_library_symbol <span class="badge badge-read">只读</span></div>
+    <p><strong>用途</strong>：按名称搜索原理图符号</p>
+    <p><strong>参数</strong>：</p>
+    <ul>
+      <li><code>symbol_name</code> (必需)：符号名</li>
+      <li><code>library_path</code> (可选)：指定 .SchLib 路径，省略则搜全部已安装库</li>
+    </ul>
+    <div class="note">空 symbol_name + 指定 library_path 可枚举 IntLib 中所有元件。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">import_library_components <span class="badge badge-tool">推荐</span></div>
+    <p><strong>用途</strong>：枚举项目目录 .SchLib 中所有元件并缓存目录到记忆</p>
+    <p><strong>参数</strong>：<code>library_path</code> (string, 必需)：.SchLib 绝对路径（仅项目目录）</p>
+    <p><strong>返回</strong>：{ success, library_name, component_count, project_name, memory_files, sample_components[] }</p>
+    <div class="note">
+      <strong>关键</strong>：导入后优先读 <code>memory/short-term/{project}/library-catalog.md</code> 来解析 lib_reference + sch_library_path，避免重复查 Altium。
+      <br>仅支持项目目录下的 .SchLib，<strong>不要</strong>指向 AD 默认库目录。
+    </div>
+  </div>
+
+  <!-- 输出作业 -->
+  <h3 id="tools-output">4.9 输出作业</h3>
+  <div class="card">
+    <div class="card-title">get_output_job_containers <span class="badge badge-read">只读</span></div>
+    <p><strong>用途</strong>：列出 .OutJob 文件中的输出容器</p>
+    <p><strong>返回</strong>：JSON[] { name, outputType, enabled }</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">run_output_jobs <span class="badge badge-write">生成文件</span></div>
+    <p><strong>用途</strong>：执行输出作业容器，生成制造文件</p>
+    <p><strong>参数</strong>：<code>container_names</code> (string[], 必需)</p>
+    <p><strong>返回</strong>：{ success, output_file_paths }</p>
+  </div>
+
+  <!-- 截图 -->
+  <h3 id="tools-screenshot">4.10 截图工具</h3>
+  <div class="card">
+    <div class="card-title">take_view_screenshot <span class="badge badge-read">只读</span></div>
+    <p><strong>用途</strong>：截取 PCB 或原理图编辑器视图为图片</p>
+    <p><strong>参数</strong>：<code>view_type</code> ("pcb" | "sch", 可选, 默认 "pcb")</p>
+    <p><strong>返回</strong>：{ screenshot_file_path }</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">file_mode_capabilities <span class="badge badge-read">只读</span></div>
+    <p><strong>用途</strong>：报告离线文件模式能力（仅 Node，无 Altium 进程）</p>
+    <p><strong>返回</strong>：能力标志 JSON</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">create_schematic_symbol <span class="badge badge-write">写入</span> <span class="badge badge-disabled">默认禁用</span></div>
+    <p><strong>用途</strong>：在 SchLib 中创建新原理图符号</p>
+    <p><strong>启用</strong>：需设置 <code>ENABLE_SYMBOL_CREATION = true</code></p>
+    <p><strong>参数</strong>：symbol_name, pins[] ("number,name,type"), part_count?, description?</p>
+  </div>
+</section>
+
+<!-- 五、AI Skill 技能 -->
+<section id="skills">
+  <h2>五、AI Skill 技能</h2>
+  <p>项目内置 9 个专业设计 Skill，是面向 AI 助手的提示词模板，覆盖从电路设计到文档生成的完整流程。<span class="badge badge-skill">Skill</span> 标记。</p>
+
+  <!-- 1. 电路拓扑建议 -->
+  <h3 id="skill-topology">5.1 电路拓扑建议 <span class="badge badge-skill">Skill</span></h3>
+  <div class="card">
+    <p><strong>核心功能</strong>：根据用户描述的电路意图，推荐电路拓扑结构、计算元件值、解释设计权衡</p>
+    <p><strong>输入</strong>：电路功能需求、性能指标（如输入/输出电压、电流、效率要求）</p>
+    <p><strong>输出</strong>：结构化的拓扑方案，含推荐电路图、元件参数、设计要点</p>
+    <p><strong>使用场景</strong>：</p>
+    <ul>
+      <li>设计新电路功能时，需要选择合适的拓扑结构</li>
+      <li>要求计算元件参数（电阻、电容、电感值）</li>
+      <li>对比不同拓扑的优劣</li>
+    </ul>
+    <p><strong>典型对话</strong>："我需要一个 5V 转 3.3V 的电源，最大电流 2A，效率不低于 90%"</p>
+  </div>
+
+  <!-- 2. 元件选型 -->
+  <h3 id="skill-component">5.2 元件选型与连接方案 <span class="badge badge-skill">Skill</span></h3>
+  <div class="card">
+    <p><strong>核心功能</strong>：根据电路需求匹配推荐元件并生成选型报告与连接方案</p>
+    <p><strong>输入</strong>：用户需求描述 + 记忆中的库元件信息（来自 import_library_components）</p>
+    <p><strong>输出</strong>：元件选型报告 + 连接方案</p>
+    <p><strong>使用场景</strong>：</p>
+    <ul>
+      <li>描述电路功能需求，要求元件选型</li>
+      <li>生成元件连接方案</li>
+      <li>结合库目录记忆推荐合适的元件</li>
+    </ul>
+    <p><strong>典型对话</strong>："帮我选一个低功耗运放，用于电池供电的传感器信号放大"</p>
+  </div>
+
+  <!-- 3. 原理图审查 -->
+  <h3 id="skill-schematic-audit">5.3 原理图审查审计 <span class="badge badge-skill">Skill</span></h3>
+  <div class="card">
+    <p><strong>核心功能</strong>：读取 Altium 原理图数据，分析元件连接关系，生成审查审计报告</p>
+    <p><strong>输入</strong>：原理图数据（get_schematic_data 结果）+ 长期记忆</p>
+    <p><strong>输出</strong>：结构化审计报告，含问题清单、风险点、改进建议</p>
+    <p><strong>使用场景</strong>：</p>
+    <ul>
+      <li>审查原理图连接关系正确性</li>
+      <li>检查设计规范遵守情况</li>
+      <li>审计设计完整性和潜在风险</li>
+    </ul>
+  </div>
+
+  <!-- 4. 设计规则推导 -->
+  <h3 id="skill-design-rule">5.4 设计规则推导 <span class="badge badge-skill">Skill</span></h3>
+  <div class="card">
+    <p><strong>核心功能</strong>：根据电路意图生成 DRC 设计规则配置建议</p>
+    <p><strong>输入</strong>：电路类型、性能指标、工艺要求</p>
+    <p><strong>输出</strong>：设计规则建议报告（线宽、线距、过孔、阻焊、铺铜规则）</p>
+    <p><strong>使用场景</strong>：</p>
+    <ul>
+      <li>设置/检查 DRC 规则</li>
+      <li>确定线宽线距要求</li>
+      <li>定义过孔/阻焊/铺铜规则</li>
+    </ul>
+    <p><strong>典型对话</strong>："这个板子有 USB 3.0 差分对，帮我推导需要的 DRC 规则"</p>
+  </div>
+
+  <!-- 5. 布局策略 -->
+  <h3 id="skill-layout-strategy">5.5 布局策略建议 <span class="badge badge-skill">Skill</span></h3>
+  <div class="card">
+    <p><strong>核心功能</strong>：根据电路拓扑建议 PCB 布局策略</p>
+    <p><strong>输入</strong>：PCB 元件数据 + 原理图数据</p>
+    <p><strong>输出</strong>：布局策略报告（功能分区、元件摆放建议、关键路径）</p>
+    <p><strong>使用场景</strong>：</p>
+    <ul>
+      <li>PCB 布局规划</li>
+      <li>元件摆放建议</li>
+      <li>功能分区规划</li>
+    </ul>
+  </div>
+
+  <!-- 6. 信号完整性 -->
+  <h3 id="skill-signal-integrity">5.6 信号完整性建议 <span class="badge badge-skill">Skill</span></h3>
+  <div class="card">
+    <p><strong>核心功能</strong>：根据 PCB 层叠结构和信号类型推导线宽、线距、阻抗控制规则</p>
+    <p><strong>输入</strong>：PCB 层叠结构、设计规则、信号类型</p>
+    <p><strong>输出</strong>：信号完整性设计指导报告</p>
+    <p><strong>使用场景</strong>：</p>
+    <ul>
+      <li>阻抗匹配分析</li>
+      <li>差分对走线规则</li>
+      <li>高速信号完整性评估</li>
+    </ul>
+    <p><strong>典型对话</strong>："4层板，TOP-GND-PWR-BOTTOM，50Ω 单端阻抗怎么走？"</p>
+  </div>
+
+  <!-- 7. PCB 设计审查 -->
+  <h3 id="skill-design-review">5.7 PCB 设计审查顾问 <span class="badge badge-skill">Skill</span></h3>
+  <div class="card">
+    <p><strong>核心功能</strong>：读取 PCB 设计数据执行综合审查，含原理图-PCB 一致性检查</p>
+    <p><strong>输入</strong>：PCB 数据 + 原理图数据</p>
+    <p><strong>输出</strong>：结构化综合审查报告</p>
+    <p><strong>使用场景</strong>：</p>
+    <ul>
+      <li>设计审查（DRC 之外的设计合理性）</li>
+      <li>原理图-PCB 一致性检查</li>
+      <li>网络命名规范检查</li>
+    </ul>
+  </div>
+
+  <!-- 8. BOM 分析 -->
+  <h3 id="skill-bom">5.8 BOM 分析与优化 <span class="badge badge-skill">Skill</span></h3>
+  <div class="card">
+    <p><strong>核心功能</strong>：审查 BOM 物料清单，分析单一来源、生命周期、替代料</p>
+    <p><strong>输入</strong>：原理图中的元件数据</p>
+    <p><strong>输出</strong>：BOM 分析报告（风险元件、替代料建议、采购优化）</p>
+    <p><strong>使用场景</strong>：</p>
+    <ul>
+      <li>分析 BOM 物料风险</li>
+      <li>检查单一来源零件</li>
+      <li>元件生命周期状态评估</li>
+      <li>优化采购成本</li>
+    </ul>
+  </div>
+
+  <!-- 9. 设计文档生成 -->
+  <h3 id="skill-design-doc">5.9 设计文档生成器 <span class="badge badge-skill">Skill</span></h3>
+  <div class="card">
+    <p><strong>核心功能</strong>：分析设计数据，自动生成电路功能说明、设计决策记录、评审文档</p>
+    <p><strong>输入</strong>：设计数据 + 长期记忆</p>
+    <p><strong>输出</strong>：结构化文档（设计说明书、决策记录、评审材料）</p>
+    <p><strong>使用场景</strong>：</p>
+    <ul>
+      <li>生成设计说明书</li>
+      <li>记录设计决策</li>
+      <li>准备评审材料</li>
+      <li>输出技术文档</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 六、典型使用场景 -->
+<section id="scenarios">
+  <h2>六、典型使用场景</h2>
+
+  <h3>场景 1：新项目启动检查</h3>
+  <pre><code>1. get_server_status     // 检查环境
+2. altium_ping           // 验证桥接
+3. get_workspace_projects // 列出项目
+4. get_schematic_data     // 读取原理图
+   include_queries: ["components", "net_labels", "power_ports"]
+5. get_pcb_layers        // 读取 PCB 层（需先聚焦 PcbDoc）
+6. get_all_designators   // 列出元件</code></pre>
+
+  <h3>场景 2：原理图审查</h3>
+  <pre><code>1. get_schematic_data
+   schematic_full_path: "C:\\项目\\Sheet1.SchDoc"
+   include_queries: ["all"]
+2. 调用 skill-schematic-audit 进行审查
+3. 调用 skill-bom-analyzer 分析物料
+4. 生成审查报告</code></pre>
+
+  <h3>场景 3：PCB 设计审查</h3>
+  <pre><code>1. 聚焦目标 .PcbDoc
+2. get_pcb_layer_stackup  // 层叠结构
+3. get_pcb_rules          // 设计规则
+4. get_all_nets           // 网络列表
+5. get_all_designators    // 元件列表
+6. get_component_pins     // 关键元件引脚
+   designators: ["U1", "U2", "J1"]
+7. 调用 skill-design-review-advisor 综合审查
+8. 调用 skill-signal-integrity-advisor 高速信号分析</code></pre>
+
+  <h3>场景 4：元件选型与放置</h3>
+  <pre><code>1. import_library_components  // 导入库目录
+   library_path: "C:\\项目\\libs\\my.SchLib"
+2. 读取 memory/short-term/{project}/library-catalog.md
+3. 调用 skill-component-selection-prompt 选型
+4. （启用写操作后）edit_schematic place_component 放置元件</code></pre>
+
+  <h3>场景 5：布局复制</h3>
+  <pre><code>1. 聚焦 .PcbDoc
+2. layout_duplicator  // 查找同封装元件组
+3. 确认源/目标映射
+4. （启用写操作后）layout_duplicator_apply 复制布局</code></pre>
+
+  <h3>场景 6：生成制造文件</h3>
+  <pre><code>1. get_output_job_containers  // 列出 OutJob 容器
+2. run_output_jobs             // 执行
+   container_names: ["Gerber Files", "Drill Files", "BOM"]</code></pre>
+</section>
+
+<!-- 七、错误处理 -->
+<section id="errors">
+  <h2>七、错误处理</h2>
+  <table>
+    <tr><th>错误</th><th>原因</th><th>解决方法</th></tr>
+    <tr><td>AD_NOT_FOUND</td><td>X2.EXE 路径错误</td><td>调用 configure_altium_exe 设置正确路径</td></tr>
+    <tr><td>SCRIPT_PROJECT_NOT_FOUND</td><td>脚本包未同步</td><td>调用 get_server_status（自动同步）</td></tr>
+    <tr><td>TIMEOUT</td><td>脚本挂起或断点</td><td>清除 Altium IDE 断点；删除 .bridge.lock</td></tr>
+    <tr><td>LockTimeout</td><td>上次崩溃留下锁</td><td>删除工作区目录下的 .bridge.lock</td></tr>
+    <tr><td>空数据</td><td>PCB 未聚焦</td><td>在 Altium 中聚焦 .PcbDoc</td></tr>
+    <tr><td>INVALID_BRIDGE_RESPONSE</td><td>JSON 解析失败</td><td>检查 bridge_last_error.txt</td></tr>
+  </table>
+
+  <div class="warn">
+    <strong>锁文件位置</strong>：默认在工作区目录 <code>%USERPROFILE%\.altium-mcp\workspace\.bridge.lock</code>。删除此文件可解除死锁。
+  </div>
+</section>
+
+<!-- 八、记忆协议 -->
+<section id="memory">
+  <h2>八、记忆协议</h2>
+  <p>为减少工具调用和上下文消耗，系统维护两级持久化记忆。</p>
+
+  <h3>8.1 短期记忆（short-term）</h3>
+  <table>
+    <tr><th>项目</th><th>说明</th></tr>
+    <tr><td>位置</td><td><code>memory/short-term/{项目名}/{文件名}.md</code></td></tr>
+    <tr><td>保存时机</td><td>首次查询后立即写入</td></tr>
+    <tr><td>加载时机</td><td>会话开始时自动加载</td></tr>
+    <tr><td>生命周期</td><td>当前项目/文件的整个会话期间</td></tr>
+  </table>
+
+  <h3>8.2 长期记忆（long-term）</h3>
+  <table>
+    <tr><th>项目</th><th>说明</th></tr>
+    <tr><td>位置</td><td><code>memory/long-term/{项目名}.md</code></td></tr>
+    <tr><td>保存时机</td><td>用户主动要求保存设计知识时</td></tr>
+    <tr><td>加载时机</td><td>进入项目时自动加载</td></tr>
+    <tr><td>生命周期</td><td>跨会话持久保留</td></tr>
+  </table>
+
+  <h3>8.3 记忆格式</h3>
+  <pre><code>## MEM:PCB_COMP 2026-01-15T10:35
+@U1 F:QFP-48 X:3500 Y:2100 R:0
+@R1 F:0603 X:1500 Y:800 R:90
+
+## MEM:SCH_COMP 2026-01-15T10:30
+@U1 L:STM32F407 X:5000 Y:3000 P:Package=LQFP48
+
+## MEM:PIN_NET 2026-01-15T10:36
+@U1.1=VCC @U1.2=GND @U1.3=GPIO_A0
+
+## MEM:SCH_NET 2026-01-15T10:31
+@VCC: [U1.1, R1.1, C1.1]
+@GND: [U1.2, R1.2, C1.2]
+
+## MEM:LIB_CATALOG 2026-01-15T10:40
+@LIB test1.SchLib P:C:\...\test1.SchLib N:42</code></pre>
+
+  <h3>8.4 记忆控制指令</h3>
+  <table>
+    <tr><th>指令</th><th>含义</th></tr>
+    <tr><td>"保存记忆"</td><td>将当前短期记忆写入文件</td></tr>
+    <tr><td>"加载记忆"</td><td>从文件恢复记忆</td></tr>
+    <tr><td>"保存为长期记忆"</td><td>保存项目设计知识</td></tr>
+    <tr><td>"加载长期记忆"</td><td>加载项目设计知识</td></tr>
+    <tr><td>"清除短期记忆"</td><td>删除当前项目短期记忆文件（保留 README.md）</td></tr>
+    <tr><td>"重置长期记忆"</td><td>清除项目长期记忆（保留 README.md）</td></tr>
+  </table>
+</section>
+
+<!-- 九、特性标志 -->
+<section id="flags">
+  <h2>九、特性标志</h2>
+  <p>写操作通过特性标志门控，<strong>默认全部禁用</strong>。开启方法：在 <code>src/index.ts</code> 和 <code>Altium_API.pas</code> 中将标志设为 <code>true</code>，然后重新编译。</p>
+
+  <table>
+    <tr><th>标志</th><th>控制的工具</th><th>默认</th></tr>
+    <tr><td>ENABLE_SCHEMATIC_WRITES</td><td>edit_schematic（11 个 action）</td><td>false</td></tr>
+    <tr><td>ENABLE_PCB_WRITES</td><td>set_component_position, move_components, create_net_class, set_pcb_layer_visibility, layout_duplicator_apply</td><td>false</td></tr>
+    <tr><td>ENABLE_SYMBOL_CREATION</td><td>create_schematic_symbol</td><td>false</td></tr>
+  </table>
+
+  <div class="danger">
+    <strong>安全提示</strong>：启用写操作后，AI 助手可以修改你的设计文件。建议在启用前：
+    <ul>
+      <li>备份当前项目</li>
+      <li>在测试项目上先验证</li>
+      <li>密切关注 AI 的每一步写操作</li>
+    </ul>
+  </div>
+
+  <h3>启用步骤</h3>
+  <pre><code>// 1. 编辑 src/index.ts
+export const ENABLE_SCHEMATIC_WRITES = true;
+export const ENABLE_PCB_WRITES = true;
+export const ENABLE_SYMBOL_CREATION = true;
+
+// 2. 编辑 altium-scripts/Altium_API.pas
+//   找到对应标志，设为 True
+
+// 3. 重新编译
+npm run build
+
+// 4. 重启 MCP 服务器
+npm start</code></pre>
+
+  <div class="note" style="margin-top: 40px; text-align: center; color: #6e7781;">
+    <p>Altium MCP 使用说明书 · 基于 altium-mcp 项目 · MIT License</p>
+    <p>本说明书由 AI 根据 <code>src/toolDefinitions.ts</code>、<code>src/mcpInstructions.ts</code>、<code>prompt/skills/</code> 自动生成</p>
+  </div>
+</section>
+
+</main>
+</body>
+</html>

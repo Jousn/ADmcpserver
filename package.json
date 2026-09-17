@@ -1,0 +1,43 @@
+{
+  "name": "altium-mcp",
+  "version": "0.1.0",
+  "description": "Model Context Protocol server for Altium Designer (Windows)",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "altium-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "altium-scripts"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "build-kb": "node scripts/build-kb-index.mjs",
+    "sync-workspace": "node scripts/sync-altium-workspace.mjs",
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "lint": "tsc --noEmit",
+    "prepack": "npm run build"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.1",
+    "docx": "^9.7.1",
+    "typescript": "^5.8.2",
+    "vitest": "^3.1.1"
+  },
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "altium",
+    "pcb",
+    "model-context-protocol"
+  ]
+}

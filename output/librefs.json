@@ -1,0 +1,102 @@
+{
+ "HDR2": {
+  "lib_reference": "Header 10X2",
+  "comment": "Header 10X2",
+  "description": "Header, 10-Pin, Dual row"
+ },
+ "HDR3": {
+  "lib_reference": "Header 10X2",
+  "comment": "Header 10X2",
+  "description": "Header, 10-Pin, Dual row"
+ },
+ "Y1": {
+  "lib_reference": "QSMO_4200",
+  "comment": "25MHz",
+  "description": "Surface Mount Crystal Oscillator"
+ },
+ "C45": {
+  "lib_reference": "CAP",
+  "comment": "10nF",
+  "description": "Capacitor"
+ },
+ "HDR1": {
+  "lib_reference": "Header 5X2",
+  "comment": "Header 5X2",
+  "description": "Header, 5-Pin, Dual row"
+ },
+ "C15": {
+  "lib_reference": "CAP",
+  "comment": "100nF",
+  "description": "Capacitor"
+ },
+ "C16": {
+  "lib_reference": "CAP",
+  "comment": "100nF",
+  "description": "Capacitor"
+ },
+ "C19": {
+  "lib_reference": "CAP",
+  "comment": "100nF",
+  "description": "Capacitor"
+ },
+ "R10": {
+  "lib_reference": "Res1",
+  "comment": "680R",
+  "description": "Resistor"
+ },
+ "JP5": {
+  "lib_reference": "Jumper, 2-Pin",
+  "comment": "CONFIG",
+  "description": "Jumper, 2-Pin"
+ },
+ "R7": {
+  "lib_reference": "RES",
+  "comment": "1K",
+  "description": "Resistor"
+ },
+ "U2": {
+  "lib_reference": "ADXL202E",
+  "comment": "ADXL202E",
+  "description": "Accelerometer with Digital Output"
+ },
+ "R11": {
+  "lib_reference": "RES",
+  "comment": "0R",
+  "description": "Resistor"
+ },
+ "R22": {
+  "lib_reference": "Res1",
+  "comment": "100R",
+  "description": "Resistor"
+ },
+ "R21": {
+  "lib_reference": "Res1",
+  "comment": "100R",
+  "description": "Resistor"
+ },
+ "JP3": {
+  "lib_reference": "Jumper, 2-Pin",
+  "comment": "X axis",
+  "description": "Jumper, 2-Pin"
+ },
+ "JP4": {
+  "lib_reference": "Jumper, 2-Pin",
+  "comment": "Y axis",
+  "description": "Jumper, 2-Pin"
+ },
+ "JS2": {
+  "lib_reference": "Jumper Socket",
+  "comment": "Short Linking",
+  "description": "Shorting Link, 2.54mm (0.1\") Pitch"
+ },
+ "JS3": {
+  "lib_reference": "Jumper Socket",
+  "comment": "Shorting Link",
+  "description": "Shorting Link, 2.54mm (0.1\") Pitch"
+ },
+ "NT1": {
+  "lib_reference": "Jumper, 2-Pin_1",
+  "comment": "GND",
+  "description": "Jumper, 2-Pin"
+ }
+}

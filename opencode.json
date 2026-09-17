@@ -1,0 +1,16 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": [
+    "AGENTS.md"
+  ],
+  "mcp": {
+    "altium-mcp": {
+      "type": "local",
+      "command": ["node", "C:\\Users\\Lenovo\\Desktop\\DSH\\altium-mcp\\dist\\index.js"],
+      "enabled": true,
+      "environment": {
+        "ALTIUM_MCP_WORKSPACE": "C:\\Users\\Lenovo\\.altium-mcp\\workspace"
+      }
+    }
+  }
+}

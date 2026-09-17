@@ -1,0 +1,1049 @@
+{
+ "schematic_data_mode": "filtered",
+ "include_queries": [
+  "components",
+  "wires",
+  "power_ports",
+  "net_labels",
+  "junctions"
+ ],
+ "components": [
+  {
+   "designator": "J1",
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "schematic_x": 800,
+   "schematic_y": 300,
+   "schematic_width": 520,
+   "schematic_height": -300,
+   "schematic_rotation": 0,
+   "parameters": {
+    "LatestRevisionDate": "17-Jul-2002",
+    "LatestRevisionNote": "Re-released for DXP Platform.",
+    "Publisher": "Altium Limited",
+    "Type": "Connector",
+    "Tech": "",
+    "Comment": "Header 2"
+   }
+  },
+  {
+   "designator": "R1",
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "schematic_x": 1200,
+   "schematic_y": 300,
+   "schematic_width": 440,
+   "schematic_height": -60,
+   "schematic_rotation": 0,
+   "parameters": {
+    "Published": "8-Jun-2000",
+    "LatestRevisionDate": "17-Jul-2002",
+    "LatestRevisionNote": "Re-released for DXP Platform.",
+    "PackageReference": "AXIAL-0.3",
+    "Publisher": "Altium Limited",
+    "PackageDescription": "Axial Device, Thru-Hole; 2 Leads; 0.3 in Pin Spacing",
+    "Value": "1K",
+    "Created": "1/08/1993",
+    "Spice Prefix": "R",
+    "Netlist": "@DESIGNATOR %1 %2 @VALUE",
+    "Kind": "General",
+    "SubKind": "Resistor",
+    "Type": "Resistor",
+    "Tech": "",
+    "Comment": "Res1"
+   }
+  },
+  {
+   "designator": "D1",
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "schematic_x": 1800,
+   "schematic_y": 300,
+   "schematic_width": 540,
+   "schematic_height": -330,
+   "schematic_rotation": 0,
+   "parameters": {
+    "Published": "8-Jun-2000",
+    "LatestRevisionDate": "08-Jul-2005",
+    "LatestRevisionNote": "Mech Layer 1 removed.",
+    "PackageReference": "LED-0",
+    "Publisher": "Altium Limited",
+    "PackageDescription": "LED; 2 Leads",
+    "Created": "11/04/2002 11:34:44 AM",
+    "Spice Prefix": "D",
+    "Netlist": "@DESIGNATOR %1 %2 @MODEL &\"AREA FACTOR\" &\"STARTING CONDITION\" ?\"INITIAL VOLTAGE\"|IC=@\"INITIAL VOLTAGE\"| ?TEMPERATURE|TEMP=@TEMPERATURE|",
+    "Kind": "General",
+    "SubKind": "Diode",
+    "Area Factor": "",
+    "Starting Condition": "",
+    "Initial Voltage": "",
+    "Temperature": "",
+    "Comment": "LED0"
+   }
+  },
+  {
+   "designator": "R2",
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "schematic_x": 2600,
+   "schematic_y": 600,
+   "schematic_width": 440,
+   "schematic_height": -60,
+   "schematic_rotation": 0,
+   "parameters": {
+    "Published": "8-Jun-2000",
+    "LatestRevisionDate": "17-Jul-2002",
+    "LatestRevisionNote": "Re-released for DXP Platform.",
+    "PackageReference": "AXIAL-0.3",
+    "Publisher": "Altium Limited",
+    "PackageDescription": "Axial Device, Thru-Hole; 2 Leads; 0.3 in Pin Spacing",
+    "Value": "1K",
+    "Created": "1/08/1993",
+    "Spice Prefix": "R",
+    "Netlist": "@DESIGNATOR %1 %2 @VALUE",
+    "Kind": "General",
+    "SubKind": "Resistor",
+    "Type": "Resistor",
+    "Tech": "",
+    "Comment": "Res1"
+   }
+  },
+  {
+   "designator": "C1",
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "schematic_x": 800,
+   "schematic_y": 600,
+   "schematic_width": 340,
+   "schematic_height": -180,
+   "schematic_rotation": 0,
+   "parameters": {
+    "Published": "8-Jun-2000",
+    "LatestRevisionDate": "17-Jul-2002",
+    "LatestRevisionNote": "Re-released for DXP Platform.",
+    "PackageReference": "RAD-0.3",
+    "Publisher": "Altium Limited",
+    "PackageDescription": "Radial Cap, Thru-Hole; 2 Leads; 0.3 in Pin Spacing",
+    "Value": "100pF",
+    "Created": "1/08/1993",
+    "Spice Prefix": "C",
+    "Netlist": "@DESIGNATOR %1 %2 @VALUE ?\"INITIAL VOLTAGE\"|IC=@\"INITIAL VOLTAGE\"|",
+    "Kind": "General",
+    "SubKind": "Capacitor",
+    "Initial Voltage": "",
+    "Type": "Capacitor",
+    "Tech": "",
+    "Comment": "Cap"
+   }
+  },
+  {
+   "designator": "SW1",
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "schematic_x": 2000,
+   "schematic_y": 600,
+   "schematic_width": 740,
+   "schematic_height": -140,
+   "schematic_rotation": 0,
+   "parameters": {
+    "Published": "24-Mar-1999",
+    "LatestRevisionDate": "17-Jul-2002",
+    "LatestRevisionNote": "Re-released for DXP Platform.",
+    "PackageReference": "SPST-2",
+    "Publisher": "Altium Limited",
+    "PackageDescription": "Switch; 2 Leads",
+    "Created": "21/05/2002",
+    "Comment": "SW-PB"
+   }
+  },
+  {
+   "designator": "R3",
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "schematic_x": 1200,
+   "schematic_y": 600,
+   "schematic_width": 440,
+   "schematic_height": -60,
+   "schematic_rotation": 0,
+   "parameters": {
+    "Published": "8-Jun-2000",
+    "LatestRevisionDate": "17-Jul-2002",
+    "LatestRevisionNote": "Re-released for DXP Platform.",
+    "PackageReference": "AXIAL-0.3",
+    "Publisher": "Altium Limited",
+    "PackageDescription": "Axial Device, Thru-Hole; 2 Leads; 0.3 in Pin Spacing",
+    "Value": "1K",
+    "Created": "1/08/1993",
+    "Spice Prefix": "R",
+    "Netlist": "@DESIGNATOR %1 %2 @VALUE",
+    "Kind": "General",
+    "SubKind": "Resistor",
+    "Type": "Resistor",
+    "Tech": "",
+    "Comment": "Res1"
+   }
+  },
+  {
+   "designator": "D2",
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "schematic_x": 3200,
+   "schematic_y": 600,
+   "schematic_width": 540,
+   "schematic_height": -330,
+   "schematic_rotation": 0,
+   "parameters": {
+    "Published": "8-Jun-2000",
+    "LatestRevisionDate": "08-Jul-2005",
+    "LatestRevisionNote": "Mech Layer 1 removed.",
+    "PackageReference": "LED-1",
+    "Publisher": "Altium Limited",
+    "PackageDescription": "LED; 2 Leads",
+    "Created": "11/04/2002 11:34:44 AM",
+    "Spice Prefix": "D",
+    "Netlist": "@DESIGNATOR %1 %2 @MODEL &\"AREA FACTOR\" &\"STARTING CONDITION\" ?\"INITIAL VOLTAGE\"|IC=@\"INITIAL VOLTAGE\"| ?TEMPERATURE|TEMP=@TEMPERATURE|",
+    "Kind": "General",
+    "SubKind": "Diode",
+    "Area Factor": "",
+    "Starting Condition": "",
+    "Initial Voltage": "",
+    "Temperature": "",
+    "Comment": "LED1"
+   }
+  },
+  {
+   "designator": "J2",
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "schematic_x": 5500,
+   "schematic_y": 1500,
+   "schematic_width": 520,
+   "schematic_height": -300,
+   "schematic_rotation": 0,
+   "parameters": {
+    "LatestRevisionDate": "17-Jul-2002",
+    "LatestRevisionNote": "Re-released for DXP Platform.",
+    "Publisher": "Altium Limited",
+    "Type": "Connector",
+    "Tech": "",
+    "Comment": "Header 2"
+   }
+  },
+  {
+   "designator": "D3",
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "schematic_x": 6000,
+   "schematic_y": 1500,
+   "schematic_width": 540,
+   "schematic_height": -220,
+   "schematic_rotation": 0,
+   "parameters": {
+    "Published": "8-Jun-2000",
+    "LatestRevisionDate": "17-Jul-2002",
+    "LatestRevisionNote": "Re-released for DXP Platform.",
+    "DatasheetVersion": "Dec-1997",
+    "PackageVersion": "Feb-1998",
+    "PackageReference": "TO-220AC",
+    "Publisher": "Altium Limited",
+    "PackageDescription": "TO, Thru-Hole, Vertical, Heatsink Mounted; 3 In-Line Leads (1 Absent); Pitch 2.54 mm",
+    "Note": "Terminal 2 is the TAB and is electrically connected to the cathode",
+    "ComponentLink1Description": "Manufacturer Link",
+    "ComponentLink1URL": "http://www.irf.com/",
+    "ComponentLink2Description": "Datasheet",
+    "ComponentLink2URL": "http://www.irf.com/product-info/datasheets/data/18tq.pdf",
+    "Created": "11/02/2000",
+    "Spice Prefix": "D",
+    "Netlist": "@DESIGNATOR %1 %2 @MODEL &\"AREA FACTOR\" &\"STARTING CONDITION\" ?\"INITIAL VOLTAGE\"|IC=@\"INITIAL VOLTAGE\"| ?TEMPERATURE|TEMP=@TEMPERATURE|",
+    "Kind": "General",
+    "SubKind": "Diode",
+    "Area Factor": "",
+    "Starting Condition": "",
+    "Initial Voltage": "",
+    "Temperature": "",
+    "Comment": "Diode 18TQ045"
+   }
+  },
+  {
+   "designator": "C2",
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "schematic_x": 6600,
+   "schematic_y": 1500,
+   "schematic_width": 180,
+   "schematic_height": -340,
+   "schematic_rotation": 270,
+   "parameters": {
+    "Published": "8-Jun-2000",
+    "LatestRevisionDate": "17-Jul-2002",
+    "LatestRevisionNote": "Re-released for DXP Platform.",
+    "PackageReference": "RAD-0.3",
+    "Publisher": "Altium Limited",
+    "PackageDescription": "Radial Cap, Thru-Hole; 2 Leads; 0.3 in Pin Spacing",
+    "Value": "220uF",
+    "Created": "1/08/1993",
+    "Spice Prefix": "C",
+    "Netlist": "@DESIGNATOR %1 %2 @VALUE ?\"INITIAL VOLTAGE\"|IC=@\"INITIAL VOLTAGE\"|",
+    "Kind": "General",
+    "SubKind": "Capacitor",
+    "Initial Voltage": "",
+    "Type": "Capacitor",
+    "Tech": "",
+    "Comment": "Cap"
+   }
+  },
+  {
+   "designator": "C3",
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "schematic_x": 7000,
+   "schematic_y": 1500,
+   "schematic_width": 180,
+   "schematic_height": -340,
+   "schematic_rotation": 270,
+   "parameters": {
+    "Published": "8-Jun-2000",
+    "LatestRevisionDate": "17-Jul-2002",
+    "LatestRevisionNote": "Re-released for DXP Platform.",
+    "PackageReference": "RAD-0.3",
+    "Publisher": "Altium Limited",
+    "PackageDescription": "Radial Cap, Thru-Hole; 2 Leads; 0.3 in Pin Spacing",
+    "Value": "1uF",
+    "Created": "1/08/1993",
+    "Spice Prefix": "C",
+    "Netlist": "@DESIGNATOR %1 %2 @VALUE ?\"INITIAL VOLTAGE\"|IC=@\"INITIAL VOLTAGE\"|",
+    "Kind": "General",
+    "SubKind": "Capacitor",
+    "Initial Voltage": "",
+    "Type": "Capacitor",
+    "Tech": "",
+    "Comment": "Cap"
+   }
+  },
+  {
+   "designator": "R4",
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "schematic_x": 7500,
+   "schematic_y": 1500,
+   "schematic_width": 60,
+   "schematic_height": -440,
+   "schematic_rotation": 90,
+   "parameters": {
+    "Published": "8-Jun-2000",
+    "LatestRevisionDate": "17-Jul-2002",
+    "LatestRevisionNote": "Re-released for DXP Platform.",
+    "PackageReference": "AXIAL-0.3",
+    "Publisher": "Altium Limited",
+    "PackageDescription": "Axial Device, Thru-Hole; 2 Leads; 0.3 in Pin Spacing",
+    "Value": "100k",
+    "Created": "1/08/1993",
+    "Spice Prefix": "R",
+    "Netlist": "@DESIGNATOR %1 %2 @VALUE",
+    "Kind": "General",
+    "SubKind": "Resistor",
+    "Type": "Resistor",
+    "Tech": "",
+    "Comment": "Res1"
+   }
+  },
+  {
+   "designator": "R5",
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "schematic_x": 7500,
+   "schematic_y": 900,
+   "schematic_width": 60,
+   "schematic_height": -440,
+   "schematic_rotation": 90,
+   "parameters": {
+    "Published": "8-Jun-2000",
+    "LatestRevisionDate": "17-Jul-2002",
+    "LatestRevisionNote": "Re-released for DXP Platform.",
+    "PackageReference": "AXIAL-0.3",
+    "Publisher": "Altium Limited",
+    "PackageDescription": "Axial Device, Thru-Hole; 2 Leads; 0.3 in Pin Spacing",
+    "Value": "33k",
+    "Created": "1/08/1993",
+    "Spice Prefix": "R",
+    "Netlist": "@DESIGNATOR %1 %2 @VALUE",
+    "Kind": "General",
+    "SubKind": "Resistor",
+    "Type": "Resistor",
+    "Tech": "",
+    "Comment": "Res1"
+   }
+  }
+ ],
+ "wires": [
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 590,
+   "bbox_right_mils": 1110,
+   "bbox_top_mils": 210,
+   "bbox_bottom_mils": 190,
+   "vertices_mils": [
+    {
+     "x_mils": 600,
+     "y_mils": 200
+    },
+    {
+     "x_mils": 1100,
+     "y_mils": 200
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 2090,
+   "bbox_right_mils": 2210,
+   "bbox_top_mils": 210,
+   "bbox_bottom_mils": 190,
+   "vertices_mils": [
+    {
+     "x_mils": 2100,
+     "y_mils": 200
+    },
+    {
+     "x_mils": 2200,
+     "y_mils": 200
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 590,
+   "bbox_right_mils": 610,
+   "bbox_top_mils": 110,
+   "bbox_bottom_mils": 40,
+   "vertices_mils": [
+    {
+     "x_mils": 600,
+     "y_mils": 100
+    },
+    {
+     "x_mils": 600,
+     "y_mils": 50
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 1490,
+   "bbox_right_mils": 1610,
+   "bbox_top_mils": 210,
+   "bbox_bottom_mils": 190,
+   "vertices_mils": [
+    {
+     "x_mils": 1500,
+     "y_mils": 200
+    },
+    {
+     "x_mils": 1600,
+     "y_mils": 200
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 3590,
+   "bbox_right_mils": 3610,
+   "bbox_top_mils": 510,
+   "bbox_bottom_mils": 40,
+   "vertices_mils": [
+    {
+     "x_mils": 3600,
+     "y_mils": 500
+    },
+    {
+     "x_mils": 3600,
+     "y_mils": 50
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 990,
+   "bbox_right_mils": 1010,
+   "bbox_top_mils": 510,
+   "bbox_bottom_mils": 40,
+   "vertices_mils": [
+    {
+     "x_mils": 1000,
+     "y_mils": 500
+    },
+    {
+     "x_mils": 1000,
+     "y_mils": 50
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 1090,
+   "bbox_right_mils": 1510,
+   "bbox_top_mils": 510,
+   "bbox_bottom_mils": 490,
+   "vertices_mils": [
+    {
+     "x_mils": 1100,
+     "y_mils": 500
+    },
+    {
+     "x_mils": 1500,
+     "y_mils": 500
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 1490,
+   "bbox_right_mils": 1810,
+   "bbox_top_mils": 510,
+   "bbox_bottom_mils": 490,
+   "vertices_mils": [
+    {
+     "x_mils": 1500,
+     "y_mils": 500
+    },
+    {
+     "x_mils": 1800,
+     "y_mils": 500
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 1090,
+   "bbox_right_mils": 1110,
+   "bbox_top_mils": 510,
+   "bbox_bottom_mils": 190,
+   "vertices_mils": [
+    {
+     "x_mils": 1100,
+     "y_mils": 500
+    },
+    {
+     "x_mils": 1100,
+     "y_mils": 200
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 3490,
+   "bbox_right_mils": 3610,
+   "bbox_top_mils": 510,
+   "bbox_bottom_mils": 490,
+   "vertices_mils": [
+    {
+     "x_mils": 3500,
+     "y_mils": 500
+    },
+    {
+     "x_mils": 3600,
+     "y_mils": 500
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 2890,
+   "bbox_right_mils": 3010,
+   "bbox_top_mils": 510,
+   "bbox_bottom_mils": 490,
+   "vertices_mils": [
+    {
+     "x_mils": 2900,
+     "y_mils": 500
+    },
+    {
+     "x_mils": 3000,
+     "y_mils": 500
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 5290,
+   "bbox_right_mils": 5810,
+   "bbox_top_mils": 1410,
+   "bbox_bottom_mils": 1390,
+   "vertices_mils": [
+    {
+     "x_mils": 5300,
+     "y_mils": 1400
+    },
+    {
+     "x_mils": 5800,
+     "y_mils": 1400
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 6290,
+   "bbox_right_mils": 6510,
+   "bbox_top_mils": 1410,
+   "bbox_bottom_mils": 1390,
+   "vertices_mils": [
+    {
+     "x_mils": 6300,
+     "y_mils": 1400
+    },
+    {
+     "x_mils": 6500,
+     "y_mils": 1400
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 6490,
+   "bbox_right_mils": 6510,
+   "bbox_top_mils": 1610,
+   "bbox_bottom_mils": 1390,
+   "vertices_mils": [
+    {
+     "x_mils": 6500,
+     "y_mils": 1400
+    },
+    {
+     "x_mils": 6500,
+     "y_mils": 1600
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 6490,
+   "bbox_right_mils": 6910,
+   "bbox_top_mils": 1610,
+   "bbox_bottom_mils": 1590,
+   "vertices_mils": [
+    {
+     "x_mils": 6500,
+     "y_mils": 1600
+    },
+    {
+     "x_mils": 6900,
+     "y_mils": 1600
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 6890,
+   "bbox_right_mils": 7610,
+   "bbox_top_mils": 1610,
+   "bbox_bottom_mils": 1590,
+   "vertices_mils": [
+    {
+     "x_mils": 6900,
+     "y_mils": 1600
+    },
+    {
+     "x_mils": 7600,
+     "y_mils": 1600
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 7590,
+   "bbox_right_mils": 7610,
+   "bbox_top_mils": 1610,
+   "bbox_bottom_mils": 1390,
+   "vertices_mils": [
+    {
+     "x_mils": 7600,
+     "y_mils": 1600
+    },
+    {
+     "x_mils": 7600,
+     "y_mils": 1400
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 6490,
+   "bbox_right_mils": 6910,
+   "bbox_top_mils": 1310,
+   "bbox_bottom_mils": 1290,
+   "vertices_mils": [
+    {
+     "x_mils": 6500,
+     "y_mils": 1300
+    },
+    {
+     "x_mils": 6900,
+     "y_mils": 1300
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 6890,
+   "bbox_right_mils": 7610,
+   "bbox_top_mils": 1310,
+   "bbox_bottom_mils": 1290,
+   "vertices_mils": [
+    {
+     "x_mils": 6900,
+     "y_mils": 1300
+    },
+    {
+     "x_mils": 7600,
+     "y_mils": 1300
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 7590,
+   "bbox_right_mils": 7610,
+   "bbox_top_mils": 1310,
+   "bbox_bottom_mils": 1190,
+   "vertices_mils": [
+    {
+     "x_mils": 7600,
+     "y_mils": 1300
+    },
+    {
+     "x_mils": 7600,
+     "y_mils": 1200
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 5290,
+   "bbox_right_mils": 6510,
+   "bbox_top_mils": 1310,
+   "bbox_bottom_mils": 1290,
+   "vertices_mils": [
+    {
+     "x_mils": 5300,
+     "y_mils": 1300
+    },
+    {
+     "x_mils": 6500,
+     "y_mils": 1300
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 7590,
+   "bbox_right_mils": 7710,
+   "bbox_top_mils": 1810,
+   "bbox_bottom_mils": 1790,
+   "vertices_mils": [
+    {
+     "x_mils": 7600,
+     "y_mils": 1800
+    },
+    {
+     "x_mils": 7700,
+     "y_mils": 1800
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 7690,
+   "bbox_right_mils": 7710,
+   "bbox_top_mils": 1810,
+   "bbox_bottom_mils": 790,
+   "vertices_mils": [
+    {
+     "x_mils": 7700,
+     "y_mils": 1800
+    },
+    {
+     "x_mils": 7700,
+     "y_mils": 800
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 7590,
+   "bbox_right_mils": 7710,
+   "bbox_top_mils": 810,
+   "bbox_bottom_mils": 790,
+   "vertices_mils": [
+    {
+     "x_mils": 7700,
+     "y_mils": 800
+    },
+    {
+     "x_mils": 7600,
+     "y_mils": 800
+    }
+   ]
+  }
+ ],
+ "net_labels": [
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eNetLabel",
+   "object_id": 24,
+   "bbox_left_mils": 2950,
+   "bbox_right_mils": 3166.931,
+   "bbox_top_mils": 600,
+   "bbox_bottom_mils": 500,
+   "text": "LED2",
+   "x_mils": 2950,
+   "y_mils": 500
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eNetLabel",
+   "object_id": 24,
+   "bbox_left_mils": 1550,
+   "bbox_right_mils": 1759.656,
+   "bbox_top_mils": 300,
+   "bbox_bottom_mils": 200,
+   "text": "LED1",
+   "x_mils": 1550,
+   "y_mils": 200
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eNetLabel",
+   "object_id": 24,
+   "bbox_left_mils": 1650,
+   "bbox_right_mils": 1834.259,
+   "bbox_top_mils": 600,
+   "bbox_bottom_mils": 500,
+   "text": "KEY",
+   "x_mils": 1650,
+   "y_mils": 500
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eNetLabel",
+   "object_id": 24,
+   "bbox_left_mils": 5550,
+   "bbox_right_mils": 5965.608,
+   "bbox_top_mils": 1500,
+   "bbox_bottom_mils": 1400,
+   "text": "VIN_RAW",
+   "x_mils": 5550,
+   "y_mils": 1400
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eNetLabel",
+   "object_id": 24,
+   "bbox_left_mils": 6500,
+   "bbox_right_mils": 6659.215,
+   "bbox_top_mils": 1500,
+   "bbox_bottom_mils": 1400,
+   "text": "VIN",
+   "x_mils": 6500,
+   "y_mils": 1400
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eNetLabel",
+   "object_id": 24,
+   "bbox_left_mils": 7700,
+   "bbox_right_mils": 7819.092,
+   "bbox_top_mils": 900,
+   "bbox_bottom_mils": 800,
+   "text": "EN",
+   "x_mils": 7700,
+   "y_mils": 800
+  }
+ ],
+ "power_ports": [
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "ePowerObject",
+   "object_id": 39,
+   "bbox_left_mils": 600,
+   "bbox_right_mils": 922.54,
+   "bbox_top_mils": 250,
+   "bbox_bottom_mils": 150,
+   "text": "VCC",
+   "x_mils": 600,
+   "y_mils": 200
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "ePowerObject",
+   "object_id": 39,
+   "bbox_left_mils": 600,
+   "bbox_right_mils": 1032.196,
+   "bbox_top_mils": 200,
+   "bbox_bottom_mils": 0,
+   "text": "GND",
+   "x_mils": 600,
+   "y_mils": 100
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "ePowerObject",
+   "object_id": 39,
+   "bbox_left_mils": 1000,
+   "bbox_right_mils": 1432.196,
+   "bbox_top_mils": 600,
+   "bbox_bottom_mils": 400,
+   "text": "GND",
+   "x_mils": 1000,
+   "y_mils": 500
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "ePowerObject",
+   "object_id": 39,
+   "bbox_left_mils": 3600,
+   "bbox_right_mils": 4032.196,
+   "bbox_top_mils": 600,
+   "bbox_bottom_mils": 400,
+   "text": "GND",
+   "x_mils": 3600,
+   "y_mils": 500
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "ePowerObject",
+   "object_id": 39,
+   "bbox_left_mils": 2200,
+   "bbox_right_mils": 2632.196,
+   "bbox_top_mils": 300,
+   "bbox_bottom_mils": 100,
+   "text": "GND",
+   "x_mils": 2200,
+   "y_mils": 200
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "ePowerObject",
+   "object_id": 39,
+   "bbox_left_mils": 6500,
+   "bbox_right_mils": 6932.196,
+   "bbox_top_mils": 1400,
+   "bbox_bottom_mils": 1200,
+   "text": "GND",
+   "x_mils": 6500,
+   "y_mils": 1300
+  }
+ ],
+ "junctions": [
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eJunction",
+   "object_id": 16,
+   "bbox_left_mils": 1080,
+   "bbox_right_mils": 1120,
+   "bbox_top_mils": 220,
+   "bbox_bottom_mils": 180,
+   "x_mils": 1100,
+   "y_mils": 200
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eJunction",
+   "object_id": 16,
+   "bbox_left_mils": 1080,
+   "bbox_right_mils": 1120,
+   "bbox_top_mils": 520,
+   "bbox_bottom_mils": 480,
+   "x_mils": 1100,
+   "y_mils": 500
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eJunction",
+   "object_id": 16,
+   "bbox_left_mils": 980,
+   "bbox_right_mils": 1020,
+   "bbox_top_mils": 520,
+   "bbox_bottom_mils": 480,
+   "x_mils": 1000,
+   "y_mils": 500
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eJunction",
+   "object_id": 16,
+   "bbox_left_mils": 3580,
+   "bbox_right_mils": 3620,
+   "bbox_top_mils": 520,
+   "bbox_bottom_mils": 480,
+   "x_mils": 3600,
+   "y_mils": 500
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eJunction",
+   "object_id": 16,
+   "bbox_left_mils": 3580,
+   "bbox_right_mils": 3620,
+   "bbox_top_mils": 520,
+   "bbox_bottom_mils": 480,
+   "x_mils": 3600,
+   "y_mils": 500
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eJunction",
+   "object_id": 16,
+   "bbox_left_mils": 3580,
+   "bbox_right_mils": 3620,
+   "bbox_top_mils": 520,
+   "bbox_bottom_mils": 480,
+   "x_mils": 3600,
+   "y_mils": 500
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eJunction",
+   "object_id": 16,
+   "bbox_left_mils": 3580,
+   "bbox_right_mils": 3620,
+   "bbox_top_mils": 520,
+   "bbox_bottom_mils": 480,
+   "x_mils": 3600,
+   "y_mils": 500
+  }
+ ]
+}

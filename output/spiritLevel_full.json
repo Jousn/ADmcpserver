@@ -1,0 +1,4063 @@
+{
+ "src": {
+  "schematic_data_mode": "filtered",
+  "include_queries": [
+   "components",
+   "wires",
+   "power_ports",
+   "net_labels",
+   "junctions"
+  ],
+  "components": [
+   {
+    "designator": "HDR2",
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "schematic_x": 3100,
+    "schematic_y": 7700,
+    "schematic_width": 840,
+    "schematic_height": -1100,
+    "schematic_rotation": 0,
+    "parameters": {
+     "Revision": "July-2002: Re-released for DXP Platform.",
+     "Manufacturer": "",
+     "AEMS Code": "",
+     "Type": "Connector",
+     "Tech": "",
+     "Comment": "Header 10X2"
+    }
+   },
+   {
+    "designator": "HDR3",
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "schematic_x": 5100,
+    "schematic_y": 7700,
+    "schematic_width": 840,
+    "schematic_height": -1100,
+    "schematic_rotation": 0,
+    "parameters": {
+     "Revision": "July-2002: Re-released for DXP Platform.",
+     "Manufacturer": "",
+     "AEMS Code": "",
+     "Type": "Connector",
+     "Tech": "",
+     "Comment": "Header 10X2"
+    }
+   },
+   {
+    "designator": "Y1",
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "schematic_x": 10300,
+    "schematic_y": 2400,
+    "schematic_width": 1040,
+    "schematic_height": -400,
+    "schematic_rotation": 0,
+    "parameters": {
+     "AEMS Code": "",
+     "Comment": "25MHz"
+    }
+   },
+   {
+    "designator": "C45",
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "schematic_x": 10000,
+    "schematic_y": 3000,
+    "schematic_width": 340,
+    "schematic_height": -180,
+    "schematic_rotation": 90,
+    "parameters": {
+     "AEMS Code": "2100341",
+     "TYPE": "Capacitor",
+     "VALUE": "0.1uF",
+     "Comment": "10nF"
+    }
+   },
+   {
+    "designator": "HDR1",
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "schematic_x": 12300,
+    "schematic_y": 4600,
+    "schematic_width": 840,
+    "schematic_height": -600,
+    "schematic_rotation": 0,
+    "parameters": {
+     "Revision": "17-Jul-2002: Re-released for DXP Platform.",
+     "AEMS Code": "",
+     "Type": "Connector",
+     "Tech": "",
+     "Comment": "Header 5X2"
+    }
+   },
+   {
+    "designator": "C15",
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "schematic_x": 3800,
+    "schematic_y": 3700,
+    "schematic_width": 340,
+    "schematic_height": -180,
+    "schematic_rotation": 90,
+    "parameters": {
+     "AEMS Code": "2101550",
+     "TYPE": "Capacitor",
+     "VALUE": "0.1uF",
+     "Comment": "100nF"
+    }
+   },
+   {
+    "designator": "C16",
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "schematic_x": 2900,
+    "schematic_y": 4700,
+    "schematic_width": 180,
+    "schematic_height": -340,
+    "schematic_rotation": 0,
+    "parameters": {
+     "AEMS Code": "2101550",
+     "TYPE": "Capacitor",
+     "VALUE": "0.1uF",
+     "Comment": "100nF"
+    }
+   },
+   {
+    "designator": "C19",
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "schematic_x": 2700,
+    "schematic_y": 4700,
+    "schematic_width": 180,
+    "schematic_height": -340,
+    "schematic_rotation": 0,
+    "parameters": {
+     "AEMS Code": "2101550",
+     "TYPE": "Capacitor",
+     "VALUE": "0.1uF",
+     "Comment": "100nF"
+    }
+   },
+   {
+    "designator": "R10",
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "schematic_x": 2400,
+    "schematic_y": 4500,
+    "schematic_width": 60,
+    "schematic_height": -440,
+    "schematic_rotation": 90,
+    "parameters": {
+     "Revision": "July-2002: Re-released for DXP Platform.",
+     "AEMS Code": "CHANGED VALUE",
+     "Spice Prefix": "R",
+     "Netlist": "@DESIGNATOR %1 %2 @VALUE",
+     "Kind": "General",
+     "SubKind": "Resistor",
+     "Type": "Resistor",
+     "Tech": "",
+     "Comment": "680R"
+    }
+   },
+   {
+    "designator": "JP5",
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "schematic_x": 9300,
+    "schematic_y": 6300,
+    "schematic_width": 90,
+    "schematic_height": -160,
+    "schematic_rotation": 90,
+    "parameters": {
+     "AEMS Code": "",
+     "Comment": "CONFIG"
+    }
+   },
+   {
+    "designator": "R7",
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "schematic_x": 9300,
+    "schematic_y": 5900,
+    "schematic_width": 60,
+    "schematic_height": -440,
+    "schematic_rotation": 180,
+    "parameters": {
+     "AEMS Code": "1200008JN",
+     "Comment": "1K"
+    }
+   },
+   {
+    "designator": "U2",
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "schematic_x": 3600,
+    "schematic_y": 5200,
+    "schematic_width": 1440,
+    "schematic_height": -1100,
+    "schematic_rotation": 0,
+    "parameters": {
+     "AEMS Code": "",
+     "Comment": "ADXL202E"
+    }
+   },
+   {
+    "designator": "R11",
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "schematic_x": 3200,
+    "schematic_y": 5500,
+    "schematic_width": 60,
+    "schematic_height": -440,
+    "schematic_rotation": 0,
+    "parameters": {
+     "AEMS Code": "1200075",
+     "Comment": "0R"
+    }
+   },
+   {
+    "designator": "R22",
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "schematic_x": 5200,
+    "schematic_y": 4900,
+    "schematic_width": 440,
+    "schematic_height": -60,
+    "schematic_rotation": 180,
+    "parameters": {
+     "Revision": "July-2002: Re-released for DXP Platform.",
+     "AEMS Code": "1200012JT",
+     "Spice Prefix": "R",
+     "Netlist": "@DESIGNATOR %1 %2 @VALUE",
+     "Kind": "General",
+     "SubKind": "Resistor",
+     "Type": "Resistor",
+     "Tech": "",
+     "Comment": "100R"
+    }
+   },
+   {
+    "designator": "R21",
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "schematic_x": 5200,
+    "schematic_y": 4700,
+    "schematic_width": 440,
+    "schematic_height": -60,
+    "schematic_rotation": 180,
+    "parameters": {
+     "Revision": "July-2002: Re-released for DXP Platform.",
+     "AEMS Code": "1200012JT",
+     "Spice Prefix": "R",
+     "Netlist": "@DESIGNATOR %1 %2 @VALUE",
+     "Kind": "General",
+     "SubKind": "Resistor",
+     "Type": "Resistor",
+     "Tech": "",
+     "Comment": "100R"
+    }
+   },
+   {
+    "designator": "JP3",
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "schematic_x": 5400,
+    "schematic_y": 5000,
+    "schematic_width": 160,
+    "schematic_height": -90,
+    "schematic_rotation": 0,
+    "parameters": {
+     "AEMS Code": "",
+     "Comment": "X axis"
+    }
+   },
+   {
+    "designator": "JP4",
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "schematic_x": 5400,
+    "schematic_y": 4800,
+    "schematic_width": 160,
+    "schematic_height": -90,
+    "schematic_rotation": 0,
+    "parameters": {
+     "AEMS Code": "",
+     "Comment": "Y axis"
+    }
+   },
+   {
+    "designator": "JS2",
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "schematic_x": 5400,
+    "schematic_y": 5050,
+    "schematic_width": 140,
+    "schematic_height": -40,
+    "schematic_rotation": 0,
+    "parameters": {
+     "AEMS Code": "",
+     "Comment": "Short Linking"
+    }
+   },
+   {
+    "designator": "JS3",
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "schematic_x": 5400,
+    "schematic_y": 4850,
+    "schematic_width": 140,
+    "schematic_height": -40,
+    "schematic_rotation": 0,
+    "parameters": {
+     "AEMS Code": "",
+     "Comment": "Shorting Link"
+    }
+   },
+   {
+    "designator": "NT1",
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "schematic_x": 9150,
+    "schematic_y": 2500,
+    "schematic_width": 90,
+    "schematic_height": -160,
+    "schematic_rotation": 270,
+    "parameters": {
+     "AEMS Code": "",
+     "Comment": "GND"
+    }
+   }
+  ],
+  "wires": [
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 2490,
+    "bbox_right_mils": 2910,
+    "bbox_top_mils": 7510,
+    "bbox_bottom_mils": 7490,
+    "vertices_mils": [
+     {
+      "x_mils": 2900,
+      "y_mils": 7500
+     },
+     {
+      "x_mils": 2500,
+      "y_mils": 7500
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 4490,
+    "bbox_right_mils": 4910,
+    "bbox_top_mils": 7510,
+    "bbox_bottom_mils": 7490,
+    "vertices_mils": [
+     {
+      "x_mils": 4900,
+      "y_mils": 7500
+     },
+     {
+      "x_mils": 4500,
+      "y_mils": 7500
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 3690,
+    "bbox_right_mils": 4110,
+    "bbox_top_mils": 7510,
+    "bbox_bottom_mils": 7490,
+    "vertices_mils": [
+     {
+      "x_mils": 3700,
+      "y_mils": 7500
+     },
+     {
+      "x_mils": 4100,
+      "y_mils": 7500
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 3690,
+    "bbox_right_mils": 4110,
+    "bbox_top_mils": 7610,
+    "bbox_bottom_mils": 7590,
+    "vertices_mils": [
+     {
+      "x_mils": 3700,
+      "y_mils": 7600
+     },
+     {
+      "x_mils": 4100,
+      "y_mils": 7600
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 5690,
+    "bbox_right_mils": 6110,
+    "bbox_top_mils": 7610,
+    "bbox_bottom_mils": 7590,
+    "vertices_mils": [
+     {
+      "x_mils": 5700,
+      "y_mils": 7600
+     },
+     {
+      "x_mils": 6100,
+      "y_mils": 7600
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 3690,
+    "bbox_right_mils": 4110,
+    "bbox_top_mils": 7410,
+    "bbox_bottom_mils": 7390,
+    "vertices_mils": [
+     {
+      "x_mils": 3700,
+      "y_mils": 7400
+     },
+     {
+      "x_mils": 4100,
+      "y_mils": 7400
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 3690,
+    "bbox_right_mils": 4110,
+    "bbox_top_mils": 7310,
+    "bbox_bottom_mils": 7290,
+    "vertices_mils": [
+     {
+      "x_mils": 3700,
+      "y_mils": 7300
+     },
+     {
+      "x_mils": 4100,
+      "y_mils": 7300
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 3690,
+    "bbox_right_mils": 4110,
+    "bbox_top_mils": 7210,
+    "bbox_bottom_mils": 7190,
+    "vertices_mils": [
+     {
+      "x_mils": 3700,
+      "y_mils": 7200
+     },
+     {
+      "x_mils": 4100,
+      "y_mils": 7200
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 3690,
+    "bbox_right_mils": 4110,
+    "bbox_top_mils": 7110,
+    "bbox_bottom_mils": 7090,
+    "vertices_mils": [
+     {
+      "x_mils": 3700,
+      "y_mils": 7100
+     },
+     {
+      "x_mils": 4100,
+      "y_mils": 7100
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 3690,
+    "bbox_right_mils": 4110,
+    "bbox_top_mils": 7010,
+    "bbox_bottom_mils": 6990,
+    "vertices_mils": [
+     {
+      "x_mils": 3700,
+      "y_mils": 7000
+     },
+     {
+      "x_mils": 4100,
+      "y_mils": 7000
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 3690,
+    "bbox_right_mils": 4110,
+    "bbox_top_mils": 6910,
+    "bbox_bottom_mils": 6890,
+    "vertices_mils": [
+     {
+      "x_mils": 3700,
+      "y_mils": 6900
+     },
+     {
+      "x_mils": 4100,
+      "y_mils": 6900
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 3690,
+    "bbox_right_mils": 4110,
+    "bbox_top_mils": 6810,
+    "bbox_bottom_mils": 6790,
+    "vertices_mils": [
+     {
+      "x_mils": 3700,
+      "y_mils": 6800
+     },
+     {
+      "x_mils": 4100,
+      "y_mils": 6800
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 2490,
+    "bbox_right_mils": 2910,
+    "bbox_top_mils": 7410,
+    "bbox_bottom_mils": 7390,
+    "vertices_mils": [
+     {
+      "x_mils": 2900,
+      "y_mils": 7400
+     },
+     {
+      "x_mils": 2500,
+      "y_mils": 7400
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 2490,
+    "bbox_right_mils": 2910,
+    "bbox_top_mils": 7310,
+    "bbox_bottom_mils": 7290,
+    "vertices_mils": [
+     {
+      "x_mils": 2900,
+      "y_mils": 7300
+     },
+     {
+      "x_mils": 2500,
+      "y_mils": 7300
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 2490,
+    "bbox_right_mils": 2910,
+    "bbox_top_mils": 7210,
+    "bbox_bottom_mils": 7190,
+    "vertices_mils": [
+     {
+      "x_mils": 2900,
+      "y_mils": 7200
+     },
+     {
+      "x_mils": 2500,
+      "y_mils": 7200
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 2490,
+    "bbox_right_mils": 2910,
+    "bbox_top_mils": 7110,
+    "bbox_bottom_mils": 7090,
+    "vertices_mils": [
+     {
+      "x_mils": 2900,
+      "y_mils": 7100
+     },
+     {
+      "x_mils": 2500,
+      "y_mils": 7100
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 2490,
+    "bbox_right_mils": 2910,
+    "bbox_top_mils": 7010,
+    "bbox_bottom_mils": 6990,
+    "vertices_mils": [
+     {
+      "x_mils": 2900,
+      "y_mils": 7000
+     },
+     {
+      "x_mils": 2500,
+      "y_mils": 7000
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 2490,
+    "bbox_right_mils": 2910,
+    "bbox_top_mils": 6910,
+    "bbox_bottom_mils": 6890,
+    "vertices_mils": [
+     {
+      "x_mils": 2900,
+      "y_mils": 6900
+     },
+     {
+      "x_mils": 2500,
+      "y_mils": 6900
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 2490,
+    "bbox_right_mils": 2910,
+    "bbox_top_mils": 6810,
+    "bbox_bottom_mils": 6790,
+    "vertices_mils": [
+     {
+      "x_mils": 2900,
+      "y_mils": 6800
+     },
+     {
+      "x_mils": 2500,
+      "y_mils": 6800
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 2490,
+    "bbox_right_mils": 2910,
+    "bbox_top_mils": 6710,
+    "bbox_bottom_mils": 6690,
+    "vertices_mils": [
+     {
+      "x_mils": 2900,
+      "y_mils": 6700
+     },
+     {
+      "x_mils": 2500,
+      "y_mils": 6700
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 4490,
+    "bbox_right_mils": 4910,
+    "bbox_top_mils": 7410,
+    "bbox_bottom_mils": 7390,
+    "vertices_mils": [
+     {
+      "x_mils": 4900,
+      "y_mils": 7400
+     },
+     {
+      "x_mils": 4500,
+      "y_mils": 7400
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 4490,
+    "bbox_right_mils": 4910,
+    "bbox_top_mils": 7310,
+    "bbox_bottom_mils": 7290,
+    "vertices_mils": [
+     {
+      "x_mils": 4900,
+      "y_mils": 7300
+     },
+     {
+      "x_mils": 4500,
+      "y_mils": 7300
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 4490,
+    "bbox_right_mils": 4910,
+    "bbox_top_mils": 7210,
+    "bbox_bottom_mils": 7190,
+    "vertices_mils": [
+     {
+      "x_mils": 4900,
+      "y_mils": 7200
+     },
+     {
+      "x_mils": 4500,
+      "y_mils": 7200
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 4490,
+    "bbox_right_mils": 4910,
+    "bbox_top_mils": 7110,
+    "bbox_bottom_mils": 7090,
+    "vertices_mils": [
+     {
+      "x_mils": 4900,
+      "y_mils": 7100
+     },
+     {
+      "x_mils": 4500,
+      "y_mils": 7100
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 4490,
+    "bbox_right_mils": 4910,
+    "bbox_top_mils": 7010,
+    "bbox_bottom_mils": 6990,
+    "vertices_mils": [
+     {
+      "x_mils": 4900,
+      "y_mils": 7000
+     },
+     {
+      "x_mils": 4500,
+      "y_mils": 7000
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 4490,
+    "bbox_right_mils": 4910,
+    "bbox_top_mils": 6910,
+    "bbox_bottom_mils": 6890,
+    "vertices_mils": [
+     {
+      "x_mils": 4900,
+      "y_mils": 6900
+     },
+     {
+      "x_mils": 4500,
+      "y_mils": 6900
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 4490,
+    "bbox_right_mils": 4910,
+    "bbox_top_mils": 6810,
+    "bbox_bottom_mils": 6790,
+    "vertices_mils": [
+     {
+      "x_mils": 4900,
+      "y_mils": 6800
+     },
+     {
+      "x_mils": 4500,
+      "y_mils": 6800
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 4490,
+    "bbox_right_mils": 4910,
+    "bbox_top_mils": 6710,
+    "bbox_bottom_mils": 6690,
+    "vertices_mils": [
+     {
+      "x_mils": 4900,
+      "y_mils": 6700
+     },
+     {
+      "x_mils": 4500,
+      "y_mils": 6700
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 5690,
+    "bbox_right_mils": 6110,
+    "bbox_top_mils": 7510,
+    "bbox_bottom_mils": 7490,
+    "vertices_mils": [
+     {
+      "x_mils": 5700,
+      "y_mils": 7500
+     },
+     {
+      "x_mils": 6100,
+      "y_mils": 7500
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 5690,
+    "bbox_right_mils": 6110,
+    "bbox_top_mils": 7410,
+    "bbox_bottom_mils": 7390,
+    "vertices_mils": [
+     {
+      "x_mils": 5700,
+      "y_mils": 7400
+     },
+     {
+      "x_mils": 6100,
+      "y_mils": 7400
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 5690,
+    "bbox_right_mils": 6110,
+    "bbox_top_mils": 7310,
+    "bbox_bottom_mils": 7290,
+    "vertices_mils": [
+     {
+      "x_mils": 5700,
+      "y_mils": 7300
+     },
+     {
+      "x_mils": 6100,
+      "y_mils": 7300
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 5690,
+    "bbox_right_mils": 6110,
+    "bbox_top_mils": 7210,
+    "bbox_bottom_mils": 7190,
+    "vertices_mils": [
+     {
+      "x_mils": 5700,
+      "y_mils": 7200
+     },
+     {
+      "x_mils": 6100,
+      "y_mils": 7200
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 5690,
+    "bbox_right_mils": 6110,
+    "bbox_top_mils": 7110,
+    "bbox_bottom_mils": 7090,
+    "vertices_mils": [
+     {
+      "x_mils": 5700,
+      "y_mils": 7100
+     },
+     {
+      "x_mils": 6100,
+      "y_mils": 7100
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 5690,
+    "bbox_right_mils": 6110,
+    "bbox_top_mils": 7010,
+    "bbox_bottom_mils": 6990,
+    "vertices_mils": [
+     {
+      "x_mils": 5700,
+      "y_mils": 7000
+     },
+     {
+      "x_mils": 6100,
+      "y_mils": 7000
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 5690,
+    "bbox_right_mils": 6110,
+    "bbox_top_mils": 6910,
+    "bbox_bottom_mils": 6890,
+    "vertices_mils": [
+     {
+      "x_mils": 5700,
+      "y_mils": 6900
+     },
+     {
+      "x_mils": 6100,
+      "y_mils": 6900
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 5690,
+    "bbox_right_mils": 6110,
+    "bbox_top_mils": 6810,
+    "bbox_bottom_mils": 6790,
+    "vertices_mils": [
+     {
+      "x_mils": 5700,
+      "y_mils": 6800
+     },
+     {
+      "x_mils": 6100,
+      "y_mils": 6800
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 9640,
+    "bbox_right_mils": 9710,
+    "bbox_top_mils": 2510,
+    "bbox_bottom_mils": 2490,
+    "vertices_mils": [
+     {
+      "x_mils": 9700,
+      "y_mils": 2500
+     },
+     {
+      "x_mils": 9650,
+      "y_mils": 2500
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 10290,
+    "bbox_right_mils": 10510,
+    "bbox_top_mils": 3010,
+    "bbox_bottom_mils": 2990,
+    "vertices_mils": [
+     {
+      "x_mils": 10500,
+      "y_mils": 3000
+     },
+     {
+      "x_mils": 10300,
+      "y_mils": 3000
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 9790,
+    "bbox_right_mils": 10010,
+    "bbox_top_mils": 3010,
+    "bbox_bottom_mils": 2990,
+    "vertices_mils": [
+     {
+      "x_mils": 9800,
+      "y_mils": 3000
+     },
+     {
+      "x_mils": 10000,
+      "y_mils": 3000
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 2490,
+    "bbox_right_mils": 2910,
+    "bbox_top_mils": 4410,
+    "bbox_bottom_mils": 4390,
+    "vertices_mils": [
+     {
+      "x_mils": 2900,
+      "y_mils": 4400
+     },
+     {
+      "x_mils": 2500,
+      "y_mils": 4400
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 2890,
+    "bbox_right_mils": 3310,
+    "bbox_top_mils": 4710,
+    "bbox_bottom_mils": 4690,
+    "vertices_mils": [
+     {
+      "x_mils": 2900,
+      "y_mils": 4700
+     },
+     {
+      "x_mils": 3300,
+      "y_mils": 4700
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 2690,
+    "bbox_right_mils": 3310,
+    "bbox_top_mils": 4810,
+    "bbox_bottom_mils": 4690,
+    "vertices_mils": [
+     {
+      "x_mils": 2700,
+      "y_mils": 4700
+     },
+     {
+      "x_mils": 2700,
+      "y_mils": 4800
+     },
+     {
+      "x_mils": 3300,
+      "y_mils": 4800
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 2490,
+    "bbox_right_mils": 3310,
+    "bbox_top_mils": 4910,
+    "bbox_bottom_mils": 4790,
+    "vertices_mils": [
+     {
+      "x_mils": 2500,
+      "y_mils": 4800
+     },
+     {
+      "x_mils": 2500,
+      "y_mils": 4900
+     },
+     {
+      "x_mils": 3300,
+      "y_mils": 4900
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 4090,
+    "bbox_right_mils": 4710,
+    "bbox_top_mils": 4410,
+    "bbox_bottom_mils": 3690,
+    "vertices_mils": [
+     {
+      "x_mils": 4100,
+      "y_mils": 3700
+     },
+     {
+      "x_mils": 4700,
+      "y_mils": 3700
+     },
+     {
+      "x_mils": 4700,
+      "y_mils": 4400
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 4690,
+    "bbox_right_mils": 4910,
+    "bbox_top_mils": 5010,
+    "bbox_bottom_mils": 4990,
+    "vertices_mils": [
+     {
+      "x_mils": 4700,
+      "y_mils": 5000
+     },
+     {
+      "x_mils": 4900,
+      "y_mils": 5000
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 7310,
+    "bbox_bottom_mils": 7290,
+    "vertices_mils": [
+     {
+      "x_mils": 7400,
+      "y_mils": 7300
+     },
+     {
+      "x_mils": 6700,
+      "y_mils": 7300
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 7210,
+    "bbox_bottom_mils": 7190,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 7200
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 7200
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 7110,
+    "bbox_bottom_mils": 7090,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 7100
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 7100
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 7010,
+    "bbox_bottom_mils": 6990,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 7000
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 7000
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 6910,
+    "bbox_bottom_mils": 6890,
+    "vertices_mils": [
+     {
+      "x_mils": 7400,
+      "y_mils": 6900
+     },
+     {
+      "x_mils": 6700,
+      "y_mils": 6900
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 6810,
+    "bbox_bottom_mils": 6790,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 6800
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 6800
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 6710,
+    "bbox_bottom_mils": 6690,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 6700
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 6700
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 6610,
+    "bbox_bottom_mils": 6590,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 6600
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 6600
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 6510,
+    "bbox_bottom_mils": 6490,
+    "vertices_mils": [
+     {
+      "x_mils": 7400,
+      "y_mils": 6500
+     },
+     {
+      "x_mils": 6700,
+      "y_mils": 6500
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 6410,
+    "bbox_bottom_mils": 6390,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 6400
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 6400
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 6310,
+    "bbox_bottom_mils": 6290,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 6300
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 6300
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 6210,
+    "bbox_bottom_mils": 6190,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 6200
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 6200
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 6110,
+    "bbox_bottom_mils": 6090,
+    "vertices_mils": [
+     {
+      "x_mils": 7400,
+      "y_mils": 6100
+     },
+     {
+      "x_mils": 6700,
+      "y_mils": 6100
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 6010,
+    "bbox_bottom_mils": 5990,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 6000
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 6000
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 5910,
+    "bbox_bottom_mils": 5890,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 5900
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 5900
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 5810,
+    "bbox_bottom_mils": 5790,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 5800
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 5800
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 5610,
+    "bbox_bottom_mils": 5590,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 5600
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 5600
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 5010,
+    "bbox_bottom_mils": 4990,
+    "vertices_mils": [
+     {
+      "x_mils": 7400,
+      "y_mils": 5000
+     },
+     {
+      "x_mils": 6700,
+      "y_mils": 5000
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 4910,
+    "bbox_bottom_mils": 4890,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 4900
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 4900
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 4810,
+    "bbox_bottom_mils": 4790,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 4800
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 4800
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 4710,
+    "bbox_bottom_mils": 4690,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 4700
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 4700
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 4610,
+    "bbox_bottom_mils": 4590,
+    "vertices_mils": [
+     {
+      "x_mils": 7400,
+      "y_mils": 4600
+     },
+     {
+      "x_mils": 6700,
+      "y_mils": 4600
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 4510,
+    "bbox_bottom_mils": 4490,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 4500
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 4500
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 4410,
+    "bbox_bottom_mils": 4390,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 4400
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 4400
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 4310,
+    "bbox_bottom_mils": 4290,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 4300
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 4300
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 4210,
+    "bbox_bottom_mils": 4190,
+    "vertices_mils": [
+     {
+      "x_mils": 7400,
+      "y_mils": 4200
+     },
+     {
+      "x_mils": 6700,
+      "y_mils": 4200
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 4110,
+    "bbox_bottom_mils": 4090,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 4100
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 4100
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 4010,
+    "bbox_bottom_mils": 3990,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 4000
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 4000
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 3910,
+    "bbox_bottom_mils": 3890,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 3900
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 3900
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 3810,
+    "bbox_bottom_mils": 3790,
+    "vertices_mils": [
+     {
+      "x_mils": 7400,
+      "y_mils": 3800
+     },
+     {
+      "x_mils": 6700,
+      "y_mils": 3800
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 3710,
+    "bbox_bottom_mils": 3690,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 3700
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 3700
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 3610,
+    "bbox_bottom_mils": 3590,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 3600
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 3600
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 3510,
+    "bbox_bottom_mils": 3490,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 3500
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 3500
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 3410,
+    "bbox_bottom_mils": 3390,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 3400
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 3400
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 3310,
+    "bbox_bottom_mils": 3290,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 3300
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 3300
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6440,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 3110,
+    "bbox_bottom_mils": 3090,
+    "vertices_mils": [
+     {
+      "x_mils": 7400,
+      "y_mils": 3100
+     },
+     {
+      "x_mils": 6450,
+      "y_mils": 3100
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6440,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 2810,
+    "bbox_bottom_mils": 2790,
+    "vertices_mils": [
+     {
+      "x_mils": 6450,
+      "y_mils": 2800
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 2800
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6440,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 2710,
+    "bbox_bottom_mils": 2690,
+    "vertices_mils": [
+     {
+      "x_mils": 7400,
+      "y_mils": 2700
+     },
+     {
+      "x_mils": 6450,
+      "y_mils": 2700
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6440,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 2610,
+    "bbox_bottom_mils": 2590,
+    "vertices_mils": [
+     {
+      "x_mils": 7400,
+      "y_mils": 2600
+     },
+     {
+      "x_mils": 6450,
+      "y_mils": 2600
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6440,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 2510,
+    "bbox_bottom_mils": 2490,
+    "vertices_mils": [
+     {
+      "x_mils": 7400,
+      "y_mils": 2500
+     },
+     {
+      "x_mils": 6450,
+      "y_mils": 2500
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 8890,
+    "bbox_right_mils": 9310,
+    "bbox_top_mils": 5910,
+    "bbox_bottom_mils": 5890,
+    "vertices_mils": [
+     {
+      "x_mils": 9300,
+      "y_mils": 5900
+     },
+     {
+      "x_mils": 8900,
+      "y_mils": 5900
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 8890,
+    "bbox_right_mils": 9110,
+    "bbox_top_mils": 5910,
+    "bbox_bottom_mils": 5790,
+    "vertices_mils": [
+     {
+      "x_mils": 8900,
+      "y_mils": 5800
+     },
+     {
+      "x_mils": 9100,
+      "y_mils": 5800
+     },
+     {
+      "x_mils": 9100,
+      "y_mils": 5900
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 8890,
+    "bbox_right_mils": 9310,
+    "bbox_top_mils": 6310,
+    "bbox_bottom_mils": 5990,
+    "vertices_mils": [
+     {
+      "x_mils": 8900,
+      "y_mils": 6000
+     },
+     {
+      "x_mils": 9100,
+      "y_mils": 6000
+     },
+     {
+      "x_mils": 9100,
+      "y_mils": 6300
+     },
+     {
+      "x_mils": 9300,
+      "y_mils": 6300
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 8890,
+    "bbox_right_mils": 9510,
+    "bbox_top_mils": 4910,
+    "bbox_bottom_mils": 4590,
+    "vertices_mils": [
+     {
+      "x_mils": 8900,
+      "y_mils": 4600
+     },
+     {
+      "x_mils": 9300,
+      "y_mils": 4600
+     },
+     {
+      "x_mils": 9300,
+      "y_mils": 4900
+     },
+     {
+      "x_mils": 9500,
+      "y_mils": 4900
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 8890,
+    "bbox_right_mils": 13110,
+    "bbox_top_mils": 4310,
+    "bbox_bottom_mils": 3690,
+    "vertices_mils": [
+     {
+      "x_mils": 12900,
+      "y_mils": 4300
+     },
+     {
+      "x_mils": 13100,
+      "y_mils": 4300
+     },
+     {
+      "x_mils": 13100,
+      "y_mils": 3700
+     },
+     {
+      "x_mils": 11900,
+      "y_mils": 3700
+     },
+     {
+      "x_mils": 11900,
+      "y_mils": 4000
+     },
+     {
+      "x_mils": 8900,
+      "y_mils": 4000
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 8890,
+    "bbox_right_mils": 13010,
+    "bbox_top_mils": 4210,
+    "bbox_bottom_mils": 3790,
+    "vertices_mils": [
+     {
+      "x_mils": 12900,
+      "y_mils": 4200
+     },
+     {
+      "x_mils": 13000,
+      "y_mils": 4200
+     },
+     {
+      "x_mils": 13000,
+      "y_mils": 3800
+     },
+     {
+      "x_mils": 12000,
+      "y_mils": 3800
+     },
+     {
+      "x_mils": 12000,
+      "y_mils": 4100
+     },
+     {
+      "x_mils": 8900,
+      "y_mils": 4100
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 8890,
+    "bbox_right_mils": 12110,
+    "bbox_top_mils": 4210,
+    "bbox_bottom_mils": 4190,
+    "vertices_mils": [
+     {
+      "x_mils": 12100,
+      "y_mils": 4200
+     },
+     {
+      "x_mils": 8900,
+      "y_mils": 4200
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 8890,
+    "bbox_right_mils": 12110,
+    "bbox_top_mils": 4310,
+    "bbox_bottom_mils": 4290,
+    "vertices_mils": [
+     {
+      "x_mils": 12100,
+      "y_mils": 4300
+     },
+     {
+      "x_mils": 8900,
+      "y_mils": 4300
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 8890,
+    "bbox_right_mils": 12110,
+    "bbox_top_mils": 4410,
+    "bbox_bottom_mils": 4390,
+    "vertices_mils": [
+     {
+      "x_mils": 12100,
+      "y_mils": 4400
+     },
+     {
+      "x_mils": 8900,
+      "y_mils": 4400
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 8890,
+    "bbox_right_mils": 12110,
+    "bbox_top_mils": 4510,
+    "bbox_bottom_mils": 4490,
+    "vertices_mils": [
+     {
+      "x_mils": 12100,
+      "y_mils": 4500
+     },
+     {
+      "x_mils": 8900,
+      "y_mils": 4500
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 8890,
+    "bbox_right_mils": 13110,
+    "bbox_top_mils": 4810,
+    "bbox_bottom_mils": 4390,
+    "vertices_mils": [
+     {
+      "x_mils": 12900,
+      "y_mils": 4400
+     },
+     {
+      "x_mils": 13100,
+      "y_mils": 4400
+     },
+     {
+      "x_mils": 13100,
+      "y_mils": 4800
+     },
+     {
+      "x_mils": 11900,
+      "y_mils": 4800
+     },
+     {
+      "x_mils": 11900,
+      "y_mils": 4700
+     },
+     {
+      "x_mils": 8900,
+      "y_mils": 4700
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 10890,
+    "bbox_right_mils": 13010,
+    "bbox_top_mils": 5310,
+    "bbox_bottom_mils": 4490,
+    "vertices_mils": [
+     {
+      "x_mils": 10900,
+      "y_mils": 5300
+     },
+     {
+      "x_mils": 11200,
+      "y_mils": 5300
+     },
+     {
+      "x_mils": 11200,
+      "y_mils": 4600
+     },
+     {
+      "x_mils": 12000,
+      "y_mils": 4600
+     },
+     {
+      "x_mils": 12000,
+      "y_mils": 4700
+     },
+     {
+      "x_mils": 13000,
+      "y_mils": 4700
+     },
+     {
+      "x_mils": 13000,
+      "y_mils": 4500
+     },
+     {
+      "x_mils": 12900,
+      "y_mils": 4500
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 10890,
+    "bbox_right_mils": 11310,
+    "bbox_top_mils": 5410,
+    "bbox_bottom_mils": 4690,
+    "vertices_mils": [
+     {
+      "x_mils": 11300,
+      "y_mils": 4700
+     },
+     {
+      "x_mils": 11300,
+      "y_mils": 5400
+     },
+     {
+      "x_mils": 10900,
+      "y_mils": 5400
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 10890,
+    "bbox_right_mils": 11110,
+    "bbox_top_mils": 5210,
+    "bbox_bottom_mils": 4390,
+    "vertices_mils": [
+     {
+      "x_mils": 11100,
+      "y_mils": 4400
+     },
+     {
+      "x_mils": 11100,
+      "y_mils": 5200
+     },
+     {
+      "x_mils": 10900,
+      "y_mils": 5200
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 8890,
+    "bbox_right_mils": 9510,
+    "bbox_top_mils": 5410,
+    "bbox_bottom_mils": 5390,
+    "vertices_mils": [
+     {
+      "x_mils": 8900,
+      "y_mils": 5400
+     },
+     {
+      "x_mils": 9500,
+      "y_mils": 5400
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 8890,
+    "bbox_right_mils": 9510,
+    "bbox_top_mils": 5310,
+    "bbox_bottom_mils": 5290,
+    "vertices_mils": [
+     {
+      "x_mils": 8900,
+      "y_mils": 5300
+     },
+     {
+      "x_mils": 9500,
+      "y_mils": 5300
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 8890,
+    "bbox_right_mils": 9510,
+    "bbox_top_mils": 5210,
+    "bbox_bottom_mils": 5190,
+    "vertices_mils": [
+     {
+      "x_mils": 8900,
+      "y_mils": 5200
+     },
+     {
+      "x_mils": 9500,
+      "y_mils": 5200
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 8890,
+    "bbox_right_mils": 9510,
+    "bbox_top_mils": 5110,
+    "bbox_bottom_mils": 5090,
+    "vertices_mils": [
+     {
+      "x_mils": 8900,
+      "y_mils": 5100
+     },
+     {
+      "x_mils": 9500,
+      "y_mils": 5100
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 8890,
+    "bbox_right_mils": 9510,
+    "bbox_top_mils": 5010,
+    "bbox_bottom_mils": 4990,
+    "vertices_mils": [
+     {
+      "x_mils": 8900,
+      "y_mils": 5000
+     },
+     {
+      "x_mils": 9500,
+      "y_mils": 5000
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 3190,
+    "bbox_right_mils": 3310,
+    "bbox_top_mils": 4410,
+    "bbox_bottom_mils": 4390,
+    "vertices_mils": [
+     {
+      "x_mils": 3300,
+      "y_mils": 4400
+     },
+     {
+      "x_mils": 3200,
+      "y_mils": 4400
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 3190,
+    "bbox_right_mils": 3810,
+    "bbox_top_mils": 5110,
+    "bbox_bottom_mils": 3690,
+    "vertices_mils": [
+     {
+      "x_mils": 3800,
+      "y_mils": 3700
+     },
+     {
+      "x_mils": 3200,
+      "y_mils": 3700
+     },
+     {
+      "x_mils": 3200,
+      "y_mils": 5100
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 8890,
+    "bbox_right_mils": 9160,
+    "bbox_top_mils": 2510,
+    "bbox_bottom_mils": 2490,
+    "vertices_mils": [
+     {
+      "x_mils": 8900,
+      "y_mils": 2500
+     },
+     {
+      "x_mils": 9150,
+      "y_mils": 2500
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 4690,
+    "bbox_right_mils": 4910,
+    "bbox_top_mils": 4810,
+    "bbox_bottom_mils": 4790,
+    "vertices_mils": [
+     {
+      "x_mils": 4900,
+      "y_mils": 4800
+     },
+     {
+      "x_mils": 4700,
+      "y_mils": 4800
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 5490,
+    "bbox_right_mils": 6410,
+    "bbox_top_mils": 5010,
+    "bbox_bottom_mils": 4990,
+    "vertices_mils": [
+     {
+      "x_mils": 5500,
+      "y_mils": 5000
+     },
+     {
+      "x_mils": 6400,
+      "y_mils": 5000
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 5490,
+    "bbox_right_mils": 6410,
+    "bbox_top_mils": 4810,
+    "bbox_bottom_mils": 4790,
+    "vertices_mils": [
+     {
+      "x_mils": 5500,
+      "y_mils": 4800
+     },
+     {
+      "x_mils": 6400,
+      "y_mils": 4800
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 5290,
+    "bbox_right_mils": 6410,
+    "bbox_top_mils": 4810,
+    "bbox_bottom_mils": 4490,
+    "vertices_mils": [
+     {
+      "x_mils": 5400,
+      "y_mils": 4800
+     },
+     {
+      "x_mils": 5300,
+      "y_mils": 4800
+     },
+     {
+      "x_mils": 5300,
+      "y_mils": 4500
+     },
+     {
+      "x_mils": 6400,
+      "y_mils": 4500
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 5290,
+    "bbox_right_mils": 6410,
+    "bbox_top_mils": 5310,
+    "bbox_bottom_mils": 4990,
+    "vertices_mils": [
+     {
+      "x_mils": 5400,
+      "y_mils": 5000
+     },
+     {
+      "x_mils": 5300,
+      "y_mils": 5000
+     },
+     {
+      "x_mils": 5300,
+      "y_mils": 5300
+     },
+     {
+      "x_mils": 6400,
+      "y_mils": 5300
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 5310,
+    "bbox_bottom_mils": 5290,
+    "vertices_mils": [
+     {
+      "x_mils": 7400,
+      "y_mils": 5300
+     },
+     {
+      "x_mils": 6700,
+      "y_mils": 5300
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 5410,
+    "bbox_bottom_mils": 5390,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 5400
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 5400
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 6690,
+    "bbox_right_mils": 7410,
+    "bbox_top_mils": 5710,
+    "bbox_bottom_mils": 5690,
+    "vertices_mils": [
+     {
+      "x_mils": 6700,
+      "y_mils": 5700
+     },
+     {
+      "x_mils": 7400,
+      "y_mils": 5700
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 8890,
+    "bbox_right_mils": 9710,
+    "bbox_top_mils": 2310,
+    "bbox_bottom_mils": 2290,
+    "vertices_mils": [
+     {
+      "x_mils": 8900,
+      "y_mils": 2300
+     },
+     {
+      "x_mils": 9700,
+      "y_mils": 2300
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 9140,
+    "bbox_right_mils": 9160,
+    "bbox_top_mils": 2410,
+    "bbox_bottom_mils": 2290,
+    "vertices_mils": [
+     {
+      "x_mils": 9150,
+      "y_mils": 2400
+     },
+     {
+      "x_mils": 9150,
+      "y_mils": 2300
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 10690,
+    "bbox_right_mils": 10760,
+    "bbox_top_mils": 2310,
+    "bbox_bottom_mils": 2290,
+    "vertices_mils": [
+     {
+      "x_mils": 10750,
+      "y_mils": 2300
+     },
+     {
+      "x_mils": 10700,
+      "y_mils": 2300
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 10690,
+    "bbox_right_mils": 10760,
+    "bbox_top_mils": 2510,
+    "bbox_bottom_mils": 2490,
+    "vertices_mils": [
+     {
+      "x_mils": 10750,
+      "y_mils": 2500
+     },
+     {
+      "x_mils": 10700,
+      "y_mils": 2500
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 12890,
+    "bbox_right_mils": 12910,
+    "bbox_top_mils": 4110,
+    "bbox_bottom_mils": 3490,
+    "vertices_mils": [
+     {
+      "x_mils": 12900,
+      "y_mils": 3500
+     },
+     {
+      "x_mils": 12900,
+      "y_mils": 4100
+     }
+    ]
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eWire",
+    "object_id": 19,
+    "bbox_left_mils": 12090,
+    "bbox_right_mils": 12110,
+    "bbox_top_mils": 4110,
+    "bbox_bottom_mils": 3490,
+    "vertices_mils": [
+     {
+      "x_mils": 12100,
+      "y_mils": 3500
+     },
+     {
+      "x_mils": 12100,
+      "y_mils": 4100
+     }
+    ]
+   }
+  ],
+  "net_labels": [
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 3700,
+    "bbox_right_mils": 4113.183,
+    "bbox_top_mils": 7700,
+    "bbox_bottom_mils": 7600,
+    "text": "USER_IO0",
+    "x_mils": 3700,
+    "y_mils": 7600
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 2500,
+    "bbox_right_mils": 2905.379,
+    "bbox_top_mils": 7600,
+    "bbox_bottom_mils": 7500,
+    "text": "USER_IO1",
+    "x_mils": 2500,
+    "y_mils": 7500
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 3700,
+    "bbox_right_mils": 4112.654,
+    "bbox_top_mils": 7600,
+    "bbox_bottom_mils": 7500,
+    "text": "USER_IO2",
+    "x_mils": 3700,
+    "y_mils": 7500
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 2500,
+    "bbox_right_mils": 2908.907,
+    "bbox_top_mils": 7500,
+    "bbox_bottom_mils": 7400,
+    "text": "USER_IO3",
+    "x_mils": 2500,
+    "y_mils": 7400
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 3700,
+    "bbox_right_mils": 4113.272,
+    "bbox_top_mils": 7500,
+    "bbox_bottom_mils": 7400,
+    "text": "USER_IO4",
+    "x_mils": 3700,
+    "y_mils": 7400
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 2500,
+    "bbox_right_mils": 2910.45,
+    "bbox_top_mils": 7400,
+    "bbox_bottom_mils": 7300,
+    "text": "USER_IO5",
+    "x_mils": 2500,
+    "y_mils": 7300
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 3700,
+    "bbox_right_mils": 4112.919,
+    "bbox_top_mils": 7400,
+    "bbox_bottom_mils": 7300,
+    "text": "USER_IO6",
+    "x_mils": 3700,
+    "y_mils": 7300
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 2500,
+    "bbox_right_mils": 2912.39,
+    "bbox_top_mils": 7300,
+    "bbox_bottom_mils": 7200,
+    "text": "USER_IO7",
+    "x_mils": 2500,
+    "y_mils": 7200
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 3700,
+    "bbox_right_mils": 4111.199,
+    "bbox_top_mils": 7300,
+    "bbox_bottom_mils": 7200,
+    "text": "USER_IO8",
+    "x_mils": 3700,
+    "y_mils": 7200
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 2500,
+    "bbox_right_mils": 2912.522,
+    "bbox_top_mils": 7200,
+    "bbox_bottom_mils": 7100,
+    "text": "USER_IO9",
+    "x_mils": 2500,
+    "y_mils": 7100
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 3700,
+    "bbox_right_mils": 4158.333,
+    "bbox_top_mils": 7200,
+    "bbox_bottom_mils": 7100,
+    "text": "USER_IO10",
+    "x_mils": 3700,
+    "y_mils": 7100
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 2500,
+    "bbox_right_mils": 2950.529,
+    "bbox_top_mils": 7100,
+    "bbox_bottom_mils": 7000,
+    "text": "USER_IO11",
+    "x_mils": 2500,
+    "y_mils": 7000
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 3700,
+    "bbox_right_mils": 4157.804,
+    "bbox_top_mils": 7100,
+    "bbox_bottom_mils": 7000,
+    "text": "USER_IO12",
+    "x_mils": 3700,
+    "y_mils": 7000
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 2500,
+    "bbox_right_mils": 2954.056,
+    "bbox_top_mils": 7000,
+    "bbox_bottom_mils": 6900,
+    "text": "USER_IO13",
+    "x_mils": 2500,
+    "y_mils": 6900
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 3700,
+    "bbox_right_mils": 4158.422,
+    "bbox_top_mils": 7000,
+    "bbox_bottom_mils": 6900,
+    "text": "USER_IO14",
+    "x_mils": 3700,
+    "y_mils": 6900
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 2500,
+    "bbox_right_mils": 2955.6,
+    "bbox_top_mils": 6900,
+    "bbox_bottom_mils": 6800,
+    "text": "USER_IO15",
+    "x_mils": 2500,
+    "y_mils": 6800
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 3700,
+    "bbox_right_mils": 4158.069,
+    "bbox_top_mils": 6900,
+    "bbox_bottom_mils": 6800,
+    "text": "USER_IO16",
+    "x_mils": 3700,
+    "y_mils": 6800
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 2500,
+    "bbox_right_mils": 2957.54,
+    "bbox_top_mils": 6800,
+    "bbox_bottom_mils": 6700,
+    "text": "USER_IO17",
+    "x_mils": 2500,
+    "y_mils": 6700
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 5700,
+    "bbox_right_mils": 6156.349,
+    "bbox_top_mils": 7700,
+    "bbox_bottom_mils": 7600,
+    "text": "USER_IO18",
+    "x_mils": 5700,
+    "y_mils": 7600
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 4500,
+    "bbox_right_mils": 4957.672,
+    "bbox_top_mils": 7600,
+    "bbox_bottom_mils": 7500,
+    "text": "USER_IO19",
+    "x_mils": 4500,
+    "y_mils": 7500
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 5700,
+    "bbox_right_mils": 6158.333,
+    "bbox_top_mils": 7600,
+    "bbox_bottom_mils": 7500,
+    "text": "USER_IO20",
+    "x_mils": 5700,
+    "y_mils": 7500
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 4500,
+    "bbox_right_mils": 4950.529,
+    "bbox_top_mils": 7500,
+    "bbox_bottom_mils": 7400,
+    "text": "USER_IO21",
+    "x_mils": 4500,
+    "y_mils": 7400
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 5700,
+    "bbox_right_mils": 6157.804,
+    "bbox_top_mils": 7500,
+    "bbox_bottom_mils": 7400,
+    "text": "USER_IO22",
+    "x_mils": 5700,
+    "y_mils": 7400
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 4500,
+    "bbox_right_mils": 4954.056,
+    "bbox_top_mils": 7400,
+    "bbox_bottom_mils": 7300,
+    "text": "USER_IO23",
+    "x_mils": 4500,
+    "y_mils": 7300
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 5700,
+    "bbox_right_mils": 6158.422,
+    "bbox_top_mils": 7400,
+    "bbox_bottom_mils": 7300,
+    "text": "USER_IO24",
+    "x_mils": 5700,
+    "y_mils": 7300
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 4500,
+    "bbox_right_mils": 4955.6,
+    "bbox_top_mils": 7300,
+    "bbox_bottom_mils": 7200,
+    "text": "USER_IO25",
+    "x_mils": 4500,
+    "y_mils": 7200
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 5700,
+    "bbox_right_mils": 6158.069,
+    "bbox_top_mils": 7300,
+    "bbox_bottom_mils": 7200,
+    "text": "USER_IO26",
+    "x_mils": 5700,
+    "y_mils": 7200
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 4500,
+    "bbox_right_mils": 4957.54,
+    "bbox_top_mils": 7200,
+    "bbox_bottom_mils": 7100,
+    "text": "USER_IO27",
+    "x_mils": 4500,
+    "y_mils": 7100
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 5700,
+    "bbox_right_mils": 6156.349,
+    "bbox_top_mils": 7200,
+    "bbox_bottom_mils": 7100,
+    "text": "USER_IO28",
+    "x_mils": 5700,
+    "y_mils": 7100
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 4500,
+    "bbox_right_mils": 4957.672,
+    "bbox_top_mils": 7100,
+    "bbox_bottom_mils": 7000,
+    "text": "USER_IO29",
+    "x_mils": 4500,
+    "y_mils": 7000
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 5700,
+    "bbox_right_mils": 6158.333,
+    "bbox_top_mils": 7100,
+    "bbox_bottom_mils": 7000,
+    "text": "USER_IO30",
+    "x_mils": 5700,
+    "y_mils": 7000
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 4500,
+    "bbox_right_mils": 4950.529,
+    "bbox_top_mils": 7000,
+    "bbox_bottom_mils": 6900,
+    "text": "USER_IO31",
+    "x_mils": 4500,
+    "y_mils": 6900
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 5700,
+    "bbox_right_mils": 6157.804,
+    "bbox_top_mils": 7000,
+    "bbox_bottom_mils": 6900,
+    "text": "USER_IO32",
+    "x_mils": 5700,
+    "y_mils": 6900
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 4500,
+    "bbox_right_mils": 4954.056,
+    "bbox_top_mils": 6900,
+    "bbox_bottom_mils": 6800,
+    "text": "USER_IO33",
+    "x_mils": 4500,
+    "y_mils": 6800
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 5700,
+    "bbox_right_mils": 6158.422,
+    "bbox_top_mils": 6900,
+    "bbox_bottom_mils": 6800,
+    "text": "USER_IO34",
+    "x_mils": 5700,
+    "y_mils": 6800
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 4500,
+    "bbox_right_mils": 4955.6,
+    "bbox_top_mils": 6800,
+    "bbox_bottom_mils": 6700,
+    "text": "USER_IO35",
+    "x_mils": 4500,
+    "y_mils": 6700
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6100,
+    "bbox_right_mils": 6505.379,
+    "bbox_top_mils": 5100,
+    "bbox_bottom_mils": 5000,
+    "text": "USER_IO1",
+    "x_mils": 6100,
+    "y_mils": 5000
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6100,
+    "bbox_right_mils": 6508.907,
+    "bbox_top_mils": 4900,
+    "bbox_bottom_mils": 4800,
+    "text": "USER_IO3",
+    "x_mils": 6100,
+    "y_mils": 4800
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7213.183,
+    "bbox_top_mils": 7400,
+    "bbox_bottom_mils": 7300,
+    "text": "USER_IO0",
+    "x_mils": 6800,
+    "y_mils": 7300
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7205.379,
+    "bbox_top_mils": 7300,
+    "bbox_bottom_mils": 7200,
+    "text": "USER_IO1",
+    "x_mils": 6800,
+    "y_mils": 7200
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7212.654,
+    "bbox_top_mils": 7200,
+    "bbox_bottom_mils": 7100,
+    "text": "USER_IO2",
+    "x_mils": 6800,
+    "y_mils": 7100
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7208.907,
+    "bbox_top_mils": 7100,
+    "bbox_bottom_mils": 7000,
+    "text": "USER_IO3",
+    "x_mils": 6800,
+    "y_mils": 7000
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7213.272,
+    "bbox_top_mils": 7000,
+    "bbox_bottom_mils": 6900,
+    "text": "USER_IO4",
+    "x_mils": 6800,
+    "y_mils": 6900
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7210.45,
+    "bbox_top_mils": 6900,
+    "bbox_bottom_mils": 6800,
+    "text": "USER_IO5",
+    "x_mils": 6800,
+    "y_mils": 6800
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7212.919,
+    "bbox_top_mils": 6800,
+    "bbox_bottom_mils": 6700,
+    "text": "USER_IO6",
+    "x_mils": 6800,
+    "y_mils": 6700
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7212.39,
+    "bbox_top_mils": 6700,
+    "bbox_bottom_mils": 6600,
+    "text": "USER_IO7",
+    "x_mils": 6800,
+    "y_mils": 6600
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7211.199,
+    "bbox_top_mils": 6600,
+    "bbox_bottom_mils": 6500,
+    "text": "USER_IO8",
+    "x_mils": 6800,
+    "y_mils": 6500
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7212.522,
+    "bbox_top_mils": 6500,
+    "bbox_bottom_mils": 6400,
+    "text": "USER_IO9",
+    "x_mils": 6800,
+    "y_mils": 6400
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7258.333,
+    "bbox_top_mils": 6400,
+    "bbox_bottom_mils": 6300,
+    "text": "USER_IO10",
+    "x_mils": 6800,
+    "y_mils": 6300
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7250.529,
+    "bbox_top_mils": 6300,
+    "bbox_bottom_mils": 6200,
+    "text": "USER_IO11",
+    "x_mils": 6800,
+    "y_mils": 6200
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7257.804,
+    "bbox_top_mils": 6200,
+    "bbox_bottom_mils": 6100,
+    "text": "USER_IO12",
+    "x_mils": 6800,
+    "y_mils": 6100
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7254.056,
+    "bbox_top_mils": 6100,
+    "bbox_bottom_mils": 6000,
+    "text": "USER_IO13",
+    "x_mils": 6800,
+    "y_mils": 6000
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7258.422,
+    "bbox_top_mils": 6000,
+    "bbox_bottom_mils": 5900,
+    "text": "USER_IO14",
+    "x_mils": 6800,
+    "y_mils": 5900
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7255.6,
+    "bbox_top_mils": 5900,
+    "bbox_bottom_mils": 5800,
+    "text": "USER_IO15",
+    "x_mils": 6800,
+    "y_mils": 5800
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7258.069,
+    "bbox_top_mils": 5800,
+    "bbox_bottom_mils": 5700,
+    "text": "USER_IO16",
+    "x_mils": 6800,
+    "y_mils": 5700
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7257.54,
+    "bbox_top_mils": 5700,
+    "bbox_bottom_mils": 5600,
+    "text": "USER_IO17",
+    "x_mils": 6800,
+    "y_mils": 5600
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7256.349,
+    "bbox_top_mils": 5100,
+    "bbox_bottom_mils": 5000,
+    "text": "USER_IO18",
+    "x_mils": 6800,
+    "y_mils": 5000
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7257.672,
+    "bbox_top_mils": 5000,
+    "bbox_bottom_mils": 4900,
+    "text": "USER_IO19",
+    "x_mils": 6800,
+    "y_mils": 4900
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7258.333,
+    "bbox_top_mils": 4900,
+    "bbox_bottom_mils": 4800,
+    "text": "USER_IO20",
+    "x_mils": 6800,
+    "y_mils": 4800
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7250.529,
+    "bbox_top_mils": 4800,
+    "bbox_bottom_mils": 4700,
+    "text": "USER_IO21",
+    "x_mils": 6800,
+    "y_mils": 4700
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7257.804,
+    "bbox_top_mils": 4700,
+    "bbox_bottom_mils": 4600,
+    "text": "USER_IO22",
+    "x_mils": 6800,
+    "y_mils": 4600
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7254.056,
+    "bbox_top_mils": 4600,
+    "bbox_bottom_mils": 4500,
+    "text": "USER_IO23",
+    "x_mils": 6800,
+    "y_mils": 4500
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7258.422,
+    "bbox_top_mils": 4500,
+    "bbox_bottom_mils": 4400,
+    "text": "USER_IO24",
+    "x_mils": 6800,
+    "y_mils": 4400
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7255.6,
+    "bbox_top_mils": 4400,
+    "bbox_bottom_mils": 4300,
+    "text": "USER_IO25",
+    "x_mils": 6800,
+    "y_mils": 4300
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7258.069,
+    "bbox_top_mils": 4300,
+    "bbox_bottom_mils": 4200,
+    "text": "USER_IO26",
+    "x_mils": 6800,
+    "y_mils": 4200
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7257.54,
+    "bbox_top_mils": 4200,
+    "bbox_bottom_mils": 4100,
+    "text": "USER_IO27",
+    "x_mils": 6800,
+    "y_mils": 4100
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7256.349,
+    "bbox_top_mils": 4100,
+    "bbox_bottom_mils": 4000,
+    "text": "USER_IO28",
+    "x_mils": 6800,
+    "y_mils": 4000
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7257.672,
+    "bbox_top_mils": 4000,
+    "bbox_bottom_mils": 3900,
+    "text": "USER_IO29",
+    "x_mils": 6800,
+    "y_mils": 3900
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7258.333,
+    "bbox_top_mils": 3900,
+    "bbox_bottom_mils": 3800,
+    "text": "USER_IO30",
+    "x_mils": 6800,
+    "y_mils": 3800
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7250.529,
+    "bbox_top_mils": 3800,
+    "bbox_bottom_mils": 3700,
+    "text": "USER_IO31",
+    "x_mils": 6800,
+    "y_mils": 3700
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7257.804,
+    "bbox_top_mils": 3700,
+    "bbox_bottom_mils": 3600,
+    "text": "USER_IO32",
+    "x_mils": 6800,
+    "y_mils": 3600
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7254.056,
+    "bbox_top_mils": 3600,
+    "bbox_bottom_mils": 3500,
+    "text": "USER_IO33",
+    "x_mils": 6800,
+    "y_mils": 3500
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7258.422,
+    "bbox_top_mils": 3500,
+    "bbox_bottom_mils": 3400,
+    "text": "USER_IO34",
+    "x_mils": 6800,
+    "y_mils": 3400
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7255.6,
+    "bbox_top_mils": 3400,
+    "bbox_bottom_mils": 3300,
+    "text": "USER_IO35",
+    "x_mils": 6800,
+    "y_mils": 3300
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 9000,
+    "bbox_right_mils": 9435.229,
+    "bbox_top_mils": 5400,
+    "bbox_bottom_mils": 5300,
+    "text": "FPGA_DIN",
+    "x_mils": 9000,
+    "y_mils": 5300
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 9000,
+    "bbox_right_mils": 9280.952,
+    "bbox_top_mils": 5200,
+    "bbox_bottom_mils": 5100,
+    "text": "INIT_B",
+    "x_mils": 9000,
+    "y_mils": 5100
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7339.418,
+    "bbox_top_mils": 3000,
+    "bbox_bottom_mils": 2900,
+    "text": "LCD_DB[7..0]",
+    "x_mils": 6800,
+    "y_mils": 2900
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7213.977,
+    "bbox_top_mils": 2400,
+    "bbox_bottom_mils": 2300,
+    "text": "LEDS[7..0]",
+    "x_mils": 6800,
+    "y_mils": 2300
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7123.677,
+    "bbox_top_mils": 2200,
+    "bbox_bottom_mils": 2100,
+    "text": "SW[7..0]",
+    "x_mils": 6800,
+    "y_mils": 2100
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 11400,
+    "bbox_right_mils": 11849.25,
+    "bbox_top_mils": 4600,
+    "bbox_bottom_mils": 4500,
+    "text": "HARD_TDI",
+    "x_mils": 11400,
+    "y_mils": 4500
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 11400,
+    "bbox_right_mils": 11882.363,
+    "bbox_top_mils": 4500,
+    "bbox_bottom_mils": 4400,
+    "text": "HARD_TCK",
+    "x_mils": 11400,
+    "y_mils": 4400
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 11400,
+    "bbox_right_mils": 11814.198,
+    "bbox_top_mils": 4400,
+    "bbox_bottom_mils": 4300,
+    "text": "SOFT_TDI",
+    "x_mils": 11400,
+    "y_mils": 4300
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 11400,
+    "bbox_right_mils": 11847.31,
+    "bbox_top_mils": 4300,
+    "bbox_bottom_mils": 4200,
+    "text": "SOFT_TCK",
+    "x_mils": 11400,
+    "y_mils": 4200
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 11400,
+    "bbox_right_mils": 11883.113,
+    "bbox_top_mils": 4700,
+    "bbox_bottom_mils": 4600,
+    "text": "HARD_TDO",
+    "x_mils": 11400,
+    "y_mils": 4600
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 11400,
+    "bbox_right_mils": 11881.834,
+    "bbox_top_mils": 4800,
+    "bbox_bottom_mils": 4700,
+    "text": "HARD_TMS",
+    "x_mils": 11400,
+    "y_mils": 4700
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 11400,
+    "bbox_right_mils": 11848.06,
+    "bbox_top_mils": 4100,
+    "bbox_bottom_mils": 4000,
+    "text": "SOFT_TDO",
+    "x_mils": 11400,
+    "y_mils": 4000
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 11400,
+    "bbox_right_mils": 11846.781,
+    "bbox_top_mils": 4200,
+    "bbox_bottom_mils": 4100,
+    "text": "SOFT_TMS",
+    "x_mils": 11400,
+    "y_mils": 4100
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7013.448,
+    "bbox_top_mils": 3200,
+    "bbox_bottom_mils": 3100,
+    "text": "TEST",
+    "x_mils": 6800,
+    "y_mils": 3100
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6100,
+    "bbox_right_mils": 6441.27,
+    "bbox_top_mils": 4600,
+    "bbox_bottom_mils": 4500,
+    "text": "Yout_Alt",
+    "x_mils": 6100,
+    "y_mils": 4500
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6100,
+    "bbox_right_mils": 6441.27,
+    "bbox_top_mils": 5400,
+    "bbox_bottom_mils": 5300,
+    "text": "Xout_Alt",
+    "x_mils": 6100,
+    "y_mils": 5300
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7141.27,
+    "bbox_top_mils": 5400,
+    "bbox_bottom_mils": 5300,
+    "text": "Yout_Alt",
+    "x_mils": 6800,
+    "y_mils": 5300
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 6800,
+    "bbox_right_mils": 7141.27,
+    "bbox_top_mils": 5500,
+    "bbox_bottom_mils": 5400,
+    "text": "Xout_Alt",
+    "x_mils": 6800,
+    "y_mils": 5400
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 4700,
+    "bbox_right_mils": 4880.732,
+    "bbox_top_mils": 5100,
+    "bbox_bottom_mils": 5000,
+    "text": "Xout",
+    "x_mils": 4700,
+    "y_mils": 5000
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "eNetLabel",
+    "object_id": 24,
+    "bbox_left_mils": 4750,
+    "bbox_right_mils": 4930.732,
+    "bbox_top_mils": 4900,
+    "bbox_bottom_mils": 4800,
+    "text": "Yout",
+    "x_mils": 4750,
+    "y_mils": 4800
+   }
+  ],
+  "power_ports": [
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "ePowerObject",
+    "object_id": 39,
+    "bbox_left_mils": 3600,
+    "bbox_right_mils": 3800,
+    "bbox_top_mils": 6700,
+    "bbox_bottom_mils": 6500,
+    "text": "GND",
+    "x_mils": 3700,
+    "y_mils": 6700
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "ePowerObject",
+    "object_id": 39,
+    "bbox_left_mils": 5600,
+    "bbox_right_mils": 5800,
+    "bbox_top_mils": 6700,
+    "bbox_bottom_mils": 6500,
+    "text": "GND",
+    "x_mils": 5700,
+    "y_mils": 6700
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "ePowerObject",
+    "object_id": 39,
+    "bbox_left_mils": 10650,
+    "bbox_right_mils": 10850,
+    "bbox_top_mils": 2300,
+    "bbox_bottom_mils": 2100,
+    "text": "GND",
+    "x_mils": 10750,
+    "y_mils": 2300
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "ePowerObject",
+    "object_id": 39,
+    "bbox_left_mils": 9575.992,
+    "bbox_right_mils": 9724.008,
+    "bbox_top_mils": 2700,
+    "bbox_bottom_mils": 2500,
+    "text": "3V3",
+    "x_mils": 9650,
+    "y_mils": 2500
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "ePowerObject",
+    "object_id": 39,
+    "bbox_left_mils": 10675.992,
+    "bbox_right_mils": 10824.008,
+    "bbox_top_mils": 2700,
+    "bbox_bottom_mils": 2500,
+    "text": "3V3",
+    "x_mils": 10750,
+    "y_mils": 2500
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "ePowerObject",
+    "object_id": 39,
+    "bbox_left_mils": 9725.992,
+    "bbox_right_mils": 9874.008,
+    "bbox_top_mils": 3200,
+    "bbox_bottom_mils": 3000,
+    "text": "3V3",
+    "x_mils": 9800,
+    "y_mils": 3000
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "ePowerObject",
+    "object_id": 39,
+    "bbox_left_mils": 10400,
+    "bbox_right_mils": 10600,
+    "bbox_top_mils": 3000,
+    "bbox_bottom_mils": 2800,
+    "text": "GND",
+    "x_mils": 10500,
+    "y_mils": 3000
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "ePowerObject",
+    "object_id": 39,
+    "bbox_left_mils": 12000,
+    "bbox_right_mils": 12200,
+    "bbox_top_mils": 3500,
+    "bbox_bottom_mils": 3300,
+    "text": "GND",
+    "x_mils": 12100,
+    "y_mils": 3500
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "ePowerObject",
+    "object_id": 39,
+    "bbox_left_mils": 12800,
+    "bbox_right_mils": 13000,
+    "bbox_top_mils": 3500,
+    "bbox_bottom_mils": 3300,
+    "text": "GND",
+    "x_mils": 12900,
+    "y_mils": 3500
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "ePowerObject",
+    "object_id": 39,
+    "bbox_left_mils": 2600,
+    "bbox_right_mils": 2800,
+    "bbox_top_mils": 4400,
+    "bbox_bottom_mils": 4200,
+    "text": "GND",
+    "x_mils": 2700,
+    "y_mils": 4400
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "ePowerObject",
+    "object_id": 39,
+    "bbox_left_mils": 4600,
+    "bbox_right_mils": 4800,
+    "bbox_top_mils": 3700,
+    "bbox_bottom_mils": 3500,
+    "text": "GND",
+    "x_mils": 4700,
+    "y_mils": 3700
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "ePowerObject",
+    "object_id": 39,
+    "bbox_left_mils": 3076.301,
+    "bbox_right_mils": 3323.699,
+    "bbox_top_mils": 5700,
+    "bbox_bottom_mils": 5500,
+    "text": "VCCO",
+    "x_mils": 3200,
+    "y_mils": 5500
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "ePowerObject",
+    "object_id": 39,
+    "bbox_left_mils": 9200,
+    "bbox_right_mils": 9400,
+    "bbox_top_mils": 5900,
+    "bbox_bottom_mils": 5700,
+    "text": "GND",
+    "x_mils": 9300,
+    "y_mils": 5900
+   },
+   {
+    "sheet": "C:\\Users\\Public\\Documents\\Altium\\AD22\\Examples\\SpiritLevel-SL1\\SL1 Xilinx Spartan-IIE PQ208 Rev1.02.SchDoc",
+    "object_kind": "ePowerObject",
+    "object_id": 39,
+    "bbox_left_mils": 9225.992,
+    "bbox_right_mils": 9374.008,
+    "bbox_top_mils": 6600,
+    "bbox_bottom_mils": 6400,
+    "text": "3V3",
+    "x_mils": 9300,
+    "y_mils": 6400
+   }
+  ],
+  "junctions": []
+ },
+ "dst": {
+  "schematic_data_mode": "filtered",
+  "include_queries": [
+   "components",
+   "wires",
+   "power_ports",
+   "net_labels",
+   "junctions"
+  ],
+  "components": [],
+  "wires": [],
+  "net_labels": [],
+  "power_ports": [],
+  "junctions": []
+ }
+}

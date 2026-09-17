@@ -1,0 +1,9 @@
+Third-party notices
+
+This project includes DelphiScript sources under altium-scripts/ derived from
+the MIT-licensed project altium-mcp by Siddharth Ahuja (coffeenmusic), 2025.
+
+See: https://github.com/coffeenmusic/altium-mcp
+
+Local modifications: added the `ping` command for bridge health checks
+(Altium_API.pas, other_utils.pas).

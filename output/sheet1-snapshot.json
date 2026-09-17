@@ -1,0 +1,360 @@
+{
+ "schematic_data_mode": "filtered",
+ "include_queries": [
+  "wires",
+  "power_ports",
+  "junctions"
+ ],
+ "wires": [
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 590,
+   "bbox_right_mils": 1110,
+   "bbox_top_mils": 210,
+   "bbox_bottom_mils": 190,
+   "vertices_mils": [
+    {
+     "x_mils": 600,
+     "y_mils": 200
+    },
+    {
+     "x_mils": 1100,
+     "y_mils": 200
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 2090,
+   "bbox_right_mils": 2210,
+   "bbox_top_mils": 210,
+   "bbox_bottom_mils": 190,
+   "vertices_mils": [
+    {
+     "x_mils": 2100,
+     "y_mils": 200
+    },
+    {
+     "x_mils": 2200,
+     "y_mils": 200
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 590,
+   "bbox_right_mils": 610,
+   "bbox_top_mils": 110,
+   "bbox_bottom_mils": 40,
+   "vertices_mils": [
+    {
+     "x_mils": 600,
+     "y_mils": 100
+    },
+    {
+     "x_mils": 600,
+     "y_mils": 50
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 1490,
+   "bbox_right_mils": 1610,
+   "bbox_top_mils": 210,
+   "bbox_bottom_mils": 190,
+   "vertices_mils": [
+    {
+     "x_mils": 1500,
+     "y_mils": 200
+    },
+    {
+     "x_mils": 1600,
+     "y_mils": 200
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 3590,
+   "bbox_right_mils": 3610,
+   "bbox_top_mils": 510,
+   "bbox_bottom_mils": 40,
+   "vertices_mils": [
+    {
+     "x_mils": 3600,
+     "y_mils": 500
+    },
+    {
+     "x_mils": 3600,
+     "y_mils": 50
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 990,
+   "bbox_right_mils": 1010,
+   "bbox_top_mils": 510,
+   "bbox_bottom_mils": 40,
+   "vertices_mils": [
+    {
+     "x_mils": 1000,
+     "y_mils": 500
+    },
+    {
+     "x_mils": 1000,
+     "y_mils": 50
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 1090,
+   "bbox_right_mils": 1510,
+   "bbox_top_mils": 510,
+   "bbox_bottom_mils": 490,
+   "vertices_mils": [
+    {
+     "x_mils": 1100,
+     "y_mils": 500
+    },
+    {
+     "x_mils": 1500,
+     "y_mils": 500
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 1490,
+   "bbox_right_mils": 1810,
+   "bbox_top_mils": 510,
+   "bbox_bottom_mils": 490,
+   "vertices_mils": [
+    {
+     "x_mils": 1500,
+     "y_mils": 500
+    },
+    {
+     "x_mils": 1800,
+     "y_mils": 500
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 1090,
+   "bbox_right_mils": 1110,
+   "bbox_top_mils": 510,
+   "bbox_bottom_mils": 190,
+   "vertices_mils": [
+    {
+     "x_mils": 1100,
+     "y_mils": 500
+    },
+    {
+     "x_mils": 1100,
+     "y_mils": 200
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 3490,
+   "bbox_right_mils": 3610,
+   "bbox_top_mils": 510,
+   "bbox_bottom_mils": 490,
+   "vertices_mils": [
+    {
+     "x_mils": 3500,
+     "y_mils": 500
+    },
+    {
+     "x_mils": 3600,
+     "y_mils": 500
+    }
+   ]
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eWire",
+   "object_id": 19,
+   "bbox_left_mils": 2890,
+   "bbox_right_mils": 3010,
+   "bbox_top_mils": 510,
+   "bbox_bottom_mils": 490,
+   "vertices_mils": [
+    {
+     "x_mils": 2900,
+     "y_mils": 500
+    },
+    {
+     "x_mils": 3000,
+     "y_mils": 500
+    }
+   ]
+  }
+ ],
+ "power_ports": [
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "ePowerObject",
+   "object_id": 39,
+   "bbox_left_mils": 600,
+   "bbox_right_mils": 922.54,
+   "bbox_top_mils": 250,
+   "bbox_bottom_mils": 150,
+   "text": "VCC",
+   "x_mils": 600,
+   "y_mils": 200
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "ePowerObject",
+   "object_id": 39,
+   "bbox_left_mils": 600,
+   "bbox_right_mils": 1032.196,
+   "bbox_top_mils": 200,
+   "bbox_bottom_mils": 0,
+   "text": "GND",
+   "x_mils": 600,
+   "y_mils": 100
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "ePowerObject",
+   "object_id": 39,
+   "bbox_left_mils": 1000,
+   "bbox_right_mils": 1432.196,
+   "bbox_top_mils": 600,
+   "bbox_bottom_mils": 400,
+   "text": "GND",
+   "x_mils": 1000,
+   "y_mils": 500
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "ePowerObject",
+   "object_id": 39,
+   "bbox_left_mils": 3600,
+   "bbox_right_mils": 4032.196,
+   "bbox_top_mils": 600,
+   "bbox_bottom_mils": 400,
+   "text": "GND",
+   "x_mils": 3600,
+   "y_mils": 500
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "ePowerObject",
+   "object_id": 39,
+   "bbox_left_mils": 2200,
+   "bbox_right_mils": 2632.196,
+   "bbox_top_mils": 300,
+   "bbox_bottom_mils": 100,
+   "text": "GND",
+   "x_mils": 2200,
+   "y_mils": 200
+  }
+ ],
+ "junctions": [
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eJunction",
+   "object_id": 16,
+   "bbox_left_mils": 1080,
+   "bbox_right_mils": 1120,
+   "bbox_top_mils": 220,
+   "bbox_bottom_mils": 180,
+   "x_mils": 1100,
+   "y_mils": 200
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eJunction",
+   "object_id": 16,
+   "bbox_left_mils": 1080,
+   "bbox_right_mils": 1120,
+   "bbox_top_mils": 520,
+   "bbox_bottom_mils": 480,
+   "x_mils": 1100,
+   "y_mils": 500
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eJunction",
+   "object_id": 16,
+   "bbox_left_mils": 980,
+   "bbox_right_mils": 1020,
+   "bbox_top_mils": 520,
+   "bbox_bottom_mils": 480,
+   "x_mils": 1000,
+   "y_mils": 500
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eJunction",
+   "object_id": 16,
+   "bbox_left_mils": 3580,
+   "bbox_right_mils": 3620,
+   "bbox_top_mils": 520,
+   "bbox_bottom_mils": 480,
+   "x_mils": 3600,
+   "y_mils": 500
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eJunction",
+   "object_id": 16,
+   "bbox_left_mils": 3580,
+   "bbox_right_mils": 3620,
+   "bbox_top_mils": 520,
+   "bbox_bottom_mils": 480,
+   "x_mils": 3600,
+   "y_mils": 500
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eJunction",
+   "object_id": 16,
+   "bbox_left_mils": 3580,
+   "bbox_right_mils": 3620,
+   "bbox_top_mils": 520,
+   "bbox_bottom_mils": 480,
+   "x_mils": 3600,
+   "y_mils": 500
+  },
+  {
+   "sheet": "C:\\Users\\Lenovo\\Desktop\\PCB_Project\\Sheet1.SchDoc",
+   "object_kind": "eJunction",
+   "object_id": 16,
+   "bbox_left_mils": 3580,
+   "bbox_right_mils": 3620,
+   "bbox_top_mils": 520,
+   "bbox_bottom_mils": 480,
+   "x_mils": 3600,
+   "y_mils": 500
+  }
+ ]
+}
