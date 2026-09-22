@@ -813,6 +813,97 @@ begin
     Result := OpenDocumentInAltium(ROOT_DIR, DocKind, FilePath);
 end;
 
+// Execute wrapper for add_document_to_project — adds an existing document
+// (e.g. a project-local .SchLib) to a project's source documents so the
+// projects-first library enumeration (GetLibrarySymbolReference) can see it.
+// Verified pattern: SPI_Cleanup_LPW_Footprint.pas CLF_ProjectAddRemoveFile
+// (project.DM_AddSourceDocument(path) after an already-present check).
+function ExecuteAddDocumentToProject(RequestData: TStringList): String;
+var
+    i: Integer;
+    Line: String;
+    ProjectPath, FilePath: String;
+    WS: IWorkspace;
+    Prj: IProject;
+    Doc: IDocument;
+    Found: Boolean;
+    AddedFlag: String;
+    Props: TStringList;
+begin
+    ProjectPath := '';
+    FilePath := '';
+    for i := 0 to RequestData.Count - 1 do
+    begin
+        Line := RequestData[i];
+        if Pos('"project_full_path"', Line) > 0 then
+            ProjectPath := Trim(McpParseJSONLineValue(Line, '"project_full_path"'))
+        else if Pos('"file_path"', Line) > 0 then
+            FilePath := Trim(McpParseJSONLineValue(Line, '"file_path"'));
+    end;
+    if (ProjectPath = '') or (FilePath = '') then
+    begin
+        Result := 'ERROR: project_full_path and file_path are required for add_document_to_project';
+        Exit;
+    end;
+
+    WS := GetWorkspace;
+    if WS = nil then
+    begin
+        Result := 'ERROR: NO_WORKSPACE';
+        Exit;
+    end;
+
+    // already-open project (case-insensitive path match), else open it
+    Prj := nil;
+    for i := 0 to WS.DM_ProjectCount - 1 do
+    begin
+        if (WS.DM_Projects(i) <> nil) and (AnsiCompareText(WS.DM_Projects(i).DM_ProjectFullPath, ProjectPath) = 0) then
+        begin
+            Prj := WS.DM_Projects(i);
+            Break;
+        end;
+    end;
+    if Prj = nil then
+    begin
+        Prj := WS.DM_OpenProject(ProjectPath, True);
+        if Prj = nil then
+        begin
+            Result := 'ERROR: PROJECT_NOT_OPEN_AND_OPEN_FAILED: ' + ProjectPath;
+            Exit;
+        end;
+    end;
+
+    Found := False;
+    for i := 0 to Prj.DM_LogicalDocumentCount - 1 do
+    begin
+        Doc := Prj.DM_LogicalDocuments(i);
+        if (Doc <> nil) and (AnsiCompareText(Doc.DM_FullPath, FilePath) = 0) then
+        begin
+            Found := True;
+            Break;
+        end;
+    end;
+
+    AddedFlag := 'false';
+    if not Found then
+    begin
+        Prj.DM_AddSourceDocument(FilePath);
+        AddedFlag := 'true';
+    end;
+
+    Props := TStringList.Create;
+    try
+        AddJSONProperty(Props, 'action', 'add_document_to_project');
+        AddJSONProperty(Props, 'project', Prj.DM_ProjectFullPath);
+        AddJSONProperty(Props, 'file_path', FilePath);
+        AddJSONProperty(Props, 'added', AddedFlag);
+        AddJSONInteger(Props, 'logical_documents', Prj.DM_LogicalDocumentCount);
+        Result := BuildJSONObject(Props);
+    finally
+        Props.Free;
+    end;
+end;
+
 // Execute wrapper for zoom_view — parses zoom_action
 function ExecuteZoomView(RequestData: TStringList): String;
 var
@@ -975,6 +1066,8 @@ begin
             Result := CompileFocusedProject(ROOT_DIR);
         'open_document':
             Result := ExecuteOpenDocument(RequestData);
+        'add_document_to_project':
+            Result := ExecuteAddDocumentToProject(RequestData);
         'zoom_view':
             Result := ExecuteZoomView(RequestData);
         'pcb_component':
