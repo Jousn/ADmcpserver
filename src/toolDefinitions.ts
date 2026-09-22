@@ -136,6 +136,26 @@ Returns: { ok, mode, strict_pin_coverage, errors[], warnings[], pin_coverage { c
 Workflow: validate_netlist -> ok=true freezes the netlist -> place components (coarse blocks) -> wire_pins per net -> check_connectivity (partition must match frozen_netlist).
 `.trim();
 
+export const DESCRIPTION_DESIGN_LEDGER = `
+Purpose: EXTERNAL design state — the cure for "context loses constraints" over long sessions. Persists the authoritative pipeline artifacts on disk, keyed by schematic: the STAGE-0 plan (block map, rail map), the placement table (pin-target semantics + facing rationales), the FROZEN netlist, progress (components placed / nets wired), and open issues. Constraints live on disk, so no session length or context compaction can lose them.
+Discipline (mandatory): LOAD before starting or resuming ANY stage; SAVE after EVERY stage. After load, use the ledger's netlist/placement/rails — NOT conversation memory.
+Review built in on both ends:
+- save: syntax-level netlist lint + discipline warnings (placements without facing rationale, no anchor_pin usage)
+- load/status: a review digest — pending placements, pending nets, stale progress, stage contradictions (stage=verified with unwired nets), missing netlist
+Actions:
+- save (state required): persist; returns the review digest of what was saved
+- load: full state + review digest — re-anchor everything from this
+- status: review digest only (light check)
+- list: all ledgers (name, stage, updated)
+- delete: remove a ledger
+Parameters:
+- action (required): save | load | status | list | delete
+- schematic_full_path (required except list): the ledger key
+- state (required for save): { design_name, description?, stage?, block_map?, rail_map?, placement? [{designator, lib_reference, anchor_pin?, x_mils, y_mils, rotation_deg, why}], netlist? {components, nets, no_connect?}, progress? {components_placed?, nets_wired?, verification?}, open_issues? }
+- note (optional): history annotation for save
+Returns: { ok, action, ...state/review as per action }. Files live under ~/.altium-mcp/ledgers/. Pure Node — no Altium needed.
+`.trim();
+
 export const DESCRIPTION_INSTANTIATE_MODULE = `
 Purpose: ONE-CALL generation of a company-standard circuit block on a sheet — the template-to-drawing link for SERIES schematic design. You supply template name + origin + optional parameter overrides; the tool validates symbols/pins against the library (fail-fast, zero side effects on mismatch), auto-allocates designators that never collide with existing components, places parts per the template's layout convention, wires every template net via wire_pins (real pin hotspots, obstacle-avoiding routing, auto junctions), places GND/VCC ports and net labels on interface nets, writes component values from params, and verifies the compiled netlist contains every module net with exactly the planned pin membership.
 When to use: series design workflow — call list_module_templates to see blocks, instantiate each block at its planned origin (blocks side by side, >=2000 mil apart), then wire inter-block interfaces manually or via wire_pins. Multiple instances of the same template just work (designators auto-allocate).

@@ -64,6 +64,7 @@ import {
   DESCRIPTION_OPTIMIZE_LAYOUT,
   DESCRIPTION_PIN_TABLE,
   DESCRIPTION_VALIDATE_NETLIST,
+  DESCRIPTION_DESIGN_LEDGER,
   DESCRIPTION_INSTANTIATE_MODULE,
   DESCRIPTION_LIST_MODULE_TEMPLATES,
 } from "./toolDefinitions.js";
@@ -83,6 +84,7 @@ import { optimizeLayoutInputSchema, runOptimizeLayout } from "./tools/optimizeLa
 import { buildPinTable, fetchLibraryComponents, pinTableInputSchema, runPinTable } from "./tools/pinTable.js";
 import { anchoredOrigin } from "./tools/moduleTemplates.js";
 import { validateNetlistInputSchema, runValidateNetlist } from "./tools/validateNetlist.js";
+import { designLedgerInputSchema, runDesignLedger } from "./tools/designLedger.js";
 import { instantiateModuleInputSchema, runInstantiateModule, listModuleTemplatesInputSchema, runListModuleTemplates } from "./tools/instantiateModule.js";
 import { parseDesignatorsFromComponentData } from "./tools/designators.js";
 import { errResult, jsonResult } from "./tools/helpers.js";
@@ -297,6 +299,17 @@ server.registerTool(
     inputSchema: validateNetlistInputSchema,
   },
   async (params) => jsonResult(await runValidateNetlist(bridge, params)),
+);
+
+server.registerTool(
+  "design_ledger",
+  {
+    title: "Design ledger — external design state (load before stages, save after)",
+    description: DESCRIPTION_DESIGN_LEDGER,
+    annotations: annotationsNodeOnly,
+    inputSchema: designLedgerInputSchema,
+  },
+  async (params) => jsonResult(runDesignLedger(params)),
 );
 
 if (ENABLE_SCHEMATIC_WRITES) {
