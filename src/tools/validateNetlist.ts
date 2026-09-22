@@ -41,6 +41,21 @@ export const validateNetlistInputSchema = z.object({
     )
     .min(1)
     .describe("The netlist: every net with its full pin member list."),
+  no_connect: z
+    .array(z.string().min(1))
+    .optional()
+    .describe(
+      'Pins explicitly NOT connected, as "DESIGNATOR.PIN" (e.g. ["U1.7", "Q1.4"]). ' +
+        "In strict mode (default) every pin must belong to a net or appear here — forgotten nets fail validation.",
+    ),
+  strict_pin_coverage: z
+    .boolean()
+    .optional()
+    .default(true)
+    .describe(
+      "Error (not note) when any pin is neither in a net nor in no_connect. Pin-table mode only; default true. " +
+        "This is the guard against forgotten nets (a base resistor pin nobody routed compiles as a floating two-pin island).",
+    ),
   check_pin_tables: z
     .boolean()
     .optional()
@@ -65,17 +80,19 @@ export interface NetlistIssue {
 export interface NetlistReport {
   ok: boolean;
   mode: "pin-tables" | "syntax-only";
+  strict_pin_coverage: boolean;
   errors: NetlistIssue[];
   warnings: NetlistIssue[];
   pin_coverage: {
     components: number;
     distinct_pins: number;
     assigned_pins: number;
+    no_connect_pins: number;
     unassigned_by_component: Array<{ designator: string; lib_reference: string; unassigned_pins: string[] }>;
   };
   power_nets: string[];
   nets: Array<{ name: string; pins: string[]; is_power: boolean }>;
-  frozen_netlist: { components: Array<{ designator: string; lib_reference: string }>; nets: Array<{ name: string; pins: string[] }> };
+  frozen_netlist: { components: Array<{ designator: string; lib_reference: string }>; nets: Array<{ name: string; pins: string[] }>; no_connect: string[] };
   notes: string[];
 }
 
@@ -89,13 +106,19 @@ const POWER_PIN_TYPES = new Set(["eelectricpower"]);
 // ---------------------------------------------------------------------------
 
 export function validateNetlist(
-  input: { components: Array<{ designator: string; lib_reference: string }>; nets: Array<{ name: string; pins: string[] }> },
+  input: {
+    components: Array<{ designator: string; lib_reference: string }>;
+    nets: Array<{ name: string; pins: string[] }>;
+    no_connect?: string[];
+    strict_pin_coverage?: boolean;
+  },
   pinTables?: Map<string, PinTableEntry>,
 ): NetlistReport {
   const errors: NetlistIssue[] = [];
   const warnings: NetlistIssue[] = [];
   const notes: string[] = [];
   const mode: NetlistReport["mode"] = pinTables && pinTables.size > 0 ? "pin-tables" : "syntax-only";
+  const strict = input.strict_pin_coverage !== false;
 
   // --- normalize + dedupe checks ------------------------------------------
   const byDes = new Map<string, { designator: string; lib_reference: string }>();
@@ -159,6 +182,34 @@ export function validateNetlist(
     }
   }
 
+  // --- no_connect normalization ----------------------------------------------
+  const ncPins = new Set<string>();
+  for (const raw of input.no_connect ?? []) {
+    const dot = raw.indexOf(".");
+    if (dot <= 0 || dot === raw.length - 1) {
+      errors.push({ code: "PIN_MALFORMED", message: `"${raw}" (no_connect) is not in DESIGNATOR.PIN form` });
+      continue;
+    }
+    const des = raw.slice(0, dot).trim().toUpperCase();
+    const pin = raw.slice(dot + 1).trim();
+    const key = `${des}.${pin}`;
+    if (!byDes.has(des)) {
+      errors.push({
+        code: "NC_PIN_ON_UNDECLARED_COMPONENT",
+        message: `no_connect pin ${key} references a designator not in components[]`,
+      });
+      continue;
+    }
+    if (pinOwners.has(key)) {
+      errors.push({
+        code: "PIN_NC_AND_NETTED",
+        message: `pin ${key} is in no_connect AND net "${[...(pinOwners.get(key) ?? [])][0]}" — pick one`,
+      });
+      continue;
+    }
+    ncPins.add(key);
+  }
+
   // --- net shape -------------------------------------------------------------
   const powerNets: string[] = [];
   const netSummaries: NetlistReport["nets"] = [];
@@ -216,7 +267,7 @@ export function validateNetlist(
               message: `${des}.${num} ("${p.name}", electrical type ${p.electrical_type}) is assigned to net "${pinNetOf.get(key)}" which does not look like a power net — power pins belong on VCC/GND-style nets`,
             });
           }
-        } else {
+        } else if (!ncPins.has(key)) {
           unassigned.push(num);
         }
       }
@@ -231,7 +282,8 @@ export function validateNetlist(
       }
     }
 
-    // Hallucinated pins: referenced but absent from the component's table.
+    // Hallucinated pins: referenced but absent from the component's table
+    // (net members AND no_connect entries both must exist).
     for (const [key] of pinOwners) {
       const des = key.slice(0, key.indexOf("."));
       const pinNo = key.slice(key.indexOf(".") + 1);
@@ -243,6 +295,20 @@ export function validateNetlist(
         errors.push({
           code: "PIN_NOT_ON_COMPONENT",
           message: `${key}: "${comp.lib_reference}" has no pin ${pinNo} (available: ${table.pins.map((p) => p.number).join(", ")}) — hallucinated or mistyped pin`,
+        });
+      }
+    }
+    for (const key of ncPins) {
+      const des = key.slice(0, key.indexOf("."));
+      const pinNo = key.slice(key.indexOf(".") + 1);
+      const comp = byDes.get(des);
+      if (!comp) continue; // already reported as undeclared
+      const table = pinTables!.get(comp.lib_reference.toLowerCase());
+      if (!table) continue;
+      if (!table.pins.some((p) => p.number === pinNo)) {
+        errors.push({
+          code: "PIN_NOT_ON_COMPONENT",
+          message: `${key} (no_connect): "${comp.lib_reference}" has no pin ${pinNo} (available: ${table.pins.map((p) => p.number).join(", ")})`,
         });
       }
     }
@@ -266,25 +332,42 @@ export function validateNetlist(
     }
 
     if (unassignedByComponent.length > 0) {
-      notes.push(
-        "unassigned pins are not errors (unused/NC pins exist) — but every unassigned pin will float on the sheet; " +
-          "plan a no-ERC marker or an explicit NC note for them, and re-check any component with ZERO assigned pins " +
-          "(typically a component placed in the BOM but forgotten in the netlist).",
-      );
+      if (strict) {
+        for (const u of unassignedByComponent) {
+          errors.push({
+            code: "PIN_UNASSIGNED",
+            message:
+              `${u.designator} ("${u.lib_reference}") has pin(s) ${u.unassigned_pins.join(", ")} in NO net and NOT in no_connect — ` +
+              `a forgotten net (they will float as isolated islands). Add them to a net, or list them in no_connect if truly unused. ` +
+              `strict_pin_coverage=false downgrades this to a note.`,
+          });
+        }
+      } else {
+        notes.push(
+          "strict_pin_coverage=false: unassigned pins are tolerated (unused/NC pins exist) — but every unassigned pin will float on the sheet; " +
+            "plan a no-ERC marker or an explicit NC note for them, and re-check any component with ZERO assigned pins " +
+            "(typically a component placed in the BOM but forgotten in the netlist).",
+        );
+      }
     }
   } else {
     notes.push("syntax-only mode: pin existence/coverage not verified (no library pin tables). Pass check_pin_tables=true with the project focused for full validation.");
+    if (strict) {
+      notes.push("strict_pin_coverage requires pin tables (no pin universe in syntax mode) — coverage strictness is not enforced here.");
+    }
   }
 
   return {
     ok: errors.length === 0,
     mode,
+    strict_pin_coverage: strict,
     errors,
     warnings,
     pin_coverage: {
       components: byDes.size,
       distinct_pins: distinctPins,
       assigned_pins: assignedPins,
+      no_connect_pins: ncPins.size,
       unassigned_by_component: unassignedByComponent,
     },
     power_nets: powerNets,
@@ -292,6 +375,7 @@ export function validateNetlist(
     frozen_netlist: {
       components: [...byDes.values()],
       nets: [...netByName.values()],
+      no_connect: [...ncPins],
     },
     notes,
   };

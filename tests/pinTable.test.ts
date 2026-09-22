@@ -119,7 +119,7 @@ describe("validateNetlist — pin-table mode", () => {
     expect(r.errors.some((e) => e.code === "PIN_IN_MULTIPLE_NETS")).toBe(true);
   });
 
-  it("reports unassigned pins per component without failing", () => {
+  it("reports unassigned pins per component without failing (strict off)", () => {
     const r = validateNetlist(
       {
         components: [
@@ -127,6 +127,7 @@ describe("validateNetlist — pin-table mode", () => {
           { designator: "R9", lib_reference: "Res1" },
         ],
         nets: [{ name: "VCC", pins: ["U1.1"] }],
+        strict_pin_coverage: false,
       },
       tables(),
     );

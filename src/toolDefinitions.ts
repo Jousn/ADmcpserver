@@ -121,15 +121,18 @@ Purpose: Machine validation of the GOLDEN NETLIST (stage-1 deliverable) BEFORE p
 Detects (pin-table mode, default — checks against real library pin definitions via the focused project's .SchLib files):
 - PIN_NOT_ON_COMPONENT: hallucinated/mistyped pin (e.g. U1.14 on a part with 12 pins) — the #1 LLM netlist failure
 - PIN_IN_MULTIPLE_NETS: one pin on two nets = short by construction
-- unassigned pins per component (not errors — NC pins exist — but a component with ZERO assigned pins is usually a forgotten part)
+- PIN_UNASSIGNED (strict_pin_coverage, default ON): a pin in NO net and NOT in no_connect — the forgotten-net bug (a base-drive pin nobody routed floats as an isolated island). Fix by adding the net or listing the pin in no_connect.
+- PIN_NC_AND_NETTED: pin declared no_connect while also in a net
 - POWER_PIN_OFF_POWER_NET: eElectricPower pin stuck on a signal net
 - POWER_NET_NO_POWER_PIN: power-looking net with no power pins (double-check intent)
-Syntax mode (fallback when libraries unavailable): pin format (DES.PIN), pins referencing undeclared designators, duplicate designators/net names/pin entries, empty and single-pin nets, naming conventions.
+Syntax mode (fallback when libraries unavailable): pin format (DES.PIN), pins referencing undeclared designators, duplicate designators/net names/pin entries, empty and single-pin nets, naming conventions. Coverage strictness requires pin tables (no pin universe in syntax mode).
 Parameters:
 - components (required): [{ designator, lib_reference }] — the BOM
 - nets (required): [{ name, pins: ["R1.2", "D1.1", ...] }] — every net with its FULL member list
+- no_connect (string[]?, optional): pins explicitly NOT connected, e.g. ["U1.7"] — in strict mode every pin must be netted or listed here
+- strict_pin_coverage (boolean?, default true): unassigned pin = ERROR (false downgrades to a note)
 - check_pin_tables (boolean?, default true): false = syntax-only, no Altium access
-Returns: { ok, mode, errors[], warnings[], pin_coverage { components, distinct_pins, assigned_pins, unassigned_by_component[] }, power_nets[], nets[], frozen_netlist, notes[], next_step? }.
+Returns: { ok, mode, strict_pin_coverage, errors[], warnings[], pin_coverage { components, distinct_pins, assigned_pins, no_connect_pins, unassigned_by_component[] }, power_nets[], nets[], frozen_netlist { components, nets, no_connect }, notes[], next_step? }.
 Workflow: validate_netlist -> ok=true freezes the netlist -> place components (coarse blocks) -> wire_pins per net -> check_connectivity (partition must match frozen_netlist).
 `.trim();
 

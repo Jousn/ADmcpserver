@@ -202,8 +202,8 @@ Anchor-pin placement makes rails straight BY CONSTRUCTION: place_component(ancho
 STAGE 1 — selection + netlist (before touching the sheet):
 1. search_knowledge_base for topology/selection knowledge (classic-circuits / component-selection / design-rules).
 2. pin_table(["Res1","Cap","LED0",...]) — REAL pin numbers/names/electrical-types/orientations for every symbol you intend to use. Design connections against this table, NEVER from memory: hallucinated pins (U1.14 on a 12-pin part) are the #1 netlist failure. eElectricPower pins belong on VCC/GND-style nets. Symbol orientation is per-symbol — check orientation_deg before planning rotations.
-3. Build the netlist: components [{designator, lib_reference}] + nets [{name, pins=["R1.2",...]}] with EVERY pin accounted for (unused pins may stay unassigned — they will float; plan no-ERC for them).
-4. validate_netlist — machine check (hallucinated pins, one-pin-two-nets shorts, coverage, power pins). Iterate until ok=true. The returned frozen_netlist is your golden baseline.
+3. Build the netlist: components [{designator, lib_reference}] + nets [{name, pins=["R1.2",...]}] with EVERY pin accounted for — every pin must belong to a net OR be listed in no_connect (strict_pin_coverage is ON by default: a forgotten net fails validation with PIN_UNASSIGNED instead of silently floating).
+4. validate_netlist — machine check (hallucinated pins, one-pin-two-nets shorts, strict pin coverage, power pins). Iterate until ok=true. The returned frozen_netlist is your golden baseline.
 
 STAGE 2 — placement (coarse is fine; geometry is the TOOL's job later):
 5. Resolve the sheet: pass schematic_full_path (preferred) or project_full_path + schematic_sheet_file_name.
