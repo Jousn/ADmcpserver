@@ -107,6 +107,24 @@ Parameters (all optional, same sheet scoping as get_schematic_data):
 Returns: { data_source, sheet_summary, current { actual_wires, estimated }, hypothetical? { estimated, delta }, rotation_suggestions[], notes[] }. Score = 10*crossings + bends + 3*obstacle_hits + length/100 (lower is better). Applying a suggestion: edit_schematic set_component_transform -> get_component_info (NEW pin coords) -> rewire -> check_connectivity.
 `.trim();
 
+export const DESCRIPTION_EMC_AUDIT = `
+Purpose: DETERMINISTIC schematic-side EMC rule audit (L1 of the EMC×AI plan). Every verdict is computed by plain code over the compiled netlist + component parameters (Value/Description) — no LLM decides a verdict; use the report to drive remediation advice. Run AFTER compile_project so net membership is authoritative.
+Rule families (12 rules, v1):
+- conducted: CM-choke missing on L/N input, X-cap missing L-N, X-cap value over threshold, Y-cap missing on PE, Y-cap value over threshold (leakage risk)
+- decoupling: IC power rail without any decoupling cap to ground; rail with only bulk caps (no HF small cap)
+- grounding: multiple ground nets (PGND/SGND/...) without a bridge component (0R / ferrite bead / Y-cap)
+- switching: transformer/power-inductor winding without RC/RCD snubber or diode clamp; MOSFET gate net without series resistor
+- interface: crystal without per-side load caps (or suspicious >1nF cap on the oscillator net); connector signal net reaching IC pins with no TVS/series-R/ferrite
+Recognition is convention-based: net names (L/N/PE/GND-family/VCC-family — see NET_PATTERNS), designator prefixes (C/R/L/T/Q/U/J/X/FL/FB) and parameter keywords (common mode/共模, ferrite/磁珠, crystal/晶振, MHz). Adapt NET_PATTERNS / thresholds to company conventions when a rule mis-fires.
+Parameters (all optional, same sheet scoping as get_schematic_data):
+- schematic_full_path | project_full_path + schematic_sheet_file_name
+- categories: ["conducted","decoupling","grounding","switching","interface"] subset (default all)
+- min_severity: "error" | "warning" | "info" (default info = keep all)
+- include_rule_catalog: boolean — also return rule ids/severity/rationale
+- thresholds: { x_cap_max_uf?, y_cap_max_nf?, hf_decoupling_max_uf? } — override defaults 2.2uF / 4.7nF / 0.47uF
+Returns: { data_source, sheet_summary { components, nets, line_nets, pe_net, ground_nets, rail_nets }, findings[] { rule_id, category, severity, message, evidence, recommendation }, checks_passed[] (audit trail of what was evaluated and PASSED), summary { rules_evaluated, rules_triggered, findings_* }, notes[] (skipped rules + limitations) }. Recommendations cite general EMC practice only — no invented standard clause numbers; verify numeric limits against the target standard.
+`.trim();
+
 export const DESCRIPTION_PIN_TABLE = `
 Purpose: Pin definitions for library symbols BEFORE placement — the planning input for stage 1 (selection + netlist design). Returns, per lib_reference: every pin's number, name, electrical type (eElectricInput/Output/IO/Power/Passive...), orientation (0/90/180/270, direction the pin extends out from the body), location, length, and the derived FREE-END hotspot offset (hotspot_dx/dy — where a wire must land, same math as get_component_info uses on placed parts).
 When to use: BEFORE writing the netlist, call once with all the symbols you intend to use (e.g. ["Res1","Cap","LED0","SW-PB"]). Design connections against REAL pin numbers/names/types from this table — never from memory or datasheet guesses. Power pins (eElectricPower) belong on VCC/GND-style nets. Orientation is per-symbol (do NOT assume 2-pin symbols are horizontal — check orientation_deg before planning rotations).

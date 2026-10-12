@@ -30,6 +30,8 @@ export interface SchematicAuditData {
   junctions: AuditJunction[];
   pinNets: AuditPinNet[];
   components: QualityComponent[];
+  /** designator -> parameter name -> parameter text (Value, Description, ...). */
+  componentParameters: Record<string, Record<string, string>>;
   dmAvailable: boolean;
   dmError?: string;
 }
@@ -78,6 +80,7 @@ export async function fetchSchematicAuditData(
       schematic_width?: number;
       schematic_height?: number;
       schematic_rotation?: number;
+      parameters?: Record<string, unknown>;
     }>;
     wires?: Array<{ vertices_mils?: Array<{ x_mils: number; y_mils: number }> }>;
     power_ports?: Array<{ text?: string; x_mils?: number; y_mils?: number }>;
@@ -85,23 +88,34 @@ export async function fetchSchematicAuditData(
     junctions?: Array<{ x_mils?: number; y_mils?: number }>;
   };
 
-  const components: QualityComponent[] = (data.components ?? [])
-    .filter(
-      (c) =>
+  const components: QualityComponent[] = [];
+  const componentParameters: Record<string, Record<string, string>> = {};
+  for (const c of data.components ?? []) {
+    if (
+      !(
         typeof c.designator === "string" &&
         typeof c.schematic_x === "number" &&
-        typeof c.schematic_y === "number",
-    )
-    .map((c) => ({
-      designator: c.designator as string,
-      x: c.schematic_x as number,
-      y: c.schematic_y as number,
+        typeof c.schematic_y === "number"
+      )
+    ) {
+      continue;
+    }
+    components.push({
+      designator: c.designator,
+      x: c.schematic_x,
+      y: c.schematic_y,
       // Altium Y-up: BoundingRectangle Bottom < Top, so exported height
       // (Bottom - Top) is negative — normalize with abs().
       width: typeof c.schematic_width === "number" ? Math.abs(c.schematic_width) : 0,
       height: typeof c.schematic_height === "number" ? Math.abs(c.schematic_height) : 0,
       rotation: typeof c.schematic_rotation === "number" ? c.schematic_rotation : 0,
-    }));
+    });
+    const params: Record<string, string> = {};
+    for (const [k, v] of Object.entries(c.parameters ?? {})) {
+      if (v !== undefined && v !== null) params[k] = String(v);
+    }
+    componentParameters[c.designator] = params;
+  }
 
   // Per-component pin hotspots (sequential — bridge is lock-serialized anyway).
   const pins: AuditPin[] = [];
@@ -171,6 +185,7 @@ export async function fetchSchematicAuditData(
     junctions,
     pinNets,
     components,
+    componentParameters,
     dmAvailable,
     dmError: dmAvailable ? undefined : String(dmResp.error ?? "unknown"),
   };

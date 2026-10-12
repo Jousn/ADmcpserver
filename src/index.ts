@@ -60,6 +60,7 @@ import {
   DESCRIPTION_GENERATE_REPORT,
   DESCRIPTION_CHECK_CONNECTIVITY,
   DESCRIPTION_ANALYZE_SCHEMATIC_QUALITY,
+  DESCRIPTION_EMC_AUDIT,
   DESCRIPTION_WIRE_PINS,
   DESCRIPTION_OPTIMIZE_LAYOUT,
   DESCRIPTION_PIN_TABLE,
@@ -78,6 +79,7 @@ import {
   analyzeSchematicQuality,
   analyzeSchematicQualityInputSchema,
 } from "./tools/analyzeSchematicQuality.js";
+import { runEmcAudit, emcAuditInputSchema } from "./tools/emcAudit.js";
 import { fetchSchematicAuditData } from "./tools/schematicAuditData.js";
 import { wirePinsInputSchema, runWirePins } from "./tools/wirePins.js";
 import { optimizeLayoutInputSchema, runOptimizeLayout } from "./tools/optimizeLayout.js";
@@ -270,6 +272,32 @@ server.registerTool(
     const report = analyzeSchematicQuality(data, {
       transforms: params.transforms,
       suggestRotations: params.suggest_rotations ?? true,
+    });
+    return jsonResult(report);
+  },
+);
+
+server.registerTool(
+  "emc_audit",
+  {
+    title: "Schematic EMC rule audit (deterministic, L1 of EMC×AI plan)",
+    description: DESCRIPTION_EMC_AUDIT,
+    annotations: annotationsReadOnlyLive,
+    inputSchema: emcAuditInputSchema,
+  },
+  async (params) => {
+    const sheet: Record<string, unknown> = {};
+    if (params.schematic_full_path) sheet.schematic_full_path = params.schematic_full_path;
+    if (params.project_full_path) sheet.project_full_path = params.project_full_path;
+    if (params.schematic_sheet_file_name)
+      sheet.schematic_sheet_file_name = params.schematic_sheet_file_name;
+
+    const data = await fetchSchematicAuditData(bridge, sheet);
+    const report = runEmcAudit(data, {
+      categories: params.categories,
+      minSeverity: params.min_severity,
+      includeRuleCatalog: params.include_rule_catalog ?? false,
+      thresholds: params.thresholds,
     });
     return jsonResult(report);
   },
