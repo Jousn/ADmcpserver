@@ -273,7 +273,7 @@
   <h1>Altium MCP 使用说明书</h1>
   <p>通过 Model Context Protocol (MCP) 让 AI 助手连接 Altium Designer，实现原理图/PCB 数据查询、设计审查、自动化操作</p>
   <div class="meta">
-    适用版本：Altium Designer 22+ &nbsp;|&nbsp; 运行环境：Windows 10/11 &nbsp;|&nbsp; Node.js 20+ &nbsp;|&nbsp; 协议：MCP stdio
+    文档版本：v0.2.0（2026-10-25）&nbsp;|&nbsp; 适用版本：Altium Designer 22+ &nbsp;|&nbsp; 运行环境：Windows 10/11 &nbsp;|&nbsp; Node.js 20+ &nbsp;|&nbsp; 协议：MCP stdio
   </div>
 </div>
 
@@ -288,7 +288,8 @@
     <tr><td>环境配置</td><td>检测 Altium 安装、配置路径、健康检查</td><td>3</td></tr>
     <tr><td>工作区查询</td><td>列出打开的项目和文档</td><td>1</td></tr>
     <tr><td>原理图读取</td><td>导出元件、连线、网络、电源端口等</td><td>1</td></tr>
-    <tr><td>原理图编辑</td><td>放置元件、连线、网络标签、电源端口（11 个动作）</td><td>1</td></tr>
+    <tr><td>原理图编辑</td><td>放置元件、连线、网络标签、电源端口、删除、读回（15 个动作）</td><td>1</td></tr>
+    <tr><td>EMC 审计</td><td>原理图侧确定性 EMC 规则引擎（12 条规则，证据链输出）</td><td>1</td></tr>
     <tr><td>PCB 读取</td><td>层信息、设计规则、网络、元件、引脚</td><td>7</td></tr>
     <tr><td>PCB 写入</td><td>移动元件、创建网络类、控制层可见性</td><td>4</td></tr>
     <tr><td>布局复制</td><td>识别同封装元件组并复制布局</td><td>2</td></tr>
@@ -457,7 +458,7 @@ npm start</code></pre>
       <li><code>action</code> (必需)：动作类型</li>
       <li><code>schematic_full_path</code> 或 <code>project_full_path + schematic_sheet_file_name</code></li>
     </ul>
-    <p><strong>支持的 11 个动作</strong>：</p>
+    <p><strong>支持的 15 个动作</strong>：</p>
     <table>
       <tr><th>Action</th><th>说明</th><th>关键参数</th></tr>
       <tr><td>set_component_transform</td><td>移动/旋转元件</td><td>designator, x_mils?, y_mils?, rotation_deg? (0/90/180/270)</td></tr>
@@ -466,11 +467,15 @@ npm start</code></pre>
       <tr><td>add_text</td><td>添加文本</td><td>text, x_mils, y_mils</td></tr>
       <tr><td>add_net_label</td><td>添加网络标签</td><td>net_name, x_mils, y_mils, rotation_deg?</td></tr>
       <tr><td>add_wire</td><td>添加导线</td><td>wire_points_csv (如 "0,0,1000,0,1000,500")</td></tr>
+      <tr><td>place_wire</td><td>add_wire 别名</td><td>同 add_wire</td></tr>
+      <tr><td>place_net_label</td><td>add_net_label 别名</td><td>同 add_net_label</td></tr>
       <tr><td>add_bus</td><td>添加总线</td><td>同 add_wire</td></tr>
       <tr><td>add_bus_entry</td><td>添加总线入口</td><td>wire_points_csv (4 个数)</td></tr>
-      <tr><td>place_power_port</td><td>放置电源端口</td><td>power_port_style, x_mils, y_mils, net_name?, rotation_deg?</td></tr>
+      <tr><td>place_power_port</td><td>放置电源端口</td><td>power_port_style, x_mils, y_mils, net_name?, rotation_deg?, show_net_name?</td></tr>
       <tr><td>place_gnd</td><td>放置 GND</td><td>x_mils, y_mils (默认 style=gnd_power, net=GND)</td></tr>
       <tr><td>place_vcc</td><td>放置 VCC</td><td>x_mils, y_mils (默认 style=arrow, net=VCC)</td></tr>
+      <tr><td>delete_object</td><td>按类型删除对象</td><td>object_type (wire/bus/net_label/power_port/component 等)；定位：designator（元件）/ x_mils+y_mils（±25mil 点选）/ 矩形区域 / delete_all；返回 deleted_count 供 AI 核对</td></tr>
+      <tr><td>get_component_info</td><td>读元件详情</td><td>designator；返回参数与引脚电气热点坐标（布线端点必须精确等于热点坐标）</td></tr>
     </table>
     <div class="warn">不自动保存。操作后需用户手动在 Altium 保存。建议操作后用 get_schematic_data 验证。</div>
   </div>
@@ -632,6 +637,31 @@ npm start</code></pre>
     <p><strong>用途</strong>：在 SchLib 中创建新原理图符号</p>
     <p><strong>启用</strong>：需设置 <code>ENABLE_SYMBOL_CREATION = true</code></p>
     <p><strong>参数</strong>：symbol_name, pins[] ("number,name,type"), part_count?, description?</p>
+  </div>
+
+  <h3 id="tools-emc-audit">4.11 EMC 审计（v0.2.0 新增）</h3>
+  <div class="card">
+    <div class="card-title">emc_audit <span class="badge badge-read">分析</span></div>
+    <p><strong>用途</strong>：对编译后网表与元件参数执行<strong>确定性</strong> EMC 规则检查（共模滤波、去耦、接地、开关噪声、接口防护），输出带证据链的审计结果——每条 finding 附命中网络/元件证据，通过项计入 checks_passed 审计轨迹，可进评审存档。</p>
+    <p><strong>参数</strong>：与 edit_schematic 相同的页面定位（<code>schematic_full_path</code> 或 <code>project_full_path + schematic_sheet_file_name</code>）；依赖 <code>fetchSchematicAuditData</code> 携带的元件参数。</p>
+    <p><strong>返回</strong>：findings[]（rule_id、severity、证据）、checks_passed[]（rule_id、summary）、统计汇总。</p>
+    <p><strong>12 条规则</strong>：</p>
+    <table>
+      <tr><th>规则 ID</th><th>类别</th><th>默认级别</th><th>检查内容</th></tr>
+      <tr><td>EMC-S001</td><td>传导</td><td>warning</td><td>AC 输入侧未识别到共模电感（FL 前缀或 Value/Description 含 common mode/CM choke/共模）</td></tr>
+      <tr><td>EMC-S002</td><td>传导</td><td>warning</td><td>L-N 之间未识别到 X 电容</td></tr>
+      <tr><td>EMC-S003</td><td>传导</td><td>info</td><td>X 电容容值超出常规范围（默认阈值 2.2uF，可配置）</td></tr>
+      <tr><td>EMC-S004</td><td>传导</td><td>warning</td><td>存在 PE 网络但未识别到 Y 电容</td></tr>
+      <tr><td>EMC-S005</td><td>传导</td><td>warning</td><td>Y 电容容值偏大（默认 4.7nF，可配置；受漏电流限值约束）</td></tr>
+      <tr><td>EMC-S010</td><td>去耦</td><td>warning</td><td>电源轨上无去耦电容（每个含 IC 引脚的电源轨）</td></tr>
+      <tr><td>EMC-S011</td><td>去耦</td><td>info</td><td>电源轨缺少高频小电容（仅有 ≥1uF、无 ≤0.47uF）</td></tr>
+      <tr><td>EMC-S020</td><td>接地</td><td>info</td><td>多接地系统（PGND/SGND 等 ≥2 个地网络）未识别到 0Ω/磁珠/Y 电容桥接</td></tr>
+      <tr><td>EMC-S030</td><td>开关</td><td>info</td><td>变压器/功率电感绕组未识别到 R-C/RCD 吸收网络</td></tr>
+      <tr><td>EMC-S031</td><td>开关</td><td>info</td><td>MOSFET 栅极网络上无串联电阻</td></tr>
+      <tr><td>EMC-S032</td><td>接口</td><td>warning</td><td>晶振两脚未识别到对地负载电容</td></tr>
+      <tr><td>EMC-S040</td><td>接口</td><td>info</td><td>连接器信号网络直达 IC 且无 TVS/串联电阻/磁珠防护</td></tr>
+    </table>
+    <div class="warn"><strong>阈值与网络识别可配置</strong>：X/Y 电容阈值、小电容阈值、网络名识别模式（NET_PATTERNS）均按公司规范在配置中调整；规则依据为通用 EMC 设计实践（Ott 等参考文献），不含虚构条款编号，正式引用条款以公司标准为准（阈值终值待 EMC 工程师确认）。</div>
   </div>
 </section>
 
@@ -835,10 +865,17 @@ npm start</code></pre>
     <tr><td>LockTimeout</td><td>上次崩溃留下锁</td><td>删除工作区目录下的 .bridge.lock</td></tr>
     <tr><td>空数据</td><td>PCB 未聚焦</td><td>在 Altium 中聚焦 .PcbDoc</td></tr>
     <tr><td>INVALID_BRIDGE_RESPONSE</td><td>JSON 解析失败</td><td>检查 bridge_last_error.txt</td></tr>
+    <tr><td>SHEET_REQUIRED / SCHEMATIC_SHEET_NOT_FOUND</td><td>原理图页面定位失败</td><td>补 schematic_full_path，或先 get_workspace_projects 确认项目已打开</td></tr>
+    <tr><td>COMPONENT_NOT_FOUND</td><td>位号不存在</td><td>先 get_schematic_data 读回实际位号（放置后 AD 可能自动改号）</td></tr>
+    <tr><td>PLACED_COMPONENT_NOT_FOUND / PLACE_SCH_COMPONENT_FAILED</td><td>库未安装或路径不可见</td><td>确认 sch_library_path 指向的 .SchLib 已在 AD 中安装</td></tr>
   </table>
 
   <div class="warn">
-    <strong>锁文件位置</strong>：默认在工作区目录 <code>%USERPROFILE%\.altium-mcp\workspace\.bridge.lock</code>。删除此文件可解除死锁。
+    <strong>脚本编译错误不会经过桥接通道</strong>：若 DelphiScript 编译失败（消息面板报错但 MCP 侧只看到超时/无响应），把 Altium 消息面板的错误文本粘贴到工作区 <code>bridge_user_reported_error.txt</code>，再调用 <code>get_server_status</code>——AI 即可读取（bridgeUserReportedError）并定位修复。
+  </div>
+
+  <div class="warn">
+    <strong>锁文件位置</strong>：默认在工作区目录 <code>%USERPROFILE%\.altium-mcp\workspace\.bridge.lock</code>。删除此文件可解除死锁；服务端会自动清理指向不存在进程的陈旧锁。
   </div>
 </section>
 

@@ -3,6 +3,32 @@
 > 本文件为工作日志（随手记）。**正式周报在 `docs/devlog/week*-*.md`**（含格式化的背景/实现/Bug 表/里程碑/经验沉淀）。
 > 本周期正式总结：`docs/devlog/week9-2026-09-12_to_2026-09-14.md`
 
+## 2026-10-27/28（夜间批次）— 编排层固化 + 文档对齐 v0.2.0
+
+目标：把"自然语言→原理图操作"从演示态推进为产品态的第一步——**确定性兜底优先，LLM 只做模糊命令的补充**。本次为 v1.0-rc 候选内容（见 CHANGELOG Unreleased 段）。
+
+### 新增
+
+1. **src/orchestration/intents.ts**：10 类意图的确定性中文解析（放置/移动/旋转/网络标签/GND/VCC/文本/删除/查询/EMC 审计）。设计原则：识别不了一律返回 unknown 并附原因，绝不猜测坐标/位号/网络名（教训来自 9 月引脚浮空事件——错误参数宁可不产出）。坐标支持 `(x,y)` 与 `x=/y=` 两种写法；角度提取先剥离位号 token（否则 "Q2 旋转 90 度" 会把 2 当角度——单测抓出后已修）。
+2. **src/orchestration/planner.ts**：意图 → `edit_schematic`/`emc_audit` 调用计划。关键决策：**每条计划用工具自身的 zod schema 校验后才产出**，不合格丢弃并写 warnings——计划要么全部 schema 合法，要么为空，杜绝半猜参数进入执行层。delete_component 展开为 `delete_object + object_type=component`。
+3. **src/orchestration/prompts.ts**：LLM 规划提示词。硬规则：只输出 JSON 数组、action 限 20 个白名单值、图纸定位从上下文取、拿不准输出 `[]` 交回确定性路径。
+4. **tests/orchestration.test.ts**：19 例。含一个跨 zod 版本稳枚举探针（用非法 action 探测错误信息而非依赖内部 `_def` 结构）。
+
+### 验证
+
+- 新增 19 例全过；全量回归 **176/176**（T1 基线 157 无回归）；`tsc --noEmit` 通过。
+- 既有工具文件零改动（orchestration 为纯新增模块，尚未接入 index.ts 工具注册——rc 前待办）。
+
+### 文档对齐
+
+- `altium-mcp_使用说明书.html` → v0.2.0：4.11 EMC 审计节（12 规则表）、edit_schematic 操作表补齐、错误处理补编译错误上报流程。
+- `docs/DEPLOY.md` → v0.2.0：离线拷贝清单、内网 OpenCode 挂载（vlmm_qwen .200:6006）、STAGE 4 审计环节。
+
+### 遗留
+
+- 编排层接入 MCP 注册表（建议以 `plan_edits` 只读工具形态暴露计划，执行仍走既有工具，保持审计粒度）。
+- 真实产品演示（等沈鹏程 11.6 定产品）；EMC 阈值终值（等孙金亮 11.13）。
+
 ## 2026-09-14 (下午) — 第一阶段工具：pin_table + validate_netlist
 
 三阶段流水线（选型/网表 → 放置 → 连线）中连线阶段已闭环，本次补第一阶段：网表设计期的机器支持。
