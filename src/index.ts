@@ -116,10 +116,13 @@ if (initialCatalogs.length > 0) {
   console.error(`[memory] Auto-loaded ${initialCatalogs.length} catalog(s), ${memoryMgr.getTotalComponents()} component(s)`);
 }
 
+// Package version from package.json (dist/index.js -> ../package.json).
+const pkgVersion = (JSON.parse(readFileSync(fileURLToPath(new URL("../package.json", import.meta.url)), "utf8")) as { version: string }).version;
+
 const server = new McpServer(
   {
     name: "altium-mcp",
-    version: "0.1.0",
+    version: pkgVersion,
   },
   {
     instructions: ALTIUM_MCP_INSTRUCTIONS,
