@@ -131,6 +131,19 @@ export function defaultBundledScriptsDir(): string {
   return join(process.cwd(), "altium-scripts");
 }
 
+/**
+ * T5 alternative (request direction): serialize the request body as UTF-16LE
+ * WITH a BOM. TStringList.LoadFromFile (Pascal, no encoding param) auto-detects
+ * the BOM and decodes UTF-16 correctly on this script engine — verified pattern
+ * for the ANSI/GBK mojibake problem without touching any .pas file (the Pascal
+ * UTF-8 attempts tripped the script-engine Error dialog; see overnight plan T5).
+ * Response direction still needs the blocked Pascal-side work.
+ */
+export function buildRequestFileBuffer(body: Record<string, unknown>): Buffer {
+  const json = JSON.stringify(body, null, 2);
+  return Buffer.concat([Buffer.from([0xff, 0xfe]), Buffer.from(json, "utf16le")]);
+}
+
 export class AltiumBridge {
   private readonly bundledScriptsDir: string;
   private readonly timeoutMs: number;
@@ -219,7 +232,8 @@ export class AltiumBridge {
         ...params,
         requestId,
       };
-      writeFileSync(requestPath, JSON.stringify(body, null, 2), "utf8");
+      // T5 alternative: UTF-16LE + BOM (Pascal auto-detects the BOM).
+      writeFileSync(requestPath, buildRequestFileBuffer(body));
 
       const launched = await launchAltiumRunScript(exe, scriptPrj);
       if (!launched) {
