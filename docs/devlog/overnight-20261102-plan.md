@@ -23,7 +23,8 @@ src/bridge/lock.ts:58-86：`fn()` 在锁获取 try 块内，业务异常落入�
 修法：锁获取（openSync/writeSync/closeSync）单独 try/catch + continue；成功后 `try { return await fn(); } finally { unlinkSync }` 移到获取 try **之外**。
 测试：新建 tests/bridgeLock.test.ts —— ①fn 抛错一次即向上传播（不被重试）②抛错后锁文件已删除 ③锁被占用时仍正常重试等待。完成后全量测试+tsc。
 
-### T2 [ ] 桥接层 P2 簇修复（TS，一个提交）
+### T2 [x] 桥接层 P2 簇修复（TS，一个提交）
+**完成 23:59，commit 311bd00**：a) errResult 加 isError:true（helpers.ts）；b) 轮询改为 not-ready 重试——抽出 readBridgeResponseSnapshot（no-file/parse/schema 三态 + stale 态），deadline 前不假失败；c) 陈锁仅 ESRCH 删（EPERM 视为活锁）；d) launchAltiumRunScript 挂 exit 事件判退出码（快速非零=失败，零=转发正常，窗口 3s 内仍运行=已启动）+ observeLaunchProcess 抽出可测。新增 11 测试（快照 6/launch 判定 3/helpers 1/含 requestId 匹配），全量 192/192。
 a) src/tools/helpers.ts:12-14 `errResult` 返回加 `isError: true`（MCP CallToolResult 规范；注意排查现有调用点是否有客户端依赖"非 error"形态——本项目客户端就是 LLM，加 isError 是修正）
 b) src/bridge/altiumBridge.ts:182-203 轮询：`JSON.parse` 或 schema 校验失败时**视为未就绪**，sleep 后继续轮询到 deadline，而不是立即 RESPONSE_READ_FAILED/INVALID_BRIDGE_RESPONSE（防读到半写文件假失败）
 c) src/bridge/lock.ts:17-34 stale 检测：仅 `err.code === 'ESRCH'`（进程不存在）才删锁；EPERM/其他错误不删
@@ -37,9 +38,7 @@ c) src/index.ts:1213-1216 `if (!memoryMgr.isEmpty()) {}` 空块删除
 每处改动跑全量测试；schema 收紧可能打破现有测试的用例按新枚举修正。
 
 ### T4 [ ] requestId 协议升级（TS+Pascal，防响应串台 P1）
-TS src/bridge/altiumBridge.ts:170-175 请求体加 `requestId`（自增类成员）；轮询读响应（186-201）校验 `parsed.requestId === 发出的 id`，不匹配视为未就绪继续轮询；BridgeResponseSchema（src/bridge/ 下找 schema 定义）加可选 requestId 字段。
-Pascal Altium_API.pas Run（约 1186 行起）：从 RequestData 解析 `"requestId"`，WriteResponse 时原样回写进响应 JSON（WriteResponse 签名加参数或经全局变量传递；注意 WriteResponse 的多个调用点）。
-验证：单测（TS 侧 mock 响应不带/带错 requestId 的行为）+ ping 冒烟（证明 Pascal 编译过）。
+**TS 侧已随 T2 提交完成（311bd00）**：BridgeResponseSchema 加可选 requestId、请求体带自增 requestId、快照校验不匹配→stale 继续轮询。本任务剩余：Pascal Altium_API.pas Run（约 1186 行起）从 RequestData 解析 `"requestId"`，WriteResponse 时原样回写进响应 JSON（WriteResponse 签名加参数或全局变量传递；注意 WriteResponse 的多个调用点，grep 全部）。验证：ping 冒烟（证明 Pascal 编译过）+ 手工改 request.json 加 requestId 观察 response.json 回带。
 
 ### T5 [ ] 桥接文件编码统一 UTF-8（Pascal P1，中文环境必修）
 Altium_API.pas:1221 `RequestData.LoadFromFile(REQUEST_FILE)` 与 :1178 `ResponseData.SaveToFile(RESPONSE_FILE)` 单参数重载按系统 ANSI（中文 Windows=GBK）读写，TS 侧是 UTF-8——中文路径/标签/参数过桥即乱码。
@@ -94,3 +93,4 @@ c) src/tools/pinTable.ts 若有全量枚举可过滤参数透传则透传（T8 �
 
 ## 运行日志
 - 23:08 备份完成（backup/altium-mcp-dev-20261102-2308.bundle + src zip，verify okay）；T1 由启动实例完成
+- 23:59 完成 T2（含 T4 TS 侧）：commit 311bd00，全量 192/192 + tsc 干净；launch 测试首版前提错误（函数硬编码 RunScript 参数不能复用测存活分支），抽出 observeLaunchProcess 后解决
