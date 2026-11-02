@@ -4199,12 +4199,12 @@ begin
 
         SelectStr := PcbEditParseStringAfterKey(RequestData, '"tenting_top"');
         UseX1 := SelectStr <> '';
-        X1 := 1;
-        if AnsiCompareText(SelectStr, 'false') = 0 then X1 := 0;
+        XC := 1;   // XC = TentingTop carrier (T6: was X1 — clobbered the via X coordinate)
+        if AnsiCompareText(SelectStr, 'false') = 0 then XC := 0;
         SelectStr := PcbEditParseStringAfterKey(RequestData, '"tenting_bottom"');
         UseY1 := SelectStr <> '';
-        Y1 := 1;
-        if AnsiCompareText(SelectStr, 'false') = 0 then Y1 := 0;
+        YC := 1;   // YC = TentingBot carrier (T6: was Y1 — clobbered the via Y coordinate)
+        if AnsiCompareText(SelectStr, 'false') = 0 then YC := 0;
         SelectStr := PcbEditParseStringAfterKey(RequestData, '"testpoint_top"');
         UseX2 := SelectStr <> '';
         X2 := 1;
@@ -4214,9 +4214,15 @@ begin
         Y2 := 1;
         if AnsiCompareText(SelectStr, 'false') = 0 then Y2 := 0;
 
-        Result := PcbEditAddVia(Board, X1, Y1, Size, HoleSize, NetName,
+        // NOTE: X1/Y1 were clobbered by the tenting carriers above (pre-T6), so the
+        // coordinates are re-parsed at the call site (same pattern as add_track);
+        // the re-parse out-vars (UseRot/UseSize) are scratch — not read after this.
+        Result := PcbEditAddVia(Board,
+            PcbEditParseFloatAfterKey(RequestData, '"x_mils"', UseRot),   // re-parse clean X
+            PcbEditParseFloatAfterKey(RequestData, '"y_mils"', UseSize),  // re-parse clean Y
+            Size, HoleSize, NetName,
             LowLayer, HighLayer, UseLayer,
-            X1 > 0, Y1 > 0, X2 > 0, Y2 > 0,
+            X2 > 0, Y2 > 0, XC > 0, YC > 0,
             UseX1, UseY1, UseX2, UseY2);
     end
     else if Action = 'add_fill' then
@@ -4308,11 +4314,15 @@ begin
         if AnsiCompareText(SelectStr, 'false') = 0 then Y2 := 0;
         SelectStr := PcbEditParseStringAfterKey(RequestData, '"italic"');
         UseX2 := SelectStr <> '';
-        Y1 := 1;
-        if AnsiCompareText(SelectStr, 'false') = 0 then Y1 := 0;
-        Result := PcbEditAddText(Board, X1, Y1, Width, StartAngle,
+        XC := 1;   // XC = Italic carrier (T6: was Y1 — clobbered the text Y coordinate)
+        if AnsiCompareText(SelectStr, 'false') = 0 then XC := 0;
+        // NOTE: Y1 was clobbered by the italic carrier above (pre-T6), so Y is
+        // re-parsed at the call site (same pattern as add_track/add_via).
+        Result := PcbEditAddText(Board, X1,
+            PcbEditParseFloatAfterKey(RequestData, '"y_mils"', UseRot),   // re-parse clean Y
+            Width, StartAngle,
             Txt, Layer, Rot,
-            X2 > 0, ObjTypeStr, Y2 > 0, Y1 > 0,
+            X2 > 0, ObjTypeStr, Y2 > 0, XC > 0,
             UseStart, UseX1, ObjTypeStr <> '', UseY1, UseX2);
     end
     else if Action = 'delete_objects' then
