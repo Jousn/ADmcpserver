@@ -48,7 +48,8 @@ c) src/index.ts:1213-1216 `if (!memoryMgr.isEmpty()) {}` 空块删除
 2. ADODB.Stream 方案（`CreateObject('ADODB.Stream')`，含/不含 `.Type` 两版）**同样触发 Error 对话框**——嫌疑：① Altium 脚本安全机制对 COM 实例化弹确认框（运行期，非编译错）② `Variant` 变量声明/成员访问不被引擎接受 ③ CreateObject 在此引擎不可用（避坑指南裁决说官方库有先例，但未验证本机设置）
 3. 回环验证方法已备好：get_schematic_data 的 include_queries 会原样回显，传 ["components","中文回路验证"] 比对即可
 **恢复 procedures（本夜已实战验证）**：对话框阻塞→PostMessage WM_CLOSE 给标题为 "Error"/"Information" 的窗口即可解除；彻底楔死→杀全部 X2.EXE→下次调用自动冷启动（01:55 验证 SMOKE PASS）。
-**下次尝试前提**：需用户实机看一次 Error 对话框/Messages 面板的具体文案（无人值守只能看到无文本的对话框）。替代方案候选：TS 写请求改 UTF-16LE+BOM（Pascal LoadFromFile 自动识别 BOM，零 Pascal 改动解决请求方向；响应方向仍需 Pascal 写 Unicode，可用 ADODB 或用户确认安全设置后重试）。
+**下次尝试前提**：需用户实机看一次 Error 对话框/Messages 面板的具体文案（无人值守只能看到无文本的对话框）。
+**进展（04:36，commit 94daf20）——请求方向已修复**：按本节备选方案，TS 侧 request.json 改写 UTF-16LE+BOM（buildRequestFileBuffer），Pascal TStringList.LoadFromFile 自动识别 BOM 正确解码——零 .pas 改动、零对话框风险，实机 smoke PASS 证明活引擎 BOM 自动检测生效。中文参数现在可以安全"进入"Pascal（单元测试证编码回环）。**剩余缺口：响应方向**——Pascal 写 response.json 仍是 ANSI/GBK，中文数据"出"Pascal 仍乱码，需要用户看一次对话框文案后选择方案（ADODB 重试 / 用户调低脚本安全等级 / 其他）。
 
 ### T6 [x] add_via / add_text 坐标覆盖修复（Pascal P1）
 **完成 02:03，commit 00cbc4c**：add_via——tenting_top/bottom 载体从 X1/Y1 改为 XC/YC（testpoint 的 X2/Y2 不动），X/Y 坐标调用点重解析（仿 add_track 4104-4108 范式，注释同步）；add_text——italic 载体从 Y1 改为 XC，Y 调用点重解析。映射对照 PcbEditAddVia/PcbEditAddText 16 参签名逐一核验（TentingTop/Top/Bot/Bot ← X2/Y2/XC/YC；UseTTF/UseBold/UseItalic ← UseX1/UseY1/UseX2 语义原本即正确）。ping 编译冒烟通过；全量 194/194 + tsc。功能级读回验证未做（无按坐标查 via 的只读命令，留待实机使用时观察）。
@@ -114,3 +115,4 @@ c) src/tools/pinTable.ts 若有全量枚举可过滤参数透传则透传（T8 �
 - 03:12 完成 T8：commit f9e718a，批量 pin 热点实机验证通过（1738ms 全表 vs 旧路径单元件 1372ms，完全一致）；环境坑记录：磁盘 PrjPcb 缺 Sheet1/3 成员（已列入待用户决策）
 - 03:18 完成 T9：commit d7f17be，pascal-gate 四规则门禁 + 基线 14 违例报告（与审查交叉验证一致），200/200
 - 03:58 完成 T10：commit e4c71a3，instructions -73% + 库查询限流，200/200 + smoke PASS；夜间任务全部收官（T5 BLOCKED 待用户）
+- 04:36 T5 请求方向修复落地：commit 94daf20，request.json 改 UTF-16LE+BOM（备选方案 TS 半步），实机 smoke PASS，204/204；响应方向仍 BLOCKED
