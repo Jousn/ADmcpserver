@@ -31,7 +31,8 @@ c) src/bridge/lock.ts:17-34 stale 检测：仅 `err.code === 'ESRCH'`（进程�
 d) src/bridge/altiumBridge.ts:213-232 `launchAltiumRunScript`：`resolve(child.pid !== undefined)` 改为先挂 `error` 事件置失败标志 + `exit` 事件校验退出码，给 launch 一个短观察窗口（如 3s）再 resolve——修复 ALT_LAUNCH_FAILED 死路径
 每项带单测（能测的：b/c/d 用假子进程/临时文件；a 直接断言）。
 
-### T3 [ ] MCP 协议正确性簇（TS）
+### T3 [x] MCP 协议正确性簇（TS）
+**完成 00:45，commit f37c9d9**：枚举值逐一从 Pascal 分发链核实（PcbEditMain 21 动作/PcbComponentMain 14 动作/OpenDocumentInAltium 8 种/ZoomView 6 种/GenerateProjectReport 5 种/pcb_net_info 2 种），六工具 schema 改 z.enum（计划列 4 个，同簇的 pcb_component 顺带）；pcb_net_info 新增 annotationsMixedSelect（select 改选择态故非只读）+ 描述同步；index.ts 空块删除。全量 192/192 + tsc + smoke PASS。
 a) src/index.ts：pcb_edit（action，约 1457 行附近）、open_document（document_kind）、zoom_view（zoom_action）、generate_report（report_type）的 inputSchema 从自由 z.string() 改 z.enum——枚举值以**工具描述里列出的**为准，先 grep Delphi 端（altium-scripts/*.pas）确认实际支持值，不要凭描述编
 b) src/index.ts pcb_net_info（约 1616 行）：`action=select` 会改选择状态，与 annotationsReadOnlyLive 矛盾——把 select 从该工具拆出或整工具注解改为非 readOnly（改描述同步）
 c) src/index.ts:1213-1216 `if (!memoryMgr.isEmpty()) {}` 空块删除
@@ -94,3 +95,4 @@ c) src/tools/pinTable.ts 若有全量枚举可过滤参数透传则透传（T8 �
 ## 运行日志
 - 23:08 备份完成（backup/altium-mcp-dev-20261102-2308.bundle + src zip，verify okay）；T1 由启动实例完成
 - 23:59 完成 T2（含 T4 TS 侧）：commit 311bd00，全量 192/192 + tsc 干净；launch 测试首版前提错误（函数硬编码 RunScript 参数不能复用测存活分支），抽出 observeLaunchProcess 后解决
+- 00:45 完成 T3：commit f37c9d9，六工具枚举收紧（值全从 Pascal 核实），192/192 + tsc + smoke PASS；枚举核实中顺带确认 open_document 支持 SCHEMATIC/PCB_LIBRARY/PROJECT 别名（OpenDocumentInAltium KindUpper 分支）
