@@ -62,11 +62,10 @@ other_utils.pas:496-506：`Client.OpenDocument` 返回 nil 时先 `.Focus()` 后
 other_utils.pas:553-561：GeneratedFiles 分支补 `DisableDialog=True`（Publish 分支 575 行有先例），去掉 "Assume success" 假设、按实际结果返回。
 验证：ping 冒烟。
 
-### T8 [ ] 批量 pin 热点命令（性能 P1：N 次往返压 1 次）
-现状：src/tools/schematicAuditData.ts:122-164 对每个元件串行调 get_component_info（每次完整桥接往返），wire_pins 调 2 次、optimize_layout 3 次——大图分钟到小时级。
-方案：Pascal schematic_edit.pas 或 schematic_utils.pas 加命令 `get_all_pin_hotspots`（入参同 get_schematic_data 的 sheet 定位 + 可选 designators 数组；出参 [{designator, pins:[{designator,name,x_mils,y_mils,is_hidden}]}]，JSON 逐行拼接规范照现有 SCH_DRAW_FILTER 系列写法）；TS fetchSchematicAuditData 改为一次调用该命令（保留原逐元件路径做 fallback：新命令失败时回退旧逻辑）。
-验证：Pascal ping 冒烟 + TS 单测（mock 两路径）；实机读测试工程某图纸与旧路径结果对比（选一张小图）。
-注意 Altium_API.pas 分发器要注册新命令（grep 'get_schematic_data' 看分发模式照抄）。
+### T8 [x] 批量 pin 热点命令（性能 P1：N 次往返压 1 次）
+**完成 03:12，commit f9e718a**：Pascal 新增 SchEditGetAllPinHotspots（schematic_edit.pas 末尾，复用 SchEditResolveSheet + SchEditGetComponentInfo 的热点算法；可选 designators 过滤），分发器注册（read-only 无门禁）；TS fetchSchematicAuditData 批量优先、失败回退旧逐元件路径（旧部署脚本兼容）；MCP 注册 get_all_pin_hotspots + 描述；3 例 mock 单测。
+**实机验证（Sheet2，4 元件 8 引脚）**：批量 1 次往返 1738ms 全表 vs 旧路径单元件 1372ms（N 倍放大）——引脚坐标/名称/隐藏位与旧路径完全一致。100+ 元件图纸预估：wire_pins 单次操作从 ~140s 级降到 ~2s 级。
+**环境坑（与 T8 代码无关，已记录待用户处理）**：① 磁盘 PrjPcb 是 8-31 旧文件，只含 Sheet2+PCB2——9 月会话加进工程的 Sheet1/Sheet3 从未保存工程文件，冷启动后 DM 层枚举为 0（记忆里"库枚举归零先查 PrjPcb"的实锤）；② 本次用 add_document_to_project 注入 Sheet2 成员（内存态，未保存）；③ 独立脚本直连桥接时 launch 观察定时器 unref 会让进程提前退出——脚本需自备 keepAlive。
 
 ### T9 [ ] Pascal 静态门禁脚本（防 B29 类事故）
 新建 scripts/pascal-gate.cjs（CommonJS，node 直调）：扫描 altium-scripts/*.pas，按行号报错退出码 1。规则（初版，允许白名单注释豁免 `// gate-ok`）：
@@ -93,6 +92,8 @@ c) src/tools/pinTable.ts 若有全量枚举可过滤参数透传则透传（T8 �
 7. 调用 CronPauseSelf
 
 ## 待用户决策（夜间一律跳过）
+- **T5 对话框文案**：Pascal UTF-8 两个方案都触发无文本 Error 对话框，需实机读一次 Messages 面板定位（候选：TEncoding 不支持/COM 安全弹框/CreateObject 受限）
+- **PrjPcb 保存**：磁盘工程文件缺 Sheet1/Sheet3 成员（8-31 旧版），9 月会话的成员变更未保存——请在 AD 里打开工程后 Ctrl+S 一次，否则每次冷启动都要重新 add_document_to_project
 - 编排层接入方式：plan_edits 独立工具 vs instructions 集成（涉及工具面设计）
 - MCP SDK v2 迁移时机（v2 拆包 + Standard Schema，建议内网 Qwen 适配验证后再动）
 - GitHub push（dev 分支 88b2a14 及夜间提交待推）
@@ -107,3 +108,4 @@ c) src/tools/pinTable.ts 若有全量枚举可过滤参数透传则透传（T8 �
 - 01:57 桥接恢复绿色（SMOKE PASS，冷启动）
 - 02:03 完成 T6：commit 00cbc4c，add_via/add_text 坐标覆盖修复（载体 XC/YC + 调用点重解析），ping 冒烟通过，194/194
 - 02:10 完成 T7：commit 598110d，RunOutputJobs nil 判空 + DisableDialog，ping 冒烟通过，194/194
+- 03:12 完成 T8：commit f9e718a，批量 pin 热点实机验证通过（1738ms 全表 vs 旧路径单元件 1372ms，完全一致）；环境坑记录：磁盘 PrjPcb 缺 Sheet1/3 成员（已列入待用户决策）
