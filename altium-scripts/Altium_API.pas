@@ -25,6 +25,9 @@ var
     RESPONSE_FILE : String;
     ROOT_DIR: String;
     BRIDGE_ERROR_LOG: String;
+    // T4 request correlation: parsed from request.json in Run, echoed back by
+    // WriteResponse so the TS poller can reject stale responses. 0 = absent.
+    GRequestId : Integer;
 
 {..............................................................................}
 { Initialize file paths based on script location                               }
@@ -1151,7 +1154,11 @@ begin
     try
         // Add properties
         AddJSONBoolean(ResultProps, 'success', ActualSuccess);
-        
+
+        // T4: echo the request correlation id (0/absent request -> no field).
+        if GRequestId > 0 then
+            AddJSONInteger(ResultProps, 'requestId', GRequestId);
+
         if ActualSuccess then
         begin
             // For JSON responses (starting with [ or {), don't wrap in additional quotes
@@ -1199,6 +1206,7 @@ begin
     RESPONSE_FILE := '';
     ROOT_DIR := '';
     BRIDGE_ERROR_LOG := '';
+    GRequestId := 0;
 
     // Initialize file paths based on script location
     InitializeFilePaths();
@@ -1241,6 +1249,10 @@ begin
                     ExtractParameter(Line);
                 end;
             end;
+
+            // T4: correlation id — echo it back in every response so the TS
+            // poller can reject stale response.json from an earlier request.
+            GRequestId := StrToIntDef(Trim(Params.Values['requestId']), 0);
 
             // Execute the command if valid
             if CommandType <> '' then
