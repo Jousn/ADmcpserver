@@ -13,6 +13,7 @@
   ],
   "scripts": {
     "build": "tsc",
+    "gate:pascal": "node scripts/pascal-gate.cjs",
     "build-kb": "node scripts/build-kb-index.mjs",
     "sync-workspace": "node scripts/sync-altium-workspace.mjs",
     "start": "node dist/index.js",
