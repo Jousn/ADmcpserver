@@ -25,8 +25,15 @@ function removeStaleBridgeLock(lockPath: string): void {
     }
     try {
       process.kill(pid, 0);
-    } catch {
-      unlinkSync(lockPath);
+      // Signal succeeded — the owning process is alive, lock is NOT stale.
+    } catch (err) {
+      const code = (err as NodeJS.ErrnoException | null)?.code;
+      if (code === "ESRCH") {
+        // PID no longer exists — crashed MCP/killed process: safe to remove.
+        unlinkSync(lockPath);
+      }
+      // EPERM or anything else: the process exists but we cannot signal it —
+      // treat the lock as live and let the normal wait/timeout handle it.
     }
   } catch {
     /* ignore */

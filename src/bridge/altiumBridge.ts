@@ -1,4 +1,4 @@
-import { spawn } from "node:child_process";
+import { spawn, type ChildProcess } from "node:child_process";
 import { existsSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -19,7 +19,46 @@ const BridgeResponseSchema = z.object({
   success: z.boolean(),
   result: z.unknown().optional(),
   error: z.string().optional(),
+  requestId: z.number().optional(),
 });
+
+/**
+ * Read ONE snapshot of response.json without ever failing:
+ * - ok:        valid bridge response (success or failure payload)
+ * - not-ready: file missing / half-written (JSON parse failed) / shape-invalid
+ *              — all are poll-again states; a complete-but-invalid file cannot
+ *              recover, so the caller remembers the reason for the verdict.
+ * - stale:     shape-valid but requestId mismatches the request we sent (T4).
+ */
+export type ResponseSnapshot =
+  | { state: "ok"; response: BridgeResponse }
+  | { state: "not-ready"; kind: "no-file" | "parse" | "schema" }
+  | { state: "stale" };
+
+export function readBridgeResponseSnapshot(
+  responsePath: string,
+  expectedRequestId?: number,
+): ResponseSnapshot {
+  if (!existsSync(responsePath)) return { state: "not-ready", kind: "no-file" };
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(readFileSync(responsePath, "utf8")) as unknown;
+  } catch {
+    // Half-written or concurrently-truncated file — keep polling.
+    return { state: "not-ready", kind: "parse" };
+  }
+  const res = BridgeResponseSchema.safeParse(parsed);
+  if (!res.success) {
+    // Valid JSON but not a bridge response — could still be a half-write that
+    // happens to parse; poll until deadline rather than failing immediately.
+    return { state: "not-ready", kind: "schema" };
+  }
+  // T4: if the request carried a requestId, only accept the matching response.
+  if (expectedRequestId !== undefined && res.data.requestId !== expectedRequestId) {
+    return { state: "stale" };
+  }
+  return { state: "ok", response: res.data };
+}
 
 /** Written by Altium_API.pas WriteResponse on failure (workspace root). */
 export const BRIDGE_LAST_ERROR_FILENAME = "bridge_last_error.txt";
@@ -91,6 +130,8 @@ export function defaultBundledScriptsDir(): string {
 export class AltiumBridge {
   private readonly bundledScriptsDir: string;
   private readonly timeoutMs: number;
+  /** Monotonic request correlation id (T4: echoed back by Altium_API.pas). */
+  private requestSeq = 0;
 
   constructor(options: AltiumBridgeOptions) {
     this.bundledScriptsDir = options.bundledScriptsDir;
@@ -167,10 +208,12 @@ export class AltiumBridge {
         /* ignore */
       }
 
+      const requestId = ++this.requestSeq;
       const body = {
         protocolVersion: BRIDGE_PROTOCOL_VERSION,
         command,
         ...params,
+        requestId,
       };
       writeFileSync(requestPath, JSON.stringify(body, null, 2), "utf8");
 
@@ -179,54 +222,93 @@ export class AltiumBridge {
         return { success: false, error: "ALT_LAUNCH_FAILED" };
       }
 
+      // Poll until deadline; missing/half-written/mismatched snapshots are
+      // "not ready" — only a VALID matching response terminates early.
       const deadline = Date.now() + timeoutMs;
+      let sawFile = false;
+      let sawSchemaInvalid = false;
+      let sawStale = false;
       while (Date.now() < deadline) {
-        if (existsSync(responsePath)) {
-          try {
-            const raw = readFileSync(responsePath, "utf8");
-            const parsed = JSON.parse(raw) as unknown;
-            const res = BridgeResponseSchema.safeParse(parsed);
-            if (res.success) {
-              return res.data.success
-                ? res.data
-                : augmentBridgeFailure(this.workspaceRoot, res.data);
-            }
-            return {
-              success: false,
-              error: "INVALID_BRIDGE_RESPONSE",
-            };
-          } catch {
-            return { success: false, error: "RESPONSE_READ_FAILED" };
-          }
+        const snap = readBridgeResponseSnapshot(responsePath, requestId);
+        if (snap.state === "ok") {
+          return snap.response.success
+            ? snap.response
+            : augmentBridgeFailure(this.workspaceRoot, snap.response);
+        }
+        if (snap.state === "not-ready") {
+          if (snap.kind !== "no-file") sawFile = true;
+          if (snap.kind === "schema") sawSchemaInvalid = true;
+        } else {
+          // shape-valid but from another request epoch — wait for ours
+          sawFile = true;
+          sawStale = true;
         }
         await new Promise((r) => setTimeout(r, 500));
       }
 
+      if (sawStale) {
+        return {
+          success: false,
+          error: "STALE_RESPONSE (a response.json from another request kept reappearing — check for concurrent Altium script runs)",
+        };
+      }
+      if (sawSchemaInvalid) return { success: false, error: "INVALID_BRIDGE_RESPONSE" };
+      if (sawFile) return { success: false, error: "RESPONSE_READ_FAILED" };
       return { success: false, error: "TIMEOUT" };
     });
   }
 }
 
 /**
+ * Verdict logic for one launched process (see launchAltiumRunScript).
+ * Exported for tests.
+ */
+export function observeLaunchProcess(child: ChildProcess, observeMs: number): Promise<boolean> {
+  return new Promise((resolve) => {
+    let settled = false;
+    const settle = (ok: boolean) => {
+      if (settled) return;
+      settled = true;
+      resolve(ok);
+    };
+    child.once("error", () => settle(false));
+    child.once("exit", (code) => {
+      if (settled) return;
+      settle(code === 0);
+    });
+    const timer = setTimeout(() => settle(true), observeMs);
+    timer.unref();
+  });
+}
+
+/**
  * Windows cmd: pipe must be escaped as ^| for -RScriptingSystem:RunScript(...)
+ *
+ * Launch verdict within a short observe window:
+ * - spawn `error` event            -> false (real spawn failure)
+ * - quick exit with non-zero code  -> false (exe path/args rejected by cmd —
+ *                                    previously this surfaced as a 120s TIMEOUT)
+ * - quick exit with code 0         -> true  (forwarder handing off to an
+ *                                    already-running Altium instance)
+ * - still running at window end    -> true  (Altium launching normally)
  */
 export async function launchAltiumRunScript(
   altiumExe: string,
   scriptPrjPath: string,
+  options: { observeMs?: number } = {},
 ): Promise<boolean> {
   const projectArg = scriptPrjPath.replace(/\//g, "\\");
   const inner = `ProjectName="${projectArg}"^|ProcName="Altium_API>Run"`;
   const cmd = `"${altiumExe}" -RScriptingSystem:RunScript(${inner})`;
+  const observeMs = options.observeMs ?? 3_000;
 
-  return new Promise((resolve) => {
-    const child = spawn(cmd, {
-      shell: true,
-      detached: true,
-      stdio: "ignore",
-      windowsHide: true,
-    });
-    child.once("error", () => resolve(false));
-    child.unref();
-    resolve(child.pid !== undefined);
+  const child = spawn(cmd, {
+    shell: true,
+    detached: true,
+    stdio: "ignore",
+    windowsHide: true,
   });
+  child.unref();
+  if (child.pid === undefined) return false;
+  return observeLaunchProcess(child, observeMs);
 }
