@@ -41,10 +41,14 @@ c) src/index.ts:1213-1216 `if (!memoryMgr.isEmpty()) {}` 空块删除
 ### T4 [x] requestId 协议升级（TS+Pascal，防响应串台 P1）
 **完成 01:05，commit 311bd00（TS 侧）+ 1cd57d7（Pascal 侧）**：TS——schema 加可选 requestId、请求体带自增 ID、快照校验不匹配→stale 继续轮询；Pascal——全局 GRequestId（Run 重置 0/从 Params.Values 解析 StrToIntDef）+ WriteResponse 条件回写。**实机端到端验证：request 带 requestId:1 → response.json 回带 "requestId": 1，ping 编译冒烟通过**。踩坑：smoke 跑的是旧 dist（T2/T3 只做了 --noEmit 未重新构建），首次验证响应无 requestId——重建 dist 后通过。教训：改 src 后凡是要实机验证，必须先 tsc 构建。
 
-### T5 [ ] 桥接文件编码统一 UTF-8（Pascal P1，中文环境必修）
-Altium_API.pas:1221 `RequestData.LoadFromFile(REQUEST_FILE)` 与 :1178 `ResponseData.SaveToFile(RESPONSE_FILE)` 单参数重载按系统 ANSI（中文 Windows=GBK）读写，TS 侧是 UTF-8——中文路径/标签/参数过桥即乱码。
-修法：Pascal 侧改 `LoadFromFile(REQUEST_FILE, TEncoding.UTF8)` 与 `SaveToFile(RESPONSE_FILE, TEncoding.UTF8)`（DelphiScript 支持 TEncoding 重载；若不支持则手工读 bytes + UTF8Decode，参考 json_utils.pas 已有做法）。注意 BOM：TS writeFileSync 不带 BOM，LoadFromFile(TEncoding.UTF8) 能读无 BOM UTF-8。
-验证：ping 冒烟 + 用 get_workspace_projects 之类返回确认无乱码；再写一个含中文参数的临时文件读回验证（如 edit_schematic 之外的安全命令）。若其他 .pas 里还有 LoadFromFile/SaveToFile 处理桥接文件的一并改（grep 全目录）。
+### T5 [BLOCKED] 桥接文件编码统一 UTF-8（Pascal P1，中文环境必修）
+**TS 侧已落地（9ed1fe6）**：response/错误片段读取剥离 UTF-8 BOM（防御性，含中文回环与 BOM 两个新测试，194/194）。
+**Pascal 侧 BLOCKED（01:55，34 分钟排查）**。已确认事实：
+1. `TEncoding.UTF8` 重载：该脚本引擎**编译不接受**（弹 Error 对话框，与 B29 同款：编译失败→对话框→后续全部 RunScript 排队超时）
+2. ADODB.Stream 方案（`CreateObject('ADODB.Stream')`，含/不含 `.Type` 两版）**同样触发 Error 对话框**——嫌疑：① Altium 脚本安全机制对 COM 实例化弹确认框（运行期，非编译错）② `Variant` 变量声明/成员访问不被引擎接受 ③ CreateObject 在此引擎不可用（避坑指南裁决说官方库有先例，但未验证本机设置）
+3. 回环验证方法已备好：get_schematic_data 的 include_queries 会原样回显，传 ["components","中文回路验证"] 比对即可
+**恢复 procedures（本夜已实战验证）**：对话框阻塞→PostMessage WM_CLOSE 给标题为 "Error"/"Information" 的窗口即可解除；彻底楔死→杀全部 X2.EXE→下次调用自动冷启动（01:55 验证 SMOKE PASS）。
+**下次尝试前提**：需用户实机看一次 Error 对话框/Messages 面板的具体文案（无人值守只能看到无文本的对话框）。替代方案候选：TS 写请求改 UTF-16LE+BOM（Pascal LoadFromFile 自动识别 BOM，零 Pascal 改动解决请求方向；响应方向仍需 Pascal 写 Unicode，可用 ADODB 或用户确认安全设置后重试）。
 
 ### T6 [ ] add_via / add_text 坐标覆盖修复（Pascal P1）
 pcb_utils.pas add_via（4200-4220）：tenting/testpoint 布尔借用 X1/Y1/X2/Y2 做载体，4202/4206 把已解析的坐标覆写为 1/0，4217 行 `PcbEditAddVia(Board, X1, Y1,...)` 传的是布尔不是坐标。修法：仿 add_track（4104-4108）调用点重解析——在 4217 前重新 `X1 := PcbEditParseFloatAfterKey(RequestData, '"x_mils"', ...)`、Y1 同理；布尔载体改用独立变量（如 TentTop/TentBottom/TP1/TP2 : Integer）。
@@ -97,3 +101,5 @@ c) src/tools/pinTable.ts 若有全量枚举可过滤参数透传则透传（T8 �
 - 23:59 完成 T2（含 T4 TS 侧）：commit 311bd00，全量 192/192 + tsc 干净；launch 测试首版前提错误（函数硬编码 RunScript 参数不能复用测存活分支），抽出 observeLaunchProcess 后解决
 - 00:45 完成 T3：commit f37c9d9，六工具枚举收紧（值全从 Pascal 核实），192/192 + tsc + smoke PASS；枚举核实中顺带确认 open_document 支持 SCHEMATIC/PCB_LIBRARY/PROJECT 别名（OpenDocumentInAltium KindUpper 分支）
 - 01:05 完成 T4（TS+Pascal 全链路实机验证）：commit 311bd00 + 1cd57d7；坑——dist 未重建导致 smoke 用旧服务端，重建后 requestId 回带验证通过
+- 01:55 T5 BLOCKED（Pascal 侧）：TEncoding 与 ADODB.Stream 两方案均触发 Error 对话框（编译失败或 COM 安全弹框），已回退 Pascal 保基线；TS 侧 BOM 剥离已提交（9ed1fe6，194/194）；对话框阻塞处置流程已实战验证并写入 T5 记录；**T6/T7 的 Pascal 改动如再触发对话框，按 T5 记录的 dismiss/kill 流程恢复**
+- 01:57 桥接恢复绿色（SMOKE PASS，冷启动）
