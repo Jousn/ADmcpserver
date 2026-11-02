@@ -42,6 +42,14 @@ export const annotationsOutputGenerate: ToolAnnotations = {
   idempotentHint: true,
 };
 
+/** Mostly-read query with one mutating sub-action (pcb_net_info: info|select) —
+ *  select/deselect changes editor selection state, so NOT read-only. */
+export const annotationsMixedSelect: ToolAnnotations = {
+  readOnlyHint: false,
+  destructiveHint: false,
+  idempotentHint: true,
+};
+
 export const DESCRIPTION_GET_SERVER_STATUS = `
 Purpose: Check MCP + Altium bridge setup.
 Parameters: None.
@@ -519,10 +527,10 @@ Note: hatch_style: ePolyHatch90|ePolyHatch45|ePolyVHatch|ePolyHHatch|ePolyNoHatc
 `.trim();
 
 export const DESCRIPTION_PCB_NET_INFO = `
-Purpose: Get detailed information about a PCB net or select all objects on a net.
+Purpose: Get detailed information about a PCB net, or select all objects on a net. action="select" MUTATES the editor selection state (not a read-only action).
 Parameters:
 - net_name (string, required): name of the net (e.g. "GND", "VCC", "D0")
-- action (string?, optional, default "info"): "info" for net details, "select" to select/highlight all objects on the net
+- action (enum?, optional, default "info"): "info" for net details, "select" to select/highlight all objects on the net
 - select (boolean?, optional, default true): when action="select", true=select, false=deselect
 Returns:
   - action="info": JSON { net_name, item_count, track_count, arc_count, pad_count, via_count, fill_count, polygon_count, region_count, total_copper_length_mils, connection_count, items[] { object_kind, layer, selected } }

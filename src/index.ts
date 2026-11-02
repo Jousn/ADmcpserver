@@ -15,6 +15,7 @@ import { getFileModeCapabilities } from "./fileMode.js";
 import { ALTIUM_MCP_INSTRUCTIONS } from "./mcpInstructions.js";
 import {
   annotationsConfigWrite,
+  annotationsMixedSelect,
   annotationsNodeOnly,
   annotationsPcbWrite,
   annotationsOutputGenerate,
@@ -1210,10 +1211,8 @@ server.registerTool(
           message: `Found ${matches.length} match(es) in memory cache across ${new Set(matches.map(m => m.library_name)).size} library/libraries.`,
         });
       }
-      // If cache has components but no match, still try bridge
-      if (!memoryMgr.isEmpty()) {
-        // Cache exists but no match - try bridge for completeness
-      }
+      // If cache has components but no match, fall through to the bridge below
+      // for completeness.
     } else {
       // Specific library_path given: check if this library is cached
       const cached = memoryMgr.searchBySymbol(symbol_name);
@@ -1455,8 +1454,30 @@ if (ENABLE_PCB_WRITES) {
     "pcb_edit",
     {
       action: z
-        .string()
-        .describe("add_track | add_pad | add_via | add_fill | add_arc | add_text | delete_objects | select_objects | add_region | add_polygon_pour | modify_track | modify_pad | modify_via | modify_text | move_to_layer | assign_net | rebuild_polygons"),
+        .enum([
+          "add_track",
+          "add_pad",
+          "add_via",
+          "add_fill",
+          "add_arc",
+          "add_text",
+          "delete_objects",
+          "select_objects",
+          "add_region",
+          "add_polygon_pour",
+          "modify_track",
+          "modify_pad",
+          "modify_via",
+          "modify_text",
+          "modify_arc",
+          "modify_fill",
+          "modify_region",
+          "modify_polygon",
+          "move_to_layer",
+          "assign_net",
+          "rebuild_polygons",
+        ])
+        .describe("add_track | add_pad | add_via | add_fill | add_arc | add_text | delete_objects | select_objects | add_region | add_polygon_pour | modify_track | modify_pad | modify_via | modify_text | modify_arc | modify_fill | modify_region | modify_polygon | move_to_layer | assign_net | rebuild_polygons (full per-action parameters in the tool description)"),
       x1_mils: z.number().optional().describe("X1 coordinate in mils (add_track, add_fill)"),
       y1_mils: z.number().optional().describe("Y1 coordinate in mils (add_track, add_fill)"),
       x2_mils: z.number().optional().describe("X2 coordinate in mils (add_track, add_fill)"),
@@ -1508,8 +1529,8 @@ registerLiveCommand(
   "open_document",
   {
     document_kind: z
-      .string()
-      .describe("SCH | PCB | PCBLIB | TEXT | PRJPCB"),
+      .enum(["SCH", "SCHEMATIC", "PCB", "PCBLIB", "PCB_LIBRARY", "TEXT", "PRJPCB", "PROJECT"])
+      .describe("SCH | PCB | PCBLIB | TEXT | PRJPCB (aliases: SCHEMATIC, PCB_LIBRARY, PROJECT; default SCH when omitted server-side)"),
     file_path: z
       .string()
       .describe("Absolute path to the document file"),
@@ -1524,7 +1545,7 @@ registerLiveCommand(
   "zoom_view",
   {
     zoom_action: z
-      .string()
+      .enum(["all", "fit", "redraw", "refresh", "in", "out"])
       .optional()
       .describe("all | fit | redraw | refresh | in | out (default: redraw)"),
   },
@@ -1540,8 +1561,23 @@ if (ENABLE_PCB_WRITES) {
     "pcb_component",
     {
       action: z
-        .string()
-        .describe("rotate | flip | select | get_properties | set_height | set_moveable | set_name_visibility | set_comment_visibility | set_autoposition | get_3d_bodies | set_lock_strings"),
+        .enum([
+          "rotate",
+          "flip",
+          "select",
+          "get_properties",
+          "set_height",
+          "set_moveable",
+          "set_name_visibility",
+          "set_comment_visibility",
+          "set_autoposition",
+          "get_3d_bodies",
+          "set_lock_strings",
+          "set_primitive_lock",
+          "set_component_kind",
+          "set_3d_body",
+        ])
+        .describe("rotate | flip | select | get_properties | set_height | set_moveable | set_name_visibility | set_comment_visibility | set_autoposition | get_3d_bodies | set_lock_strings | set_primitive_lock | set_component_kind | set_3d_body"),
       designator: z
         .string()
         .describe("Component reference designator (e.g. U1, R3)"),
@@ -1623,15 +1659,15 @@ registerLiveCommand(
       .string()
       .describe("Net name (e.g. GND, VCC, D0)"),
     action: z
-      .string()
+      .enum(["info", "select"])
       .optional()
-      .describe("info (default) | select"),
+      .describe("info (default) | select — select MUTATES the editor selection state"),
     select: z
       .boolean()
       .optional()
       .describe("When action=select: true=select (default), false=deselect"),
   },
-  annotationsReadOnlyLive,
+  annotationsMixedSelect,
 );
 
 // Overlap report — scan board for overlaps and out-of-board components
@@ -1652,7 +1688,7 @@ registerLiveCommand(
   "generate_report",
   {
     report_type: z
-      .string()
+      .enum(["netlist", "bom", "component_cross_reference", "project_statuses", "report_project"])
       .optional()
       .describe("netlist (default) | bom | component_cross_reference | project_statuses | report_project"),
   },
