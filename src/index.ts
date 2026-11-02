@@ -1091,6 +1091,12 @@ registerLiveCommand(
 // Library operations
 // ---------------------------------------------------------------------------
 
+// T10: token guard — library listings can be huge; cap what reaches the model.
+function applyLimit<T>(items: T[] | undefined, limit: number): { items: T[]; total: number; truncated: boolean } {
+  const arr = Array.isArray(items) ? items : [];
+  return { items: arr.slice(0, limit), total: arr.length, truncated: arr.length > limit };
+}
+
 server.registerTool(
   "get_library_symbol_reference",
   {
@@ -1104,18 +1110,33 @@ server.registerTool(
         .describe(
           "Absolute path to a .SchLib file. If omitted, searches all .SchLib files in the focused project, then falls back to memory cache.",
         ),
+      limit: z
+        .number()
+        .int()
+        .min(1)
+        .max(200)
+        .optional()
+        .describe("Max components returned (default 50, max 200) — large libraries are truncated; raise the limit only when needed."),
     },
   },
-  async ({ library_path }) => {
+  async ({ library_path, limit: limitArg }) => {
+    const limit = limitArg ?? 50;
     // 1. Try Altium bridge first (real-time data with pin info)
     const r = await bridge.executeCommand("get_library_symbol_reference", {
       ...(library_path ? { library_path } : {}),
     });
 
-    // 2. If bridge returned components, return them
+    // 2. If bridge returned components, return them (capped)
     if (r.success && r.result) {
-      const data = r.result as { component_count?: number };
+      const data = r.result as { component_count?: number; components?: unknown[] };
       if (data.component_count && data.component_count > 0) {
+        const { items, total, truncated } = applyLimit(data.components, limit);
+        if (truncated) {
+          return jsonResult({
+            ...(r as unknown as Record<string, unknown>),
+            result: { ...(data as Record<string, unknown>), components: items, total, truncated, returned: items.length },
+          });
+        }
         return jsonResult(r);
       }
     }
@@ -1169,12 +1190,16 @@ server.registerTool(
     }
 
     if (cachedComponents.length > 0) {
+      const { items, total, truncated } = applyLimit(cachedComponents, limit);
       return jsonResult({
         success: true,
-        component_count: cachedComponents.length,
-        components: cachedComponents,
+        component_count: total,
+        components: items,
+        total,
+        truncated,
+        returned: items.length,
         source: "memory_cache",
-        message: `Retrieved ${cachedComponents.length} component(s) from memory cache (Altium bridge returned 0). Pin details not available in cached mode.`,
+        message: `Retrieved ${items.length} of ${total} component(s) from memory cache (Altium bridge returned 0). Pin details not available in cached mode.${truncated ? " TRUNCATED — raise limit if needed." : ""}`,
       });
     }
 
@@ -1193,22 +1218,40 @@ server.registerTool(
     inputSchema: {
       symbol_name: z
         .string()
-        .describe("Symbol name or partial name to search for, e.g. \"Resistor\""),
+        .describe("Symbol name or partial name to search for, e.g. \"Resistor\" (min 2 chars — single-char queries match too much)"),
       library_path: z
         .string()
         .optional()
         .describe(
           "Absolute path to a .SchLib file. If omitted: (1) searches all .SchLib files in the focused project automatically, (2) if no project is focused, checks if a .SchLib is already open. Does NOT show a file dialog.",
         ),
+      limit: z
+        .number()
+        .int()
+        .min(1)
+        .max(200)
+        .optional()
+        .describe("Max matches returned (default 50, max 200) — truncated results carry total/truncated flags."),
     },
   },
-  async ({ symbol_name, library_path }) => {
+  async ({ symbol_name, library_path, limit: limitArg }) => {
+    const limit = limitArg ?? 50;
+    // T10: token guard — single-char queries match thousands of symbols.
+    if (symbol_name.trim().length < 2) {
+      return jsonResult({
+        found: false,
+        match_count: 0,
+        matches: [],
+        error: "QUERY_TOO_SHORT",
+        message: "symbol_name needs at least 2 characters (a single char matches too many symbols).",
+      });
+    }
     // 1. Check memory cache first (only when no specific library_path is given)
     if (!library_path) {
       const cached = memoryMgr.searchBySymbol(symbol_name);
       if (cached.found) {
         // Return with library-level distinction
-        const matches = cached.matches.map((c) => ({
+        const all = cached.matches.map((c) => ({
           name: c.lib_reference,
           description: c.description,
           footprint: c.footprint,
@@ -1217,13 +1260,16 @@ server.registerTool(
           project_name: c.projectName,
           cached: true,
         }));
+        const { items, total, truncated } = applyLimit(all, limit);
         return jsonResult({
           found: true,
-          match_count: matches.length,
-          matches,
+          match_count: total,
+          matches: items,
+          total,
+          truncated,
           cache_hit: true,
           total_cached_symbols: cached.total_cached,
-          message: `Found ${matches.length} match(es) in memory cache across ${new Set(matches.map(m => m.library_name)).size} library/libraries.`,
+          message: `Found ${total} match(es) in memory cache across ${new Set(all.map(m => m.library_name)).size} library/libraries.${truncated ? ` Showing first ${items.length} — refine the query or raise limit.` : ""}`,
         });
       }
       // If cache has components but no match, fall through to the bridge below
@@ -1236,7 +1282,7 @@ server.registerTool(
           (c) => c.libraryPath.toLowerCase() === library_path.toLowerCase(),
         );
         if (filtered.length > 0) {
-          const matches = filtered.map((c) => ({
+          const all = filtered.map((c) => ({
             name: c.lib_reference,
             description: c.description,
             footprint: c.footprint,
@@ -1245,23 +1291,38 @@ server.registerTool(
             project_name: c.projectName,
             cached: true,
           }));
+          const { items, total, truncated } = applyLimit(all, limit);
           return jsonResult({
             found: true,
-            match_count: matches.length,
-            matches,
+            match_count: total,
+            matches: items,
+            total,
+            truncated,
             cache_hit: true,
             total_cached_symbols: cached.total_cached,
-            message: `Found ${matches.length} match(es) in cached library ${filtered[0].libraryName}.`,
+            message: `Found ${total} match(es) in cached library ${filtered[0].libraryName}.${truncated ? ` Showing first ${items.length}.` : ""}`,
           });
         }
       }
     }
 
-    // 2. Fall back to Altium bridge
+    // 2. Fall back to Altium bridge (cap the payload client-side)
     const r = await bridge.executeCommand("search_library_symbol", {
       symbol_name,
       ...(library_path ? { library_path } : {}),
     });
+    if (r.success && r.result) {
+      const data = r.result as { matches?: unknown[]; match_count?: number };
+      if (Array.isArray(data.matches)) {
+        const { items, total, truncated } = applyLimit(data.matches, limit);
+        if (truncated) {
+          return jsonResult({
+            ...(r as unknown as Record<string, unknown>),
+            result: { ...(data as Record<string, unknown>), matches: items, total, truncated, returned: items.length },
+          });
+        }
+      }
+    }
     return jsonResult(r);
   },
 );
