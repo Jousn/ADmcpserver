@@ -78,7 +78,8 @@ other_utils.pas:553-561：GeneratedFiles 分支补 `DisableDialog=True`（Publis
 在 package.json scripts 加 `"gate:pascal": "node scripts/pascal-gate.cjs"`；对现有代码跑一遍，存量违例只报告不阻塞（加 `--strict` 才阻塞），新改动用 diff 行判断。
 测试：构造含违例的临时 .pas 样例断言能抓到。
 
-### T10 [ ] Token 经济瘦身（TS）
+### T10 [x] Token 经济瘦身（TS）
+**完成 03:58，commit e4c71a3**：a) instructions 29,434 → **7,932 字符**（-73%，远超 ≤12,000 目标）——删除与 DESCRIPTION_PCB_EDIT 重复的 PCB 图元 A-H 段、flags 矩阵、库工具三段使用指南；保留硬规则/错误表（新增 STALE_RESPONSE、SCHEMATIC_NOT_IN_OPEN_PROJECTS、Unknown command 三行）/四阶段工作流/R0-R6 布线纪律/连接性硬门禁/记忆协议精简版。b) 库查询限流——get_library_symbol_reference 与 search_library_symbol 加 limit（默认 50 上限 200）+ total/truncated/returned 标记 + symbol_name 最小 2 字符（查 "C" 灌数千条的坑封堵），桥接路径客户端截断。c) pinTable 透传未做（T8 批量命令已覆盖该需求）。200/200 + tsc + smoke PASS。
 a) src/mcpInstructions.ts（29,404 字符 → 目标 ≤12,000）：保留「核心规则/错误处理/工作流 STAGE 索引/记忆协议精简版」，删除与工具描述重复的操作细节（Pad 工作流、flags matrix 等只留一处——细节留在对应工具描述里）。逐段删，删完跑全量测试（有的测试可能断言 instructions 内容，按需改）。
 b) src/index.ts get_library_symbol_reference（约 1100 行）/ search_library_symbol（约 1195 行）：加 `limit`（默认 50，max 200）与最小查询长度 2（symbol_name 子串匹配查 "C" 灌数千条的坑）；返回加 total 与 truncated 标记。
 c) src/tools/pinTable.ts 若有全量枚举可过滤参数透传则透传（T8 若已完成可复用批量思路，不强求）。
@@ -112,3 +113,4 @@ c) src/tools/pinTable.ts 若有全量枚举可过滤参数透传则透传（T8 �
 - 02:10 完成 T7：commit 598110d，RunOutputJobs nil 判空 + DisableDialog，ping 冒烟通过，194/194
 - 03:12 完成 T8：commit f9e718a，批量 pin 热点实机验证通过（1738ms 全表 vs 旧路径单元件 1372ms，完全一致）；环境坑记录：磁盘 PrjPcb 缺 Sheet1/3 成员（已列入待用户决策）
 - 03:18 完成 T9：commit d7f17be，pascal-gate 四规则门禁 + 基线 14 违例报告（与审查交叉验证一致），200/200
+- 03:58 完成 T10：commit e4c71a3，instructions -73% + 库查询限流，200/200 + smoke PASS；夜间任务全部收官（T5 BLOCKED 待用户）
