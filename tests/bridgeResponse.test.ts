@@ -90,4 +90,31 @@ describe("readBridgeResponseSnapshot (poll-again semantics)", () => {
       rmSync(dir, { recursive: true, force: true });
     }
   });
+
+  it("UTF-8 BOM (Pascal TEncoding.UTF8 emits one) is stripped before JSON.parse", () => {
+    const dir = tempDir();
+    try {
+      const p = join(dir, "response.json");
+      writeFileSync(p, "\uFEFF" + JSON.stringify({ success: true, result: {} }), "utf8");
+      const snap = readBridgeResponseSnapshot(p);
+      expect(snap.state).toBe("ok");
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it("Chinese content survives a UTF-8 round trip without mojibake", () => {
+    const dir = tempDir();
+    try {
+      const p = join(dir, "response.json");
+      writeFileSync(p, JSON.stringify({ success: true, result: { echo: "共模电感测试" } }), "utf8");
+      const snap = readBridgeResponseSnapshot(p);
+      expect(snap.state).toBe("ok");
+      if (snap.state === "ok") {
+        expect((snap.response.result as { echo: string }).echo).toBe("共模电感测试");
+      }
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
 });

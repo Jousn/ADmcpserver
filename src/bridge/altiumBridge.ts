@@ -42,7 +42,10 @@ export function readBridgeResponseSnapshot(
   if (!existsSync(responsePath)) return { state: "not-ready", kind: "no-file" };
   let parsed: unknown;
   try {
-    parsed = JSON.parse(readFileSync(responsePath, "utf8")) as unknown;
+    // Strip a leading BOM before JSON.parse — Node's JSON.parse rejects it and
+    // some Pascal-side writers may emit one.
+    const raw = readFileSync(responsePath, "utf8").replace(/^\uFEFF/, "");
+    parsed = JSON.parse(raw) as unknown;
   } catch {
     // Half-written or concurrently-truncated file — keep polling.
     return { state: "not-ready", kind: "parse" };
@@ -76,7 +79,8 @@ function readWorkspaceTextSnippet(
   const p = join(workspaceRoot, fileName);
   if (!existsSync(p)) return null;
   try {
-    const s = readFileSync(p, "utf8").trim();
+    // Strip a leading BOM — Pascal now writes UTF-8 (T5) which may carry one.
+    const s = readFileSync(p, "utf8").replace(/^\uFEFF/, "").trim();
     if (!s) return null;
     return s.length > maxChars ? `${s.slice(0, maxChars)}\n...(truncated)` : s;
   } catch {
