@@ -38,8 +38,8 @@ b) src/index.ts pcb_net_info（约 1616 行）：`action=select` 会改选择状
 c) src/index.ts:1213-1216 `if (!memoryMgr.isEmpty()) {}` 空块删除
 每处改动跑全量测试；schema 收紧可能打破现有测试的用例按新枚举修正。
 
-### T4 [ ] requestId 协议升级（TS+Pascal，防响应串台 P1）
-**TS 侧已随 T2 提交完成（311bd00）**：BridgeResponseSchema 加可选 requestId、请求体带自增 requestId、快照校验不匹配→stale 继续轮询。本任务剩余：Pascal Altium_API.pas Run（约 1186 行起）从 RequestData 解析 `"requestId"`，WriteResponse 时原样回写进响应 JSON（WriteResponse 签名加参数或全局变量传递；注意 WriteResponse 的多个调用点，grep 全部）。验证：ping 冒烟（证明 Pascal 编译过）+ 手工改 request.json 加 requestId 观察 response.json 回带。
+### T4 [x] requestId 协议升级（TS+Pascal，防响应串台 P1）
+**完成 01:05，commit 311bd00（TS 侧）+ 1cd57d7（Pascal 侧）**：TS——schema 加可选 requestId、请求体带自增 ID、快照校验不匹配→stale 继续轮询；Pascal——全局 GRequestId（Run 重置 0/从 Params.Values 解析 StrToIntDef）+ WriteResponse 条件回写。**实机端到端验证：request 带 requestId:1 → response.json 回带 "requestId": 1，ping 编译冒烟通过**。踩坑：smoke 跑的是旧 dist（T2/T3 只做了 --noEmit 未重新构建），首次验证响应无 requestId——重建 dist 后通过。教训：改 src 后凡是要实机验证，必须先 tsc 构建。
 
 ### T5 [ ] 桥接文件编码统一 UTF-8（Pascal P1，中文环境必修）
 Altium_API.pas:1221 `RequestData.LoadFromFile(REQUEST_FILE)` 与 :1178 `ResponseData.SaveToFile(RESPONSE_FILE)` 单参数重载按系统 ANSI（中文 Windows=GBK）读写，TS 侧是 UTF-8——中文路径/标签/参数过桥即乱码。
@@ -96,3 +96,4 @@ c) src/tools/pinTable.ts 若有全量枚举可过滤参数透传则透传（T8 �
 - 23:08 备份完成（backup/altium-mcp-dev-20261102-2308.bundle + src zip，verify okay）；T1 由启动实例完成
 - 23:59 完成 T2（含 T4 TS 侧）：commit 311bd00，全量 192/192 + tsc 干净；launch 测试首版前提错误（函数硬编码 RunScript 参数不能复用测存活分支），抽出 observeLaunchProcess 后解决
 - 00:45 完成 T3：commit f37c9d9，六工具枚举收紧（值全从 Pascal 核实），192/192 + tsc + smoke PASS；枚举核实中顺带确认 open_document 支持 SCHEMATIC/PCB_LIBRARY/PROJECT 别名（OpenDocumentInAltium KindUpper 分支）
+- 01:05 完成 T4（TS+Pascal 全链路实机验证）：commit 311bd00 + 1cd57d7；坑——dist 未重建导致 smoke 用旧服务端，重建后 requestId 回带验证通过
