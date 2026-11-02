@@ -50,12 +50,14 @@ c) src/index.ts:1213-1216 `if (!memoryMgr.isEmpty()) {}` 空块删除
 **恢复 procedures（本夜已实战验证）**：对话框阻塞→PostMessage WM_CLOSE 给标题为 "Error"/"Information" 的窗口即可解除；彻底楔死→杀全部 X2.EXE→下次调用自动冷启动（01:55 验证 SMOKE PASS）。
 **下次尝试前提**：需用户实机看一次 Error 对话框/Messages 面板的具体文案（无人值守只能看到无文本的对话框）。替代方案候选：TS 写请求改 UTF-16LE+BOM（Pascal LoadFromFile 自动识别 BOM，零 Pascal 改动解决请求方向；响应方向仍需 Pascal 写 Unicode，可用 ADODB 或用户确认安全设置后重试）。
 
-### T6 [ ] add_via / add_text 坐标覆盖修复（Pascal P1）
+### T6 [x] add_via / add_text 坐标覆盖修复（Pascal P1）
+**完成 02:03，commit 00cbc4c**：add_via——tenting_top/bottom 载体从 X1/Y1 改为 XC/YC（testpoint 的 X2/Y2 不动），X/Y 坐标调用点重解析（仿 add_track 4104-4108 范式，注释同步）；add_text——italic 载体从 Y1 改为 XC，Y 调用点重解析。映射对照 PcbEditAddVia/PcbEditAddText 16 参签名逐一核验（TentingTop/Top/Bot/Bot ← X2/Y2/XC/YC；UseTTF/UseBold/UseItalic ← UseX1/UseY1/UseX2 语义原本即正确）。ping 编译冒烟通过；全量 194/194 + tsc。功能级读回验证未做（无按坐标查 via 的只读命令，留待实机使用时观察）。
 pcb_utils.pas add_via（4200-4220）：tenting/testpoint 布尔借用 X1/Y1/X2/Y2 做载体，4202/4206 把已解析的坐标覆写为 1/0，4217 行 `PcbEditAddVia(Board, X1, Y1,...)` 传的是布尔不是坐标。修法：仿 add_track（4104-4108）调用点重解析——在 4217 前重新 `X1 := PcbEditParseFloatAfterKey(RequestData, '"x_mils"', ...)`、Y1 同理；布尔载体改用独立变量（如 TentTop/TentBottom/TP1/TP2 : Integer）。
 pcb_utils.pas add_text（4285-4313）：4311 `Y1 := 1`（italic 载体）覆盖 y 坐标，同法修复。
 验证：ping 冒烟；功能级（可选，若桥接可用）：对测试 PCB add_via 后用 pcb_component/pcb_net_info 类 read-only 命令读回位置核对（**不保存**）。
 
-### T7 [ ] RunOutputJobs nil 崩溃 + 弹框风险（Pascal）
+### T7 [x] RunOutputJobs nil 崩溃 + 弹框风险（Pascal）
+**完成 02:10，commit 598110d**：OpenDocument/GetDocumentByPath 返回 nil 时先判空再 Focus（修复必然 AV）；GeneratedFiles 分支补 DisableDialog=True 对齐 Publish 分支。保留说明：两分支的 "Assume success" 假设未动——RunProcess 无返回值可查，真实结果校验需枚举输出目录，属语义级改动超出夜间范围（与 Publish 分支行为一致）。ping 冒烟通过；194/194 + tsc。
 other_utils.pas:496-506：`Client.OpenDocument` 返回 nil 时先 `.Focus()` 后判 nil——把 nil 判断移到 Focus 之前，nil 时返回明确错误串。
 other_utils.pas:553-561：GeneratedFiles 分支补 `DisableDialog=True`（Publish 分支 575 行有先例），去掉 "Assume success" 假设、按实际结果返回。
 验证：ping 冒烟。
@@ -103,3 +105,5 @@ c) src/tools/pinTable.ts 若有全量枚举可过滤参数透传则透传（T8 �
 - 01:05 完成 T4（TS+Pascal 全链路实机验证）：commit 311bd00 + 1cd57d7；坑——dist 未重建导致 smoke 用旧服务端，重建后 requestId 回带验证通过
 - 01:55 T5 BLOCKED（Pascal 侧）：TEncoding 与 ADODB.Stream 两方案均触发 Error 对话框（编译失败或 COM 安全弹框），已回退 Pascal 保基线；TS 侧 BOM 剥离已提交（9ed1fe6，194/194）；对话框阻塞处置流程已实战验证并写入 T5 记录；**T6/T7 的 Pascal 改动如再触发对话框，按 T5 记录的 dismiss/kill 流程恢复**
 - 01:57 桥接恢复绿色（SMOKE PASS，冷启动）
+- 02:03 完成 T6：commit 00cbc4c，add_via/add_text 坐标覆盖修复（载体 XC/YC + 调用点重解析），ping 冒烟通过，194/194
+- 02:10 完成 T7：commit 598110d，RunOutputJobs nil 判空 + DisableDialog，ping 冒烟通过，194/194
