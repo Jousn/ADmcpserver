@@ -2202,3 +2202,137 @@ begin
         PinsArray.Free;
     end;
 end;
+
+{ T8: batch pin hotspots — ONE bridge round trip for ALL components' pins.
+  Used by the TS audit fetcher (check_connectivity / analyze_schematic_quality /
+  emc_audit / wire_pins warm-up) to replace the per-component get_component_info
+  loop (N round trips). Same hotspot math as SchEditGetComponentInfo:
+  electrical hotspot = pin body-end offset by PinLength along orientation.
+  RequestData: optional sheet scoping (project_full_path / schematic_full_path /
+  schematic_sheet_file_name) + optional "designators" array filter. }
+function SchEditGetAllPinHotspots(RequestData: TStringList): String;
+var
+    ProjectFullPath, SchematicFullPath, SheetFilter, SheetPath: String;
+    Err: String;
+    SchDoc: ISch_Document;
+    CompIter: ISch_Iterator;
+    Comp: ISch_Component;
+    PinIter: ISch_Iterator;
+    Pin: ISch_Pin;
+    FilterList: TStringList;
+    CompsArray: TStringList;
+    CompProps: TStringList;
+    PinsArray: TStringList;
+    PinProps: TStringList;
+    ResultProps: TStringList;
+    PinHotX, PinHotY: Integer;
+    PinCount, CompCount: Integer;
+    DesigStr: String;
+    Include: Boolean;
+    I: Integer;
+begin
+    Result := '';
+
+    ProjectFullPath := SchEditParseStringAfterKey(RequestData, '"project_full_path"');
+    SchematicFullPath := SchEditParseStringAfterKey(RequestData, '"schematic_full_path"');
+    SheetFilter := SchEditParseStringAfterKey(RequestData, '"schematic_sheet_file_name"');
+
+    Err := SchEditResolveSheet(ProjectFullPath, SchematicFullPath, SheetFilter, SheetPath, SchDoc);
+    if Err <> '' then
+    begin
+        Result := Err;
+        Exit;
+    end;
+
+    // Optional designator filter (exact, case-insensitive).
+    FilterList := TStringList.Create;
+    SchEditParseStringArray(RequestData, '"designators"', FilterList);
+
+    CompsArray := TStringList.Create;
+    CompCount := 0;
+
+    try
+        CompIter := SchDoc.SchIterator_Create;
+        CompIter.AddFilter_ObjectSet(MkSet(eSchComponent));
+        Comp := CompIter.FirstSchObject;
+        while Comp <> nil do
+        begin
+            DesigStr := Comp.Designator.Text;
+            Include := FilterList.Count = 0;
+            if not Include then
+            begin
+                for I := 0 to FilterList.Count - 1 do
+                begin
+                    if AnsiCompareText(Trim(FilterList[I]), Trim(DesigStr)) = 0 then
+                    begin
+                        Include := True;
+                        Break;
+                    end;
+                end;
+            end;
+
+            if Include then
+            begin
+                CompProps := TStringList.Create;
+                PinsArray := TStringList.Create;
+                try
+                    AddJSONProperty(CompProps, 'designator', DesigStr);
+                    PinCount := 0;
+                    PinIter := Comp.SchIterator_Create;
+                    PinIter.AddFilter_ObjectSet(MkSet(ePin));
+                    Pin := PinIter.FirstSchObject;
+                    while Pin <> nil do
+                    begin
+                        PinProps := TStringList.Create;
+                        try
+                            PinHotX := Pin.Location.X;
+                            PinHotY := Pin.Location.Y;
+                            case Pin.Orientation of
+                                eRotate0:   PinHotX := PinHotX + Pin.PinLength;
+                                eRotate90:  PinHotY := PinHotY + Pin.PinLength;
+                                eRotate180: PinHotX := PinHotX - Pin.PinLength;
+                                eRotate270: PinHotY := PinHotY - Pin.PinLength;
+                            end;
+                            AddJSONProperty(PinProps, 'name', Pin.Name);
+                            AddJSONProperty(PinProps, 'designator', Pin.Designator);
+                            AddJSONBoolean(PinProps, 'is_hidden', Pin.IsHidden);
+                            AddJSONNumber(PinProps, 'x_mils', CoordToMils(PinHotX));
+                            AddJSONNumber(PinProps, 'y_mils', CoordToMils(PinHotY));
+                            PinsArray.Add(BuildJSONObject(PinProps, 1));
+                        finally
+                            PinProps.Free;
+                        end;
+                        PinCount := PinCount + 1;
+                        Pin := PinIter.NextSchObject;
+                    end;
+                    Comp.SchIterator_Destroy(PinIter);
+
+                    AddJSONInteger(CompProps, 'pin_count', PinCount);
+                    CompProps.Add(BuildJSONArray(PinsArray, 'pins', 1));
+                    CompsArray.Add(BuildJSONObject(CompProps, 1));
+                    CompCount := CompCount + 1;
+                finally
+                    CompProps.Free;
+                    PinsArray.Free;
+                end;
+            end;
+
+            Comp := CompIter.NextSchObject;
+        end;
+        SchDoc.SchIterator_Destroy(CompIter);
+
+        ResultProps := TStringList.Create;
+        try
+            AddJSONBoolean(ResultProps, 'success', True);
+            AddJSONProperty(ResultProps, 'sheet', SheetPath);
+            AddJSONInteger(ResultProps, 'component_count', CompCount);
+            ResultProps.Add(BuildJSONArray(CompsArray, 'components', 1));
+            Result := BuildJSONObject(ResultProps);
+        finally
+            ResultProps.Free;
+        end;
+    finally
+        CompsArray.Free;
+        FilterList.Free;
+    end;
+end;

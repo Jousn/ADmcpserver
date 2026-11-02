@@ -29,6 +29,7 @@ import {
   DESCRIPTION_FILE_MODE_CAPABILITIES,
   DESCRIPTION_GET_ALL_DESIGNATORS,
   DESCRIPTION_GET_ALL_NETS,
+  DESCRIPTION_GET_ALL_PIN_HOTSPOTS,
   DESCRIPTION_GET_COMPONENT_PINS,
   DESCRIPTION_GET_LIBRARY_SYMBOL_REFERENCE,
   DESCRIPTION_GET_OUTPUT_JOB_CONTAINERS,
@@ -870,6 +871,20 @@ registerLiveCommand(
   DESCRIPTION_GET_ALL_NETS,
   "get_all_nets",
   {},
+  annotationsReadOnlyLive,
+);
+
+registerLiveCommand(
+  "get_all_pin_hotspots",
+  "Batch schematic pin hotspots (one round trip)",
+  DESCRIPTION_GET_ALL_PIN_HOTSPOTS,
+  "get_all_pin_hotspots",
+  {
+    schematic_full_path: z.string().optional().describe("Absolute path to one .SchDoc."),
+    project_full_path: z.string().optional().describe("Absolute path to an open .PrjPcb."),
+    schematic_sheet_file_name: z.string().optional().describe("Sheet file name, e.g. Sheet1.SchDoc."),
+    designators: z.array(z.string()).optional().describe("Optional filter — only these components."),
+  },
   annotationsReadOnlyLive,
 );
 

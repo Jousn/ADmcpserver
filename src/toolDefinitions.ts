@@ -115,6 +115,15 @@ Parameters (all optional, same sheet scoping as get_schematic_data):
 Returns: { data_source, sheet_summary, current { actual_wires, estimated }, hypothetical? { estimated, delta }, rotation_suggestions[], notes[] }. Score = 10*crossings + bends + 3*obstacle_hits + length/100 (lower is better). Applying a suggestion: edit_schematic set_component_transform -> get_component_info (NEW pin coords) -> rewire -> check_connectivity.
 `.trim();
 
+export const DESCRIPTION_GET_ALL_PIN_HOTSPOTS = `
+Purpose: Batch pin hotspots for ALL components on one schematic sheet in ONE bridge round trip (T8) — the fast input for wiring planning and the audit fetcher (check_connectivity / analyze_schematic_quality / emc_audit). Equivalent to running get_component_info per component, but a single call.
+Parameters (all optional, same sheet scoping as get_schematic_data):
+- schematic_full_path | project_full_path + schematic_sheet_file_name
+- designators: string[] (optional filter — only these components)
+Returns: { success, sheet, component_count, components[] { designator, pin_count, pins[] { name, designator, is_hidden, x_mils, y_mils } } }.
+Note: hotspot = pin body-end offset by PinLength along orientation (same math as get_component_info). Hidden power pins included (is_hidden=true).
+`.trim();
+
 export const DESCRIPTION_EMC_AUDIT = `
 Purpose: DETERMINISTIC schematic-side EMC rule audit (L1 of the EMC×AI plan). Every verdict is computed by plain code over the compiled netlist + component parameters (Value/Description) — no LLM decides a verdict; use the report to drive remediation advice. Run AFTER compile_project so net membership is authoritative.
 Rule families (12 rules, v1):

@@ -1060,6 +1060,8 @@ begin
             Result := GetWorkspaceOverview(ROOT_DIR);
         'ping':
             Result := '{"protocolVersion":1,"pong":true}';
+        'get_all_pin_hotspots':
+            Result := SchEditGetAllPinHotspots(RequestData);
         'pcb_edit':
             if ENABLE_PCB_WRITES then
                 Result := PcbEditMain(RequestData)

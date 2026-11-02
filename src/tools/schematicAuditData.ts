@@ -117,22 +117,73 @@ export async function fetchSchematicAuditData(
     componentParameters[c.designator] = params;
   }
 
-  // Per-component pin hotspots (sequential — bridge is lock-serialized anyway).
+  // Per-component pin hotspots. T8: prefer ONE batch round trip
+  // (get_all_pin_hotspots); fall back to the legacy per-component
+  // get_component_info loop when the batch command is unavailable
+  // (older deployed Altium scripts) or fails.
   const pins: AuditPin[] = [];
-  for (const comp of components) {
-    const infoResp = await bridge.executeCommand(
-      "schematic_edit",
-      { action: "get_component_info", designator: comp.designator, ...sheet },
-      { timeoutMs: 240_000 },
-    );
-    if (!infoResp.success) {
-      throw new Error(
-        `get_component_info failed for ${comp.designator}: ${String(infoResp.error ?? "unknown")}`,
-      );
+  let batchOk = false;
+  const batchResp = await bridge.executeCommand(
+    "get_all_pin_hotspots",
+    { ...sheet },
+    { timeoutMs: 240_000 },
+  );
+  if (batchResp.success) {
+    const batch = (batchResp.result ?? {}) as {
+      components?: Array<{
+        designator?: string;
+        pins?: Array<{
+          designator?: string;
+          name?: string;
+          x_mils?: number;
+          y_mils?: number;
+          is_hidden?: boolean;
+        }>;
+      }>;
+    };
+    batchOk = Array.isArray(batch.components);
+    if (batchOk) {
+      for (const comp of batch.components ?? []) {
+        if (typeof comp.designator !== "string") continue;
+        for (const p of comp.pins ?? []) {
+          if (typeof p.x_mils !== "number" || typeof p.y_mils !== "number") continue;
+          pins.push({
+            designator: comp.designator,
+            pinDesignator: String(p.designator ?? p.name ?? "?"),
+            pinName: String(p.name ?? ""),
+            x: p.x_mils,
+            y: p.y_mils,
+            isHidden: p.is_hidden === true,
+          });
+        }
+      }
     }
-    const info = (infoResp.result ?? {}) as {
-      // Bridge wraps the payload: { action, sheet, details: { pins } }.
-      details?: {
+  }
+
+  if (!batchOk) {
+    // Legacy path: sequential per-component round trips.
+    for (const comp of components) {
+      const infoResp = await bridge.executeCommand(
+        "schematic_edit",
+        { action: "get_component_info", designator: comp.designator, ...sheet },
+        { timeoutMs: 240_000 },
+      );
+      if (!infoResp.success) {
+        throw new Error(
+          `get_component_info failed for ${comp.designator}: ${String(infoResp.error ?? "unknown")}`,
+        );
+      }
+      const info = (infoResp.result ?? {}) as {
+        // Bridge wraps the payload: { action, sheet, details: { pins } }.
+        details?: {
+          pins?: Array<{
+            designator?: string;
+            name?: string;
+            x_mils?: number;
+            y_mils?: number;
+            is_hidden?: boolean;
+          }>;
+        };
         pins?: Array<{
           designator?: string;
           name?: string;
@@ -141,25 +192,18 @@ export async function fetchSchematicAuditData(
           is_hidden?: boolean;
         }>;
       };
-      pins?: Array<{
-        designator?: string;
-        name?: string;
-        x_mils?: number;
-        y_mils?: number;
-        is_hidden?: boolean;
-      }>;
-    };
-    const pinRows = info.details?.pins ?? info.pins ?? [];
-    for (const p of pinRows) {
-      if (typeof p.x_mils !== "number" || typeof p.y_mils !== "number") continue;
-      pins.push({
-        designator: comp.designator,
-        pinDesignator: String(p.designator ?? p.name ?? "?"),
-        pinName: String(p.name ?? ""),
-        x: p.x_mils,
-        y: p.y_mils,
-        isHidden: p.is_hidden === true,
-      });
+      const pinRows = info.details?.pins ?? info.pins ?? [];
+      for (const p of pinRows) {
+        if (typeof p.x_mils !== "number" || typeof p.y_mils !== "number") continue;
+        pins.push({
+          designator: comp.designator,
+          pinDesignator: String(p.designator ?? p.name ?? "?"),
+          pinName: String(p.name ?? ""),
+          x: p.x_mils,
+          y: p.y_mils,
+          isHidden: p.is_hidden === true,
+        });
+      }
     }
   }
 
