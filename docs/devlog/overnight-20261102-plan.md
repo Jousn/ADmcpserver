@@ -67,7 +67,9 @@ other_utils.pas:553-561：GeneratedFiles 分支补 `DisableDialog=True`（Publis
 **实机验证（Sheet2，4 元件 8 引脚）**：批量 1 次往返 1738ms 全表 vs 旧路径单元件 1372ms（N 倍放大）——引脚坐标/名称/隐藏位与旧路径完全一致。100+ 元件图纸预估：wire_pins 单次操作从 ~140s 级降到 ~2s 级。
 **环境坑（与 T8 代码无关，已记录待用户处理）**：① 磁盘 PrjPcb 是 8-31 旧文件，只含 Sheet2+PCB2——9 月会话加进工程的 Sheet1/Sheet3 从未保存工程文件，冷启动后 DM 层枚举为 0（记忆里"库枚举归零先查 PrjPcb"的实锤）；② 本次用 add_document_to_project 注入 Sheet2 成员（内存态，未保存）；③ 独立脚本直连桥接时 launch 观察定时器 unref 会让进程提前退出——脚本需自备 keepAlive。
 
-### T9 [ ] Pascal 静态门禁脚本（防 B29 类事故）
+### T9 [x] Pascal 静态门禁脚本（防 B29 类事故）
+**完成 03:18，commit d7f17be**：scripts/pascal-gate.cjs——四规则（R1 B29 缺 then 含 `<> nil` 变体 / R2 JSON 拼接未过 JSONEscapeString / R3 单参 Save/LoadToFile【T5 落地前 report-only】/ R4 PreProcess 10 行内无 try），`gate-ok` 行豁免、纯注释行跳过、--strict 阻塞、目录参数可测；package.json 加 `gate:pascal`；3 例行为测试。**基线扫描 14 违例**（R3×5=T5 五位点、R2×3=审查 #7、R4×6=审查 #8——门禁与审查交叉验证一致）。全量 200/200 + tsc。
+**教训两条**：① 测试样例注释含 "then"/"try" 关键词污染行级匹配（样例要干净）；② R1 正则初版只匹配 `= nil` 漏了 B29 原句的 `<> nil`（对照事故原文再写规则）；③ 两次在红测试下 amend 提交——跑全量必须放在 amend 之前。
 新建 scripts/pascal-gate.cjs（CommonJS，node 直调）：扫描 altium-scripts/*.pas，按行号报错退出码 1。规则（初版，允许白名单注释豁免 `// gate-ok`）：
 ① 行尾 `nil` 且该行是 if/else if 的一部分但无 `then`（B29 模式，注意多行 if 误报——只查单行含 `if ` 与 `= nil` 且不含 then）
 ② `' + ` 拼接含 LibReference/Name/Text 等且未过 JSONEscapeString（简化：匹配 `.Add('"' + ` 且同行无 JSONEscapeString）
@@ -109,3 +111,4 @@ c) src/tools/pinTable.ts 若有全量枚举可过滤参数透传则透传（T8 �
 - 02:03 完成 T6：commit 00cbc4c，add_via/add_text 坐标覆盖修复（载体 XC/YC + 调用点重解析），ping 冒烟通过，194/194
 - 02:10 完成 T7：commit 598110d，RunOutputJobs nil 判空 + DisableDialog，ping 冒烟通过，194/194
 - 03:12 完成 T8：commit f9e718a，批量 pin 热点实机验证通过（1738ms 全表 vs 旧路径单元件 1372ms，完全一致）；环境坑记录：磁盘 PrjPcb 缺 Sheet1/3 成员（已列入待用户决策）
+- 03:18 完成 T9：commit d7f17be，pascal-gate 四规则门禁 + 基线 14 违例报告（与审查交叉验证一致），200/200
