@@ -61,16 +61,8 @@ export async function withBridgeLock<T>(
       writeSync(fd, String(process.pid));
       closeSync(fd);
       fd = undefined;
-      try {
-        return await fn();
-      } finally {
-        try {
-          unlinkSync(lockPath);
-        } catch {
-          /* ignore */
-        }
-      }
     } catch {
+      // Lock-acquisition failure only: contented or IO error on the lock file.
       if (fd !== undefined) {
         try {
           closeSync(fd);
@@ -80,6 +72,20 @@ export async function withBridgeLock<T>(
         fd = undefined;
       }
       await sleep(pollMs);
+      continue;
+    }
+    // Lock acquired — run fn OUTSIDE the acquire-try. A business error from fn
+    // must propagate to the caller (lock released via finally), NOT be caught
+    // by the acquire-catch above and retried, which would re-execute the whole
+    // Altium command and mask the real error behind a LockTimeoutError.
+    try {
+      return await fn();
+    } finally {
+      try {
+        unlinkSync(lockPath);
+      } catch {
+        /* ignore */
+      }
     }
   }
 
