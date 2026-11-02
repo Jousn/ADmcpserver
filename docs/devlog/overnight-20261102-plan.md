@@ -116,3 +116,4 @@ c) src/tools/pinTable.ts 若有全量枚举可过滤参数透传则透传（T8 �
 - 03:18 完成 T9：commit d7f17be，pascal-gate 四规则门禁 + 基线 14 违例报告（与审查交叉验证一致），200/200
 - 03:58 完成 T10：commit e4c71a3，instructions -73% + 库查询限流，200/200 + smoke PASS；夜间任务全部收官（T5 BLOCKED 待用户）
 - 04:36 T5 请求方向修复落地：commit 94daf20，request.json 改 UTF-16LE+BOM（备选方案 TS 半步），实机 smoke PASS，204/204；响应方向仍 BLOCKED
+- 05:13 心跳：计划内工作全部完成（T1-T4/T6-T10 ✅ + T5 请求方向半修复），持久记忆已更新中点快照；等待 08:30 收尾窗口
