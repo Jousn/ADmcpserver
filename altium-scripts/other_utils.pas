@@ -494,12 +494,16 @@ begin
         if not(Client.IsDocumentOpen(OutJobPath)) then
         begin
             OutJobDoc := Client.OpenDocument('OUTPUTJOB', OutJobPath);
-            OutJobDoc.Focus();
+            // T7: nil-check BEFORE Focus — OpenDocument can return nil (bad
+            // path / not a real OutJob); calling .Focus() on nil crashed AV.
+            if OutJobDoc <> Nil then
+                OutJobDoc.Focus();
         end
         else
         begin
             OutJobDoc := Client.GetDocumentByPath(OutJobPath);
-            OutJobDoc.Focus();
+            if OutJobDoc <> Nil then
+                OutJobDoc.Focus();
         end;
 
         // Exit if we can't open the OutJob document
@@ -558,6 +562,10 @@ begin
                                     AddStringParameter('OutputMedium', ContainerName);
                                     AddStringParameter('ObjectKind', 'OutputBatch');
                                     AddStringParameter('OutputBasePath', RelativePath);
+                                    // T7: suppress dialogs — matches the Publish branch;
+                                    // without it Altium can pop a modal (overwrite/error)
+                                    // that blocks the bridge until user interaction.
+                                    AddStringParameter('DisableDialog', 'True');
                                     RunProcess('WorkspaceManager:GenerateReport');
 
                                     // Assume success
