@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.2.1 (2026-11-03 夜间批次)
+
+- **桥接可靠性**: lock.ts 业务异常不再被当锁竞争重放（真实错误直接向上传播）；响应轮询改"未就绪即重试"（防半写 response.json 假失败）；陈锁仅 ESRCH 判定删除（EPERM 视为活锁）；launchAltiumRunScript 挂 exit 退出码——坏 exe 路径快速报 ALT_LAUNCH_FAILED（原为 120s 超时死路径）。
+- **requestId 协议**: 每条请求带自增关联 ID，Pascal 端原样回写；轮询校验不匹配视为 stale 继续等待——杜绝超时后旧响应串台成下一次调用的结果。
+- **PCB 写修复**: add_via 坐标被 tenting 布尔载体覆盖（过孔永远落 (1,1)）与 add_text italic 载体覆盖 Y 坐标——载体改独立变量 + 坐标调用点重解析；RunOutputJobs 的 OpenDocument nil 先判空再 Focus（修必然 AV），GeneratedFiles 分支补 DisableDialog。
+- **性能**: 新增 get_all_pin_hotspots 批量引脚热点命令——一次桥接往返取全图纸引脚表（实机验证 1738ms 全表 vs 旧路径单元件 1372ms），fetchSchematicAuditData 批量优先/失败回退；wire_pins / optimize_layout / 审计工具在大图上从分钟级压到秒级。
+- **协议正确性**: pcb_edit(21)/pcb_component(14)/open_document(8)/zoom_view(6)/generate_report(5)/pcb_net_info(2) 六工具 schema 从自由 string 收紧为 z.enum（值全部从 Pascal 分发链核实）；pcb_net_info 注解改 MixedSelect（select 改选择态非只读）。
+- **Token 经济**: 服务器 instructions 29,434→7,932 字符（-73%，删除与工具描述重复段，保留行为纪律）；库查询限流（limit 默认 50/上限 200 + total/truncated 标记 + 最小查询长度 2）。
+- **编码（部分）**: request.json 改写 UTF-16LE+BOM——Pascal 自动识别 BOM，中文参数可安全进入 Altium（响应方向待 Pascal 侧方案，见仓库计划文件 T5 BLOCKED 节）；response/错误片段读取防御性剥离 BOM。
+- **工程**: 新增 pascal-gate.cjs 静态门禁（B29 缺 then/JSON 未转义/ANSI 文件IO/PreProcess 无 try 四规则，gate:pascal 脚本）；serverInfo 版本号改读 package.json；kb-index 重建。
+- 测试 176→204（+28：锁/快照/launch/请求编码/审计数据批量回退/门禁），全绿 + tsc 干净；实机验证 requestId 回带、批量热点与旧路径结果一致、桥接 smoke PASS。
+
 ## Unreleased — v1.0-rc 进行中（2026-10-27/28 夜间批次）
 
 - **内网部署包 20261030**：`altium-mcp-intranet-20261030.zip`（6.65MB/3603 项，staging 独立自检 PASS：51 工具含 emc_audit、桥接 ping ok、serverInfo v0.2.0）。修复 serverInfo 版本号硬编码 0.1.0——现从 package.json 读取；kb-index.json 重建（内容不变，仅生成时间戳）。
