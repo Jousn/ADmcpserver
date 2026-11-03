@@ -1,7 +1,7 @@
 # 夜间自动开发计划（2026-11-02 23:00 → 2026-11-03 09:00）
 
-status: IN-PROGRESS
-截止：2026-11-03 09:00（**08:30 起进入收尾协议**）
+status: WRAP-UP-DONE
+截止：2026-11-03 09:00（08:32 起执行收尾，08:41 完成）
 本文件是夜间开发进度的**唯一事实来源**。每个运行实例先读这里，做完就更新这里。
 
 ## 开发纪律（每次运行必读，违反=事故）
@@ -86,14 +86,8 @@ b) src/index.ts get_library_symbol_reference（约 1100 行）/ search_library_s
 c) src/tools/pinTable.ts 若有全量枚举可过滤参数透传则透传（T8 若已完成可复用批量思路，不强求）。
 验证：全量测试 + tsc；instructions 字符数用 node -e 打印确认达标。
 
-### T11（08:30 后的收尾运行执行）[ ] 收尾协议
-1. 全量测试 + tsc --noEmit + tsc 构建，全绿才算数
-2. node scripts/pascal-gate.cjs 跑一遍记录结果
-3. CHANGELOG.md 加 Unreleased 条目（逐项列 T1-T10 完成内容）；docs/devlog/ 新建 week12-2026-11-02_night-batch.md（格式照 week11：背景/交付/踩坑/待实测）
-4. 版本号 package.json → 0.2.1（serverInfo 会自动跟随）
-5. 重建部署包 staging（照 20261030 流程：stage-prod-deps + smoke-intranet 自检 PASS 后压 zip 到 E:\workspace\DSH\altium-mcp-intranet-20261103.zip）——若时间不足 1 小时则跳过打包，只完成 1-4
-6. 把本文件 status 改为 WRAP-UP-DONE，最后 git commit
-7. 调用 CronPauseSelf
+### T11（08:30 后的收尾运行执行）[x] 收尾协议
+**完成 08:41**：① 全量 204/204 + tsc --noEmit + 构建，全绿 ② pascal-gate 基线 14 违例（R3×5 待 T5 响应方向、R2×3、R4×6）③ CHANGELOG 0.2.1 条目 + docs/devlog/week12-2026-11-02_night-batch.md ④ 版本 0.2.1（serverInfo 跟随）⑤ 部署包重建：staging 独立自检 PASS（**52 工具**、ping ok、v0.2.1）→ `E:\workspace\DSH\altium-mcp-intranet-20261103.zip`（6.98MB）⑥ 本文件 status → WRAP-UP-DONE。
 
 ## 待用户决策（夜间一律跳过）
 - **T5 对话框文案**：Pascal UTF-8 两个方案都触发无文本 Error 对话框，需实机读一次 Messages 面板定位（候选：TEncoding 不支持/COM 安全弹框/CreateObject 受限）
@@ -121,3 +115,4 @@ c) src/tools/pinTable.ts 若有全量枚举可过滤参数透传则透传（T8 �
 - 06:33 心跳：状态无变化（工作树干净，b0f1a69），等待收尾窗口
 - 07:13 心跳：状态无变化（75cd17f），下次或下下次触发进入收尾
 - 07:53 心跳：状态无变化（99aef41），下次触发（08:32）执行 T11 收尾协议
+- 08:41 T11 收尾完成：全量 204/204 + gate 14 违例基线 + CHANGELOG/week12 devlog + 版本 0.2.1（33d9129）+ 部署包 altium-mcp-intranet-20261103.zip（52 工具 SMOKE PASS）；WRAP-UP-DONE，自动化自我暂停
