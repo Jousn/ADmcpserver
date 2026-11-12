@@ -7,7 +7,7 @@ const {
 const fs = require('fs');
 const path = require('path');
 
-const OUT_DIR = path.join(__dirname, '..', 'docs', '交付物');
+const OUT_DIR = path.join(__dirname, '..', 'docs', '归档', '交付物'); // 2026-11-12 docs 整理：汇报材料归档
 
 const FONT = { ascii: 'Arial', hAnsi: 'Arial', eastAsia: 'Microsoft YaHei' };
 const BLACK = '000000';

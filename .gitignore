@@ -8,3 +8,4 @@ coverage/
 *.tsbuildinfo
 trash/
 memory/
+output/word-docs-render/
